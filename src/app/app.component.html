@@ -1,20 +1,65 @@
-<!--The whole content below can be removed with the new code.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{title}}!!
-  </h1>
-  <img width="300" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxOS4xLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjxzdmcgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeD0iMHB4IiB5PSIwcHgiDQoJIHZpZXdCb3g9IjAgMCAyNTAgMjUwIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCAyNTAgMjUwOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+DQo8c3R5bGUgdHlwZT0idGV4dC9jc3MiPg0KCS5zdDB7ZmlsbDojREQwMDMxO30NCgkuc3Qxe2ZpbGw6I0MzMDAyRjt9DQoJLnN0MntmaWxsOiNGRkZGRkY7fQ0KPC9zdHlsZT4NCjxnPg0KCTxwb2x5Z29uIGNsYXNzPSJzdDAiIHBvaW50cz0iMTI1LDMwIDEyNSwzMCAxMjUsMzAgMzEuOSw2My4yIDQ2LjEsMTg2LjMgMTI1LDIzMCAxMjUsMjMwIDEyNSwyMzAgMjAzLjksMTg2LjMgMjE4LjEsNjMuMiAJIi8+DQoJPHBvbHlnb24gY2xhc3M9InN0MSIgcG9pbnRzPSIxMjUsMzAgMTI1LDUyLjIgMTI1LDUyLjEgMTI1LDE1My40IDEyNSwxNTMuNCAxMjUsMjMwIDEyNSwyMzAgMjAzLjksMTg2LjMgMjE4LjEsNjMuMiAxMjUsMzAgCSIvPg0KCTxwYXRoIGNsYXNzPSJzdDIiIGQ9Ik0xMjUsNTIuMUw2Ni44LDE4Mi42aDBoMjEuN2gwbDExLjctMjkuMmg0OS40bDExLjcsMjkuMmgwaDIxLjdoMEwxMjUsNTIuMUwxMjUsNTIuMUwxMjUsNTIuMUwxMjUsNTIuMQ0KCQlMMTI1LDUyLjF6IE0xNDIsMTM1LjRIMTA4bDE3LTQwLjlMMTQyLDEzNS40eiIvPg0KPC9nPg0KPC9zdmc+DQo=" />
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" href="http://angularjs.blogspot.ca/">Angular blog</a></h2>
-  </li>
-</ul>
+<header>
+  <img src="{{logo}}" alt="logo"/>
+  <h1>Flix</h1>
+</header>
+<main class="main-content">
+  <div class="tab-filter-wrapper">
+    <div class="tab-filter">
+      <ul>
 
+        <li class="placeholder">
+          <a data-type="all" href="#0">All</a>
+        </li>
+
+        <li *ngFor="let category of categories" (click)="selectTab(category.category)">
+          <a [class.selected]="category.selected">{{category.category}}</a>
+        </li>
+
+        <li class="counter">
+          <a>{{movies.length}}</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <section [class.filter-is-visible]="!navClosed" class="gallery">
+    <div *ngFor="let movie of filteredMovies" class="movie"
+         (mouseenter)="toggleHoverForTheMovie(movie.id)"
+         (mouseleave)="toggleHoverForTheMovie(movie.id)">
+      <img
+        [alt]="movie.title + 'cover' "
+        [src]="PICTURES_CDN_URL + movie.poster_path"
+      />
+      <div [class.show-movie-body]="isMovieHovered(movie.id)" class="movie-body">
+        <h1>{{movie.title}}</h1>
+        <p>{{shorten(movie.overview)}}</p>
+
+        <button class="btn btn-danger">
+          Remove from cart
+        </button>
+        <button class="btn btn-success">
+          Add to cart
+        </button>
+        <button class="btn btn-link">
+          See the details
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <div [class.filter-is-visible]="!navClosed" class="filter">
+    <form novalidate>
+      <div class="filter-block">
+        <h4>Search</h4>
+        <div class="filter-content">
+          <input type="search" placeholder="title" (change)="search($event)"/>
+        </div>
+      </div>
+    </form>
+    <a class="hand-cursor close-f" (click)="closeSideBar()">Close</a>
+  </div>
+
+  <a class="hand-cursor filter-trigger" (click)="openSideBar()">
+    Filters
+  </a>
+</main>

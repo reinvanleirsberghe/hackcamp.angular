@@ -1,6 +1,6 @@
 /** A few utility functions used accross the project **/
-import {genres} from './mocks/genres.js';
-import {movies} from './mocks/movies.js';
+import {genres} from './mocks/genres';
+import {movies} from './mocks/movies';
 import {Movie} from './types';
 
 export const getGenreName = (id: number) =>
