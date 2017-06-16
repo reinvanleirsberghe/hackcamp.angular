@@ -1,9 +1,10 @@
 import {Component} from '@angular/core';
-import {Category, Movie} from './types';
-import {getGenreId, movieContainsGenre} from './utils';
+import {Category, Genre, Movie} from './types';
+import {getGenreId} from './utils';
 import {PICTURES_CDN_URL} from './constant';
 import {movies} from './mocks/movies';
 import {categories} from './mocks/categories';
+import {genres} from './mocks/genres';
 
 @Component({
   selector: 'app-root',
@@ -15,20 +16,21 @@ import {categories} from './mocks/categories';
   ]
 })
 export class AppComponent {
+  PICTURES_CDN_URL = PICTURES_CDN_URL;
 
   logo = '../assets/images/logo.svg';
-
-  PICTURES_CDN_URL = PICTURES_CDN_URL;
 
   movies: Movie[] = movies.slice(0, 50);
   filteredMovies: Movie[] = movies.slice(0, 50);
   categories: Category[] = categories;
+  genres: Genre[] = genres;
+
   searchValue: string;
   navClosed = true;
   hoverMovies = new Map();
 
 
-  selectTab(category) {
+  selectTab(category): void {
     this.categories = this.categories.map(filter => {
       filter.selected = filter.category === category;
       return filter;
@@ -36,20 +38,20 @@ export class AppComponent {
     this.filterMovies();
   };
 
-  closeSideBar() {
+  closeSideBar(): void {
     this.navClosed = true;
   };
 
-  openSideBar() {
+  openSideBar(): void {
     this.navClosed = false;
   }
 
-  search(event) {
+  search(event): void {
     this.searchValue = event.target.value;
     this.filterMovies();
   };
 
-  filterMovies() {
+  filterMovies(): void {
     const selectedCategory = this.categories.filter(f => f.selected)[0]
       .category;
 
@@ -60,7 +62,7 @@ export class AppComponent {
 
   filterByCategory(selectedCategory: string) {
     return (movie: Movie) => {
-      return selectedCategory === 'All' || movieContainsGenre(movie, getGenreId(selectedCategory));
+      return selectedCategory === 'All' || this.movieContainsGenre(movie, getGenreId(selectedCategory));
     }
   }
 
@@ -70,15 +72,26 @@ export class AppComponent {
     }
   }
 
-  toggleHoverForTheMovie(movieId: number) {
+  movieContainsGenre(movie: Movie, genre_id: number): boolean {
+    return movie.genre_ids.reduce((contains, next) => {
+      return contains ? contains : next === genre_id
+    }, false);
+  }
+
+  getGenreId(name: string): number {
+    const { id } = this.genres.filter(genre => genre.name === name)[0];
+    return id;
+  }
+
+  toggleHoverForTheMovie(movieId: number): void {
     this.hoverMovies.set(movieId, !this.hoverMovies.get(movieId));
   }
 
-  isMovieHovered(movieId: number) {
+  isMovieHovered(movieId: number): boolean {
     return this.hoverMovies.get(movieId);
   }
 
-  shorten(text: string, limit: number) {
+  shorten(text: string, limit: number): string {
     return text.split('').slice(0, limit).join('') + '...';
   }
 }
