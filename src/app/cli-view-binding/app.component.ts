@@ -6,7 +6,7 @@ import {categories} from '../shared/mocks/categories';
 import {genres} from '../shared/mocks/genres';
 
 @Component({
-  selector: 'app-root',
+  selector: 'hf-app',
   templateUrl: './app.component.html',
   styleUrls: [
     './app.component.css',
