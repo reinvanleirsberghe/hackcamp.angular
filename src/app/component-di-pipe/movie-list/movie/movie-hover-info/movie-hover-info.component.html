@@ -1,6 +1,6 @@
 <div [class.show-movie-body]="isContainerHovered" class="movie-body">
   <h1>{{movie.title}}</h1>
-  <p>{{shorten(movie.overview)}}</p>
+  <p>{{movie.overview | shorten:140}}</p>
 
   <button class="btn btn-danger">
     Remove from cart

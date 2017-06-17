@@ -3,7 +3,10 @@
      (mouseleave)="toggleHoverForTheMovie()">
   <img
     [alt]="movie.title + 'cover' "
-    [src]="baseUrlCDN + movie.poster_path"
+    [src]="movie.posterFullPath"
   />
-  <hf-movie-hover-info [movie]="movie" [isContainerHovered]="isHovered"></hf-movie-hover-info>
+  <hf-movie-hover-info
+    [movie]="movie"
+    [isContainerHovered]="isHovered">
+  </hf-movie-hover-info>
 </div>

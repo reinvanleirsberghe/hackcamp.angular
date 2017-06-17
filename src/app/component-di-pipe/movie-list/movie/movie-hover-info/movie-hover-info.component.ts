@@ -18,9 +18,4 @@ export class MovieHoverInfoComponent implements OnInit {
 
   ngOnInit() {
   }
-
-  shorten(text: string, limit: number): string {
-    return text.split('').slice(0, limit).join('') + '...';
-  }
-
 }

@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { MovieHoverInfoComponent } from './movie-hover-info.component';
+import {MovieHoverInfoComponent} from './movie-hover-info.component';
 
 describe('MovieHoverInfoComponent', () => {
   let component: MovieHoverInfoComponent;
@@ -8,9 +8,9 @@ describe('MovieHoverInfoComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MovieHoverInfoComponent ]
+      declarations: [MovieHoverInfoComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

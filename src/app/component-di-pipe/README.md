@@ -37,24 +37,35 @@ Before running the tests make sure you are serving the app via `ng serve`.
   
 #### Features:
   
-  - Create first service ( mock data)
-  - Split in several components
-    - MovieList (movie-list)
-      - Movie
-      - Hover Information (movie-hover-info)
-    - Category
-    - Sidebar
-    - Displayed movies counter
- - Adding new component
-    - Add-To-Cart component
-    - In sidebar add ordering by ASC/DESC 
-  - Implement adding and counting of Add-To-Cart component
-  - Implement pipe that will truncate description movie
+  - Split in several components using the CLI. Make sure your application is still working
+    - MovieList => movie-list
+      - Movie => movie
+        - MovieHoverInfo => movie-hover-info
+    - Menubar => menubar
+    - Sidebar => sidebar
+    - Header => header
+  - Implement pipe using the CLI that will truncate movie's overview 
+    - The pipe's name is 'Shorten' => hint: shorten method
+  - Create API service using the CLI with mock data
+      - getMovies return only 50 'movies' from the mocks
+      - getCategories return 'categories' mocks
+      - getGenres return 'genres' mocks
+  - Introduction to lifecycle hooks
+    - ngOnInit
+      - Use API service in the component to get your data instead of the
+      global mock data
+    - ngOnChanges
+      - Build a light mapper from Movie to MovieLite (utils.ts)
+    - ngOnDestroy (demo)
+ 
+
+#### Bonus
+  - In sidebar component, add ordering by ASC/DESC 
 
 #### Breakings:
   - Template syntax 
 
-#### Testing
+#### Testing (demo)
   - Component category
   - Service
   - Pipe
@@ -68,22 +79,26 @@ Before running the tests make sure you are serving the app via `ng serve`.
   - Service Advanced
   
 #### Features
-
+  - Setup Routing
   - Implement Login component (Template Syntax) with redirection to home page
     - Validation 
        - Email
        - Password length
-  - Implement  Authentication service with Promise
+  - Implement Authentication service with Promise
   - Protect home routes if not authenticated
   - Implement Api Service with RxJs
     - Fetch all movies
       - Get only some properties
     - Fetch all categories
+    - Fetch all genres
   - Implement details page of movies, navigation with back return  
   - Implement formatting date pipe with moment.js
-  - Implement delete element in cart 
   - Implement Stats page (Observable), navigation with back return 
     - Stats page is performed with calculation
+  - Adding new component
+        - Add-To-Cart component
+        - Implement adding and counting of Add-To-Cart component
+        - Implement delete element in cart 
   
 #### Bonus : 
   - Implement a pagination component

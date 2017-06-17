@@ -14,13 +14,15 @@
   bottom: 0px;
 }
 
-.movie:hover .movie-body{
+.movie:hover .movie-body {
   bottom: 0px;
 }
-.movie-body .btn-link{
+
+.movie-body .btn-link {
   color: #FFF;
   text-decoration: underline;
 }
-.movie-body .btn{
+
+.movie-body .btn {
   cursor: pointer;
 }

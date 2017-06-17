@@ -1,33 +1,39 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Category, Genre, Movie} from '../shared/types';
 import {PICTURES_CDN_URL} from '../shared/constant';
-import {movies} from '../shared/mocks/movies';
-import {categories} from '../shared/mocks/categories';
-import {genres} from '../shared/mocks/genres';
+import {ApiService} from './api.service';
 
 @Component({
   selector: 'hf-app',
   templateUrl: './app.component.html',
   styleUrls: [
     './app.component.css',
-    '../../assets/css/header.css',
   ]
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   PICTURES_CDN_URL = PICTURES_CDN_URL;
 
   logo = '../assets/images/logo.svg';
 
-  categories: Category[] = categories;
-  genres: Genre[] = genres;
+  categories: Category[];
+  genres: Genre[];
 
   searchValue: string;
   navClosed = true;
 
-  movies: Movie[] = movies.slice(0, 50);
-  filteredMovies: Movie[] = movies.slice(0, 50);
+  movies: Movie[];
+  filteredMovies: Movie[];
 
-  hoverMovies = new Map();
+  constructor(private apiService: ApiService) {
+    this.selectTab = this.selectTab.bind(this);
+  }
+
+  ngOnInit(): void {
+    this.movies = this.apiService.getMovies();
+    this.filteredMovies = this.movies;
+    this.categories = this.apiService.getCategories();
+    this.genres = this.apiService.getGenres();
+  }
 
   selectTab(category): void {
     this.categories = this.categories.map(filter => {
@@ -45,8 +51,8 @@ export class AppComponent {
     this.navClosed = false;
   }
 
-  search(event): void {
-    this.searchValue = event.target.value;
+  search(value: string): void {
+    this.searchValue = value;
     this.filterMovies();
   };
 
