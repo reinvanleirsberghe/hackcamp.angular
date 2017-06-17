@@ -5,7 +5,7 @@ import {Pipe, PipeTransform} from '@angular/core';
 })
 export class ShortenPipe implements PipeTransform {
 
-  transform(text: string, limit: number): any {
+  transform(text: string, limit: number = 140): any {
     if (!text) {
       return;
     }
