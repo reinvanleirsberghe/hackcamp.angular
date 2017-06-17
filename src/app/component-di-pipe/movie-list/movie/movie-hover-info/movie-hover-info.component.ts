@@ -8,10 +8,10 @@ import {Movie} from '../../../../shared/types';
 })
 export class MovieHoverInfoComponent implements OnInit {
   @Input()
-  isContainerHovered;
+  isContainerHovered = false;
 
   @Input()
-  movie: Movie;
+  movie: Movie = new Movie();
 
   constructor() {
   }

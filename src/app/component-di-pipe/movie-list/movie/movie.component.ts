@@ -1,5 +1,4 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Movie} from '../../../shared/types';
 import {MovieLite} from '../../type';
 
 @Component({
@@ -12,7 +11,7 @@ import {MovieLite} from '../../type';
 export class MovieComponent implements OnInit {
 
   @Input()
-  movie: MovieLite;
+  movie: MovieLite = new MovieLite();
 
   isHovered = false;
 

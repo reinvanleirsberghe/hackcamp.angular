@@ -1,6 +1,7 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {MovieHoverInfoComponent} from './movie-hover-info.component';
+import {ShortenPipe} from '../../../shorten.pipe';
 
 describe('MovieHoverInfoComponent', () => {
   let component: MovieHoverInfoComponent;
@@ -8,7 +9,10 @@ describe('MovieHoverInfoComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [MovieHoverInfoComponent]
+      declarations: [
+        MovieHoverInfoComponent,
+        ShortenPipe,
+      ]
     })
       .compileComponents();
   }));

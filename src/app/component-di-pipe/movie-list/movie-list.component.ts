@@ -16,9 +16,9 @@ export class MovieListComponent implements OnInit, OnChanges {
   baseUrlCDN;
 
   @Input()
-  filteredMovies: Movie[];
+  filteredMovies: Movie[] = [];
 
-  filteredMoviesLite: MovieLite[];
+  filteredMoviesLite: MovieLite[] = [];
 
   constructor() {
   }
