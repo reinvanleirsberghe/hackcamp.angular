@@ -37,7 +37,25 @@ Before running the tests make sure you are serving the app via `ng serve`.
   
 #### Features:
   
-  - Split in several components using the CLI. Make sure your application is still working
+   - Display all mock movies
+      - Picture
+      - Hover information
+    - Display all mock categories
+    - Filter by category
+    - Make active a category when selected
+    - Toggle Sidebar
+    - Implement search in sidebar
+ 
+
+#### Bonus
+  - In sidebar component, add ordering by ASC/DESC 
+
+#### Breakings:
+  - Template syntax 
+
+#### TODO :
+
+ - Split in several components using the CLI. Make sure your application is still working
     - MovieList => movie-list
       - Movie => movie
         - MovieHoverInfo => movie-hover-info
@@ -57,87 +75,9 @@ Before running the tests make sure you are serving the app via `ng serve`.
     - ngOnChanges
       - Build a light mapper from Movie to MovieLite (utils.ts)
     - ngOnDestroy (demo)
- 
-
-#### Bonus
-  - In sidebar component, add ordering by ASC/DESC 
-
-#### Breakings:
-  - Template syntax 
-
+    
 #### Testing (demo)
   - Component category
   - Service
   - Pipe
 
-
-### LVL 1 - Routing, Rx and Advanced Service
-
-#### Concepts
-  - Routing
-  - Introduction RxJS
-  - Service Advanced
-  
-#### Features
-  - Setup Routing
-  - Implement Login component (Template Syntax) with redirection to home page
-    - Validation 
-       - Email
-       - Password length
-  - Implement Authentication service with Promise
-  - Protect home routes if not authenticated
-  - Implement Api Service with RxJs
-    - Fetch all movies
-      - Get only some properties
-    - Fetch all categories
-    - Fetch all genres
-  - Implement details page of movies, navigation with back return  
-  - Implement formatting date pipe with moment.js
-  - Implement Stats page (Observable), navigation with back return 
-    - Stats page is performed with calculation
-  - Adding new component
-        - Add-To-Cart component
-        - Implement adding and counting of Add-To-Cart component
-        - Implement delete element in cart 
-  
-#### Bonus : 
-  - Implement a pagination component
-
-#### Testing : 
-
-  - Http Service
-
-### LVL 1 - Forms, directives, ngRX
-
-#### Concepts
-   - ngRx
-   - Forms
-   - Directives
-   
-#### Features
-
-  - Implement Redux with ngRx
-    - Setting to do
-  - Add authentication in redux
-  - Rewrite login component with Reactive form
-    - Validation 
-           - Email
-           - Password length
-  - Add movies handling in redux
-  - Add filtering handling in redux
-  - Add cart handling in redux
-  - Implement dropdown to change number of item in cart
-  - Implement undo in cart
-  - Implement comment service ( CRUD)
-  - Implement comment component for CRUD ( Reactive Form)
-    - Validation :
-      - Author required, begin with a Uppercase letter
-      - Comment required, 150 character max, block if contains bad words
- 
-#### Breaking
-  - Setup Redux
-    
-#### Testing
-  - Reducer
-  - Directive
-  - Validator class

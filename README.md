@@ -56,7 +56,25 @@ Before running the tests make sure you are serving the app via `ng serve`.
   - Sidebar menu not working
   - Search in sidebar not working
   - Hovering details movies not working
-  
+
+#### TODO
+
+Estimated time: 2 hours
+
+- Bootstrap the application
+- Inside the CLI-View-Binding, bootstrap the AppComponent
+- Fix the AppComponent and mock data
+- Fix the AppComponent's template
+- Implement the following features
+  - Display all mock movies
+    - Picture
+    - Hover information ()
+  - Display all mock categories
+  - Filter by category
+  - Make active a category when selected
+  - Toggle Sidebar
+  - Implement search in sidebar
+
 
 ### LVL 1 - Component, DI and Pipe
 
@@ -70,22 +88,42 @@ Before running the tests make sure you are serving the app via `ng serve`.
   
 #### Features:
   
-  - Create first service ( mock data)
-  - Split in several components
-    - MovieList
-      - Movie
-      - Hover Information
-    - Category
-    - Sidebar
-     - Displayed movies counter
- - Adding new component
-    - Add-To-Cart component
-    - In sidebar add ordering by ASC/DESC 
-  - Implement adding and counting of Add-To-Cart component
-  - Implement pipe that will truncate description movie
+  - Display all mock movies
+     - Picture
+     - Hover information
+   - Display all mock categories
+   - Filter by category
+   - Make active a category when selected
+   - Toggle Sidebar
+   - Implement search in sidebar
 
 #### Breakings:
   - Template syntax 
+
+#### TODO :
+
+Estimated time: 3 hours
+
+ - Split in several components using the CLI. Make sure your application is still working
+    - MovieList => movie-list
+      - Movie => movie
+        - MovieHoverInfo => movie-hover-info
+    - Menubar => menubar
+    - Sidebar => sidebar
+    - Header => header
+  - Implement pipe using the CLI that will truncate movie's overview 
+    - The pipe's name is 'Shorten' => hint: shorten method
+  - Create API service using the CLI with mock data
+      - getMovies return only 50 'movies' from the mocks
+      - getCategories return 'categories' mocks
+      - getGenres return 'genres' mocks
+  - Introduction to lifecycle hooks
+    - ngOnInit
+      - Use API service in the component to get your data instead of the
+      global mock data
+    - ngOnChanges
+      - Build a light mapper from Movie to MovieLite (utils.ts)
+    - ngOnDestroy (demo)
 
 #### Testing
   - Component category
