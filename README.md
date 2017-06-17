@@ -31,6 +31,9 @@ Before running the tests make sure you are serving the app via `ng serve`.
    - Module (decorator)
    - Component (decorator)
    - Template Syntax & Binding
+   
+#### Important links
+  - [Template Syntax and built-in directives](https://angular.io/guide/template-syntax)
 
 #### Features:
 
