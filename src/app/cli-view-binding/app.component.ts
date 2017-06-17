@@ -1,17 +1,16 @@
 import {Component} from '@angular/core';
-import {Category, Genre, Movie} from './types';
-import {getGenreId} from './utils';
-import {PICTURES_CDN_URL} from './constant';
-import {movies} from './mocks/movies';
-import {categories} from './mocks/categories';
-import {genres} from './mocks/genres';
+import {Category, Genre, Movie} from '../shared/types';
+import {PICTURES_CDN_URL} from '../shared/constant';
+import {movies} from '../shared/mocks/movies';
+import {categories} from '../shared/mocks/categories';
+import {genres} from '../shared/mocks/genres';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: [
     './app.component.css',
-    '../assets/css/header.css',
+    '../../assets/css/header.css',
     '../assets/css/movie.css',
   ]
 })

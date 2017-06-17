@@ -1,4 +1,4 @@
-import {Category} from '../types';
+import {Category} from '../../types';
 
 export const categories: Category[] = [
   { category: 'All', selected: true },
