@@ -58,4 +58,32 @@ describe('AppComponent', () => {
     const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelector('h1').textContent).toContain('Flix');
   }));
+
+  it('should have a list of 50 movies', async(() => {
+    expect(component.movies.length).toEqual(50);
+  }));
+
+  it('should render a list of movies', async(() => {
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelectorAll('.movie').length).toEqual(50);
+  }));
+
+  it('should have "All" category selected by default', async(() => {
+    const compiled = fixture.debugElement.nativeElement;
+    const tab = compiled.querySelector('.tab-filter > ul > li > a.selected ');
+
+    expect(tab.textContent).toEqual('All');
+  }));
+
+  it('should select the category tab when click on it', async(() => {
+    const compiled = fixture.debugElement.nativeElement;
+
+    const tabs = compiled.querySelectorAll('.tab-filter > ul > li > a');
+    const selectedTab = tabs[3];
+
+    selectedTab.click();
+    fixture.detectChanges();
+
+    expect(selectedTab.className).toEqual('selected');
+  }));
 });
