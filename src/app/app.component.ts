@@ -62,7 +62,7 @@ export class AppComponent {
 
   filterByCategory(selectedCategory: string) {
     return (movie: Movie) => {
-      return selectedCategory === 'All' || this.movieContainsGenre(movie, getGenreId(selectedCategory));
+      return selectedCategory === 'All' || this.movieContainsGenre(movie, this.getGenreId(selectedCategory));
     }
   }
 
