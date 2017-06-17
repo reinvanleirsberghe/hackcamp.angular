@@ -11,7 +11,7 @@ import {genres} from '../shared/mocks/genres';
   styleUrls: [
     './app.component.css',
     '../../assets/css/header.css',
-    '../assets/css/movie.css',
+    '../../assets/css/movie.css',
   ]
 })
 export class AppComponent {

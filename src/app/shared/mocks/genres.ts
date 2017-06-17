@@ -1,4 +1,4 @@
-import {Genre} from '../../types';
+import {Genre} from '../types';
 
 export const genres: Genre[] = [
   {
