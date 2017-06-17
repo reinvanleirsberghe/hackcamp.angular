@@ -11,7 +11,6 @@ import {genres} from '../shared/mocks/genres';
   styleUrls: [
     './app.component.css',
     '../../assets/css/header.css',
-    '../../assets/css/movie.css',
   ]
 })
 export class AppComponent {
@@ -19,15 +18,16 @@ export class AppComponent {
 
   logo = '../assets/images/logo.svg';
 
-  movies: Movie[] = movies.slice(0, 50);
-  filteredMovies: Movie[] = movies.slice(0, 50);
   categories: Category[] = categories;
   genres: Genre[] = genres;
 
   searchValue: string;
   navClosed = true;
-  hoverMovies = new Map();
 
+  movies: Movie[] = movies.slice(0, 50);
+  filteredMovies: Movie[] = movies.slice(0, 50);
+
+  hoverMovies = new Map();
 
   selectTab(category): void {
     this.categories = this.categories.map(filter => {
@@ -82,16 +82,6 @@ export class AppComponent {
     return id;
   }
 
-  toggleHoverForTheMovie(movieId: number): void {
-    this.hoverMovies.set(movieId, !this.hoverMovies.get(movieId));
-  }
 
-  isMovieHovered(movieId: number): boolean {
-    return this.hoverMovies.get(movieId);
-  }
-
-  shorten(text: string, limit: number): string {
-    return text.split('').slice(0, limit).join('') + '...';
-  }
 }
 

@@ -72,10 +72,13 @@ Before running the tests make sure you are serving the app via `ng serve`.
   
   - Create first service ( mock data)
   - Split in several components
+    - MovieList
+      - Movie
+      - Hover Information
     - Category
     - Sidebar
-  - Adding new component
-    - Displayed movies counter
+     - Displayed movies counter
+ - Adding new component
     - Add-To-Cart component
     - In sidebar add ordering by ASC/DESC 
   - Implement adding and counting of Add-To-Cart component

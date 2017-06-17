@@ -22,30 +22,10 @@
     </div>
   </div>
 
-  <section [class.filter-is-visible]="!navClosed" class="gallery">
-    <div *ngFor="let movie of filteredMovies" class="movie"
-         (mouseenter)="toggleHoverForTheMovie(movie.id)"
-         (mouseleave)="toggleHoverForTheMovie(movie.id)">
-      <img
-        [alt]="movie.title + 'cover' "
-        [src]="PICTURES_CDN_URL + movie.poster_path"
-      />
-      <div [class.show-movie-body]="isMovieHovered(movie.id)" class="movie-body">
-        <h1>{{movie.title}}</h1>
-        <p>{{shorten(movie.overview)}}</p>
-
-        <button class="btn btn-danger">
-          Remove from cart
-        </button>
-        <button class="btn btn-success">
-          Add to cart
-        </button>
-        <button class="btn btn-link">
-          See the details
-        </button>
-      </div>
-    </div>
-  </section>
+  <hf-movie-list
+    [baseUrlCDN]="PICTURES_CDN_URL"
+    [navClosed]="navClosed">
+  </hf-movie-list>
 
   <div [class.filter-is-visible]="!navClosed" class="filter">
     <form novalidate>

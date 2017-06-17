@@ -23,42 +23,9 @@ Before running the tests make sure you are serving the app via `ng serve`.
 
 
 ## ROADMAP
+ 
 
-### LVL 1 - CLI, View, Binding
-
-#### Concepts:
-   - Bootstrapping your Angular app using Angular CLI
-   - Module (decorator)
-   - Component (decorator)
-   - Template Syntax & Binding
-   
-#### Important links
-  - [Template Syntax and built-in directives](https://angular.io/guide/template-syntax)
-
-#### Features:
-
-  - Display all mock movies
-    - Picture
-    - Hover information
-  - Display all mock categories
-  - Filter by category
-  - Make active a category when selected
-  - Toggle Sidebar
-  - Implement search in sidebar
-  
-#### Breakings:
-  - Template Syntax & Binding
-  - Module / Component decorator 
-  - Movies not displayed
-  - Categories not displayed
-  - Category selected not styled
-  - Filtering by categories not working
-  - Sidebar menu not working
-  - Search in sidebar not working
-  - Hovering details movies not working
-  
-
-### LVL 1 - Component, DI and Pipe
+### Component, DI and Pipe
 
 #### Concepts:
    - Beyond Component decorator + advanced
@@ -72,9 +39,9 @@ Before running the tests make sure you are serving the app via `ng serve`.
   
   - Create first service ( mock data)
   - Split in several components
-    - MovieList
+    - MovieList (movie-list)
       - Movie
-      - HoverMovieInformation
+      - Hover Information (movie-hover-info)
     - Category
     - Sidebar
     - Displayed movies counter

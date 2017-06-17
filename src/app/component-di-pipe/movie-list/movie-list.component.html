@@ -1,0 +1,3 @@
+<section [class.filter-is-visible]="!navClosed" class="gallery">
+  <hf-movie  *ngFor="let movie of filteredMovies" [baseUrlCDN]="baseUrlCDN" [movie]="movie"></hf-movie>
+</section>
