@@ -159,16 +159,16 @@ Estimated time: 3 hours
     - Fetch all movies
       - Get only some properties
     - Fetch all categories
+  - Add routes details and protect it with guard
+  - Go to movie component add routerLink to navigate to 'details'
   - Implement details page of movies, navigation with back return  
-  - Implement formatting date pipe with moment.js
-  - Implement delete element in cart 
   - Implement Stats page (Observable), navigation with back return 
     - Stats page is performed with calculation
   - ? breaking in module
 
 #### Bonus : 
   - Implement a pagination component
-
+  - Implement formatting date pipe with moment.js
 #### Testing : 
   - Http Service
 

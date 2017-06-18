@@ -16,9 +16,10 @@ import {LoginComponent} from './login/login.component';
 import {FormsModule} from '@angular/forms';
 import {EmailValidatorDirective} from './validators/email-validator.directive';
 import {HttpModule} from '@angular/http';
-import {Categories, PictureCdnUrl, ServerUrl} from './di';
+import {BackdropUrl, BackdropUrl780, Categories, PictureCdnUrl, PictureOriginalUrl, ServerUrl} from './di';
 import {AuthGuard} from './auth.guard';
 import {AuthService} from './auth.service';
+import {MovieDetailsComponent} from './movie-details/movie-details.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import {AuthService} from './auth.service';
     HomeComponent,
     LoginComponent,
     EmailValidatorDirective,
+    MovieDetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,6 +47,9 @@ import {AuthService} from './auth.service';
     AuthService,
     ServerUrl,
     PictureCdnUrl,
+    BackdropUrl,
+    BackdropUrl780,
+    PictureOriginalUrl,
     Categories,
     AuthGuard
   ],

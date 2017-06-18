@@ -21,6 +21,12 @@ export class ApiService {
       .catch(this.handleError);
   }
 
+  getMovieById(id: number | string): Observable<Movie> {
+    return this.http.get(`${this.serverUrl}/movies/${id}`)
+      .map((res: Response) => res.json() as Movie)
+      .catch(this.handleError);
+  }
+
   getOnlyMovies(limit: number = 50) {
     return this.http.get(`${this.serverUrl}/movies`)
       .map((res: Response) => res.json() as Movie[])
