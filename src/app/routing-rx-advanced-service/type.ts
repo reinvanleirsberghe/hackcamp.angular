@@ -6,3 +6,7 @@ export class MovieLite {
 }
 
 
+export class LoginCredentials {
+  email: string;
+  password: string;
+}

@@ -144,7 +144,13 @@ Estimated time: 3 hours
   - Implement Login component (Template Syntax) with redirection to home page
     - Validation 
        - Email
-       - Password length
+        - required
+        - email => to implement
+       - Password
+        - required
+        - minLength
+        - maxLength
+        - beginWithUppercaseLetter => to implement
   - Implement  Authentication service with Promise
   - Protect home routes if not authenticated
   - Implement Api Service with RxJs
@@ -161,7 +167,6 @@ Estimated time: 3 hours
   - Implement a pagination component
 
 #### Testing : 
-
   - Http Service
 
 ### LVL 1 - Forms, directives, ngRX

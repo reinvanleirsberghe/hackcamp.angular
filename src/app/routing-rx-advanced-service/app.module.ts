@@ -11,7 +11,12 @@ import {MenubarComponent} from './menubar/menubar.component';
 import {ApiService} from './api.service';
 import {ShortenPipe} from './shorten.pipe';
 import {AppRoutingModule} from './app.routing.module';
-import { HomeComponent } from './home/home.component';
+import {HomeComponent} from './home/home.component';
+import {LoginComponent} from './login/login.component';
+import {FormsModule} from '@angular/forms';
+import {EmailValidatorDirective} from './validators/email-validator.directive';
+import {TitleCaseValidatorDirective} from './validators/title-case-validator.directive';
+import {HttpModule} from '@angular/http';
 
 @NgModule({
   declarations: [
@@ -24,10 +29,15 @@ import { HomeComponent } from './home/home.component';
     MenubarComponent,
     ShortenPipe,
     HomeComponent,
+    LoginComponent,
+    EmailValidatorDirective,
+    TitleCaseValidatorDirective
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    HttpModule
   ],
   providers: [ApiService],
   bootstrap: [AppComponent]

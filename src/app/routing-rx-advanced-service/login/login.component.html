@@ -1,0 +1,59 @@
+<main class="container">
+  <h1>Authentication login</h1>
+  <form #form="ngForm" (ngSubmit)="login(form.value)">
+    <p>DEBUG Email : {{ email.errors| json}}</p>
+    <p>DEBUG Password: {{ password.errors| json}}</p>
+
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="text" class="form-control" id="email" name="email"
+             required
+             hf-email
+             [(ngModel)]="credentials.email"
+             #email="ngModel"/>
+      <p>DEBUG : {{ email.errors| json}}</p>
+      <div *ngIf="email.errors && (email.dirty || email.touched)"
+           class="alert alert-danger">
+        <div [hidden]="!email.errors.required">
+          Email is required
+        </div>
+        <div [hidden]="!email.errors.invalidEmail">
+          Email should be a valid email
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" class="form-control" id="password" name="password"
+             required
+             minlength="4"
+             maxlength="24"
+             hf-title-case
+             [ngModel]="credentials.password" (ngModelChanges)="credentials.password =$event"
+             #password="ngModel"/>
+
+      <div *ngIf="password.errors && (password.dirty || password.touched)"
+           class="alert alert-danger">
+        <div [hidden]="!password.errors.required">
+          Password is required
+        </div>
+        <div [hidden]="!password.errors.minlength">
+          Password must be at least 4 characters long.
+        </div>
+        <div [hidden]="!password.errors.maxlength">
+          Password cannot be more than 24 characters long.
+        </div>
+        <div [hidden]="!password.errors.invalidTitleCase">
+          Password must begin with a uppercase letter
+        </div>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-success"
+            [disabled]="!form.valid">
+      Submit
+    </button>
+
+  </form>
+</main>
