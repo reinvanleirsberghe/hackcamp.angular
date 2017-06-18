@@ -84,7 +84,7 @@ export class StatsComponent implements OnInit {
     /**
      * Complete to number of movies without using .scan
      *
-     * ? Do you find the difference between .scan
+     * NB: Did you find the difference between .scan and the new operator ?
      */
     return this.api.getMovies()
       .switchMap((movies: Movie[]) => Observable.from(movies))
@@ -115,6 +115,32 @@ export class StatsComponent implements OnInit {
       .flatMap(group => group.reduce((acc, curr) => [...acc, curr], []))
       .first()
   }
+
+  /**
+   * Add a step where you get all movies,
+   * Then for each movie, you populate the genre_ids
+   * i.e for the given movie :
+   * {
+   *  id:100
+   *  genre_ids:[2,3]
+   *  //... others property
+   * }
+   * We will perform a Http call to the backend to get the genres details
+   * - /genres/2
+   * - /genres/3
+   *
+   * When your have the genre details array, you create a new object with the shape:
+   * {
+   *  titleMovie
+   *  genresPopulated:[genres]
+   * }
+   * Then you display it
+   */
+
+  /**
+   * Rewrite the previous step where you get all movies and genres
+   * Then you perform the same mapping
+   */
 
   back() {
     this.location.back();

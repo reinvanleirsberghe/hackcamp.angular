@@ -138,6 +138,7 @@ Estimated time: 3 hours
   - Introduction RxJS
   - Service Advanced
   - DI advanced
+  - Attribute Directive - Validators Directives
   
 #### Features
   - Setup routing in app.routing.module

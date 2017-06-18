@@ -24,8 +24,7 @@ export class MovieListComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() {
-    this.filteredMoviesLite =
-      this.filteredMovies.map(mapMovieToMovieLite(this.baseUrlCDN));
+    this.filteredMoviesLite = this.filteredMovies.map(mapMovieToMovieLite(this.baseUrlCDN));
   }
 
   ngOnChanges(changes: SimpleChanges): void {

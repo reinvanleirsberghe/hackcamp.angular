@@ -1,8 +1,9 @@
 <main class="container">
   <h1>Authentication login</h1>
   <form #form="ngForm" (ngSubmit)="login(form.value)">
-    <p>DEBUG Email : {{ email.errors| json}}</p>
-    <p>DEBUG Password: {{ password.errors| json}}</p>
+    <!--Uncomment these two line below to help you to debug-->
+    <!--<p>DEBUG Email : {{ email.errors| json}}</p>-->
+    <!--<p>DEBUG Password: {{ password.errors| json}}</p>-->
     <p>Hint: password of login backend is h4Xflix </p>
     <p *ngIf="errorLogin" class="alert alert-danger"> Login Fail</p>
     <div class="form-group">
@@ -32,15 +33,15 @@
              [ngModel]="credentials.password" (ngModelChanges)="credentials.password =$event"
              #password="ngModel"/>
 
-      <div *ngIf="password.errors && (password.dirty || password.touched)"
+      <div *ngIf="(password.dirty || password.touched)"
            class="alert alert-danger">
-        <div [hidden]="!password.errors.required">
+        <div [hidden]="!password.errors?.required">
           Password is required
         </div>
-        <div [hidden]="!password.errors.minlength">
+        <div [hidden]="!password.errors?.minlength">
           Password must be at least 4 characters long.
         </div>
-        <div [hidden]="!password.errors.maxlength">
+        <div [hidden]="!password.errors?.maxlength">
           Password cannot be more than 24 characters long.
         </div>
       </div>

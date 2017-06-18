@@ -4,6 +4,9 @@ import {ApiService} from '../api.service';
 import {PICTURES_CDN_URL_TOKEN} from '../di';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/filter';
+import 'rxjs/add/operator/switchMap';
+import 'rxjs/add/operator/toArray';
+import 'rxjs/add/observable/from';
 
 @Component({
   selector: 'hf-home',
@@ -61,21 +64,24 @@ export class HomeComponent implements OnInit {
     const selectedCategory = this.categories.filter(f => f.selected)[0]
       .category;
     /**
-     * First implementation
-     * @type {"../../Observable".Observable<T>}
-     */
-    this.filteredMovies$ = this.movies$
-      .map((movies: Movie[]) =>
-        movies
-          .filter(this.filterByCategory(selectedCategory))
-          .filter(this.filterByTitle(this.searchValue)));
-    /**
-     * Second implementation
+     * Perform an implementation of the movies filtering using Observable
      * @type {"../../Observable".Observable<T>}
      */
     // this.filteredMovies$ = this.movies$
-    //   .filter(this.filterByCategory(selectedCategory))
-    //   .filter(this.filterByTitle(this.searchValue));
+    //   .map((movies: Movie[]) =>
+    //     movies
+    //       .filter(this.filterByCategory(selectedCategory))
+    //       .filter(this.filterByTitle(this.searchValue)));
+
+    /**
+     * Try to rewrite the previous implementation using .switchMap and .from
+     * @type {"../../Observable".Observable<T>}
+     */
+    this.filteredMovies$ = this.movies$
+      .switchMap((movies: Movie[]) => Observable.from(movies))
+      .filter(this.filterByCategory(selectedCategory))
+      .filter(this.filterByTitle(this.searchValue))
+      .toArray();
   }
 
   filterByCategory(selectedCategory: string) {

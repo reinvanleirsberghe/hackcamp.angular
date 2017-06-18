@@ -1,5 +1,5 @@
 import {Directive, forwardRef} from '@angular/core';
-import {AbstractControl, NG_VALIDATORS, Validator, Validators} from '@angular/forms';
+import {AbstractControl, NG_VALIDATORS, Validator} from '@angular/forms';
 
 @Directive({
   selector: '[hf-email][formControlName],[hf-email][formControl],[hf-email][ngModel]',
@@ -18,7 +18,5 @@ export class EmailValidatorDirective implements Validator {
       return error;
     }
     return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(c.value) ? null : error;
-
   }
-
 }

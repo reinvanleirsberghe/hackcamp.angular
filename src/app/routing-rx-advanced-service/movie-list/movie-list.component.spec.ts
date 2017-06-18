@@ -1,10 +1,10 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {MovieListComponent} from './movie-list.component';
-import {Movie} from '../../shared/types';
 import {MovieComponent} from './movie/movie.component';
 import {MovieHoverInfoComponent} from './movie/movie-hover-info/movie-hover-info.component';
 import {ShortenPipe} from '../shorten.pipe';
+import {RouterModule} from '@angular/router';
 
 describe('MovieListComponent', () => {
   let component: MovieListComponent;
@@ -12,6 +12,7 @@ describe('MovieListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [RouterModule],
       declarations: [
         MovieListComponent,
         MovieComponent,
