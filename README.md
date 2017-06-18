@@ -137,9 +137,10 @@ Estimated time: 3 hours
   - Routing
   - Introduction RxJS
   - Service Advanced
+  - DI advanced
   
 #### Features
-
+  - Setup routing
   - Implement Login component (Template Syntax) with redirection to home page
     - Validation 
        - Email

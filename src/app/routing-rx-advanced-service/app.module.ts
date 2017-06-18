@@ -10,6 +10,8 @@ import {SidebarComponent} from './sidebar/sidebar.component';
 import {MenubarComponent} from './menubar/menubar.component';
 import {ApiService} from './api.service';
 import {ShortenPipe} from './shorten.pipe';
+import {AppRoutingModule} from './app.routing.module';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -21,9 +23,11 @@ import {ShortenPipe} from './shorten.pipe';
     SidebarComponent,
     MenubarComponent,
     ShortenPipe,
+    HomeComponent,
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    AppRoutingModule
   ],
   providers: [ApiService],
   bootstrap: [AppComponent]
