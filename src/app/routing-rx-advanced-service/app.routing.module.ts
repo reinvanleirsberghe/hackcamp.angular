@@ -6,6 +6,9 @@ import {AuthGuard} from './auth.guard';
 import {MovieDetailsComponent} from './movie-details/movie-details.component';
 import {StatsComponent} from './stats/stats.component';
 
+/**
+ * Setup all routes here
+ */
 const routes: Routes = [
   {
     path: 'login',

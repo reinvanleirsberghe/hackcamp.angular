@@ -30,6 +30,11 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    /**
+     * Due to the changes in the api response (i.e Observable),
+     * we have to refractor the code to make it working again :)
+     *
+     */
     this.movies$ = this.apiService.getOnlyMovies(50);
     this.filteredMovies$ = this.movies$;
 

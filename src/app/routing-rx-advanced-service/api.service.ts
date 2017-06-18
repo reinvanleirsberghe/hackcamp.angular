@@ -16,18 +16,36 @@ export class ApiService {
               @Inject(CATEGORIES_TOKEN) private categories: Category[]) {
   }
 
+  /**
+   * Get all movie from server : server url + '/movies'
+   * Don't forgot to catch errors
+   * @returns {Observable<R|T>}
+   */
   getMovies(): Observable<Movie[]> {
     return this.http.get(`${this.serverUrl}/movies`)
       .map((res: Response) => res.json() as Movie[])
       .catch(this.handleError);
   }
 
+  /**
+   * Get movie by from server : server url + '/movies/:id'
+   * Don't forgot to catch errors
+   * @param id
+   * @returns {Observable<R|T>}
+   */
   getMovieById(id: number | string): Observable<Movie> {
     return this.http.get(`${this.serverUrl}/movies/${id}`)
       .map((res: Response) => res.json() as Movie)
       .catch(this.handleError);
   }
 
+  /**
+   * Get all movie from server : server url + '/movies/:id'
+   * then slice the response until the limit provided
+   * Don't forgot to catch errors
+   * @param limit
+   * @returns {Observable<R|T>}
+   */
   getOnlyMovies(limit: number = 50) {
     return this.http.get(`${this.serverUrl}/movies`)
       .map((res: Response) => res.json() as Movie[])
@@ -35,16 +53,31 @@ export class ApiService {
       .catch(this.handleError);
   }
 
+  /**
+   * Get all categories from mock data
+   * Don't forgot to catch errors
+   * @returns {any}
+   */
   getCategories(): Observable<Category[]> {
     return Observable.of(this.categories);
   }
 
+  /**
+   * Get all genres by from server : server url + 'genres'
+   * Don't forgot to catch errors
+   * @returns {Observable<R|T>}
+   */
   getGenres(): Observable<Genre[]> {
     return this.http.get(`${this.serverUrl}/genres`)
       .map((res: Response) => res.json() as Genre[])
       .catch(this.handleError);
   }
 
+  /**
+   * Handle error by throw it
+   * @param err
+   * @returns {any}
+   */
   private handleError(err: any): Observable<Error> {
     return Observable.throw(new Error(err))
   }

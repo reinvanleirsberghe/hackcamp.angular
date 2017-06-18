@@ -104,7 +104,7 @@ Estimated time: 2 hours
 
 Estimated time: 3 hours
 
- - Split in several components using the CLI. Make sure your application is still working
+ - Split into several components using the CLI. Make sure your application is still working
     - MovieList => movie-list
       - Movie => movie
         - MovieHoverInfo => movie-hover-info
@@ -133,6 +133,8 @@ Estimated time: 3 hours
 
 ### LVL 1 - Routing, Rx and Advanced Service
 
+Estimated time: a day
+
 #### Concepts
   - Routing
   - Introduction RxJS
@@ -140,42 +142,104 @@ Estimated time: 3 hours
   - DI advanced
   - Attribute Directive - Validators Directives
   
+#### Important links
+  - [Template Syntax and built-in directives](https://angular.io/guide/template-syntax)
+  - [Router](https://angular.io/guide/router)
+  - [Http](https://angular.io/guide/http)
+  - [DI](https://angular.io/guide/dependency-injection-in-action#define-dependencies-with-providers)
+  - [Form Validation](https://angular.io/guide/form-validation#form-validation)
+  
+  
 #### Features
-  - Setup routing in app.routing.module
-  - Implement Login component (Template Syntax) with redirection to home page
-    - Validation 
-       - Email
+   - Display all mock movies
+     - Picture
+     - Hover information
+   - Display all mock categories
+   - Filter by category
+   - Make active a category when selected
+   - Toggle Sidebar
+   - Implement search in sidebar  
+   
+   - Login with email/password
+   - Validation Form
+   - Routing to Home, Stats and Details page
+   - Use Http to fetch data with Promise and Observable
+   - Usage of Observable operators such as map, filter, from...
+   
+
+#### TODO
+  - Setup Route in app.routing.module
+    - add routes with  path:'login', component:LoginComponent and
+     patchMatch full
+    - add default routes that redirect to 'login'
+  - Fix issues in LoginComponent template
+  - Add Validation on email and password input
+      - Email
         - required
-        - email => to implement
-       - Password
+        - email => Use the email validators (./validators/email-validators.directive.ts)
+          to validate if the input value of email is a real email
+      - Password
         - required
         - minLength
         - maxLength
-  - From now, it is forbidden to use global variables, everything should
+  - Implement AuthService functions:
+    - login with Promise
+    - isAuthenticated
+  - Implement login function in LoginComponent
+  - Your application should be working at this stage
+
+/!\ 
+
+  From now, it is forbidden to use global variables, everything should
   go through the dependency injection ( di.ts)
-  - Implement  login method in AuthService with Promise
-  - Add routes to home for the component Home
-  - Refractor AuthGuard to protect routes if not authenticated
-  - Implement Api Service with RxJs ( delete previous one and rename)
-    - Fetch all movies
-      - Get only some properties
-    - Fetch all categories
-  - Add routes details and protect it with guard
-  - Go to movie component add routerLink to navigate to 'details'
-  - Implement details page of movies, navigation with back return
-  - Add routes stats and protect it with guard
-  - Add router link in menu bar to redirect to stats page
+  
+/!\  
+  
+  - Open di.ts and implement all dependency injection that require a global
+    variable
+    - Refractor AuthService to inject the server url using dependency injection
+  - app.routing.module.ts
+    - add routes with  path:'home', component:HomeComponent and
+      patchMatch full
+    - Replace the redirection of the default routes by 'home'
+    - Protect 'home' routes i.e only authenticated user can access else 
+    we redirect to 'login' routes (Hint: CanActivateGuard)
+  - Refractor HomeComponent to inject the picture CDN url using dependency injection
+  - Replace the api.service.ts by _api.service.ts
+  - Implement all functions in api.service.ts using rxJS (! No global references)
+    - getMovies => call HTTP to '/movies'
+    - getMovieById => call HTTP to '/movies/:id'
+    - getOnlyMovies => call HTTP to '/movies'
+    - getCategories => Observable of mock data
+    - getCategories => Observable of mock data
+    - getGenres => call HTTP to '/genres'
+  - Fix issues HomeComponent
+  - Your application should be working at this stage
+  
+  - app.routing.module.ts
+      - add routes with  path:'details/:id', component:MovieDetailsComponent and
+        patchMatch full
+      - Protect 'details/:id' routes i.e only authenticated user can access else 
+      we redirect to 'login' routes 
+  - Clicking on a movie card should redirect to '/details/idCardClicked' (
+    you should not do it programmatically i.e using the click event for example)
+  - Fix issues in MovieDetailsComponent template
+  - Implement details movie display
+  - app.routing.module.ts
+      - add routes with  path:'stats/', component:StatsComponent and
+          patchMatch full
+      - Protect 'stats' routes i.e only authenticated user can access else 
+        we redirect to 'login' routes 
+  - Add a link in the menu bar to redirect to stats page
+  - Implement all steps in StatsComponent
   - Implement Stats page (Observable), navigation with back return 
-    - Stats page is performed with calculation
-    - number of movie with vote average > 8
-    - display number of movie by category 
-      - remove 'all' category from stream
-    - number of movies
-  - ? breaking in module
 
 #### Bonus : 
+
+  - Reorganise the folder  using different modules
   - Implement a pagination component
   - Implement formatting date pipe with moment.js
+  
 #### Testing : 
   - Http Service
 

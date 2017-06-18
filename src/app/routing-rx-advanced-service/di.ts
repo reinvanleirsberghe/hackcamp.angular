@@ -3,8 +3,10 @@ import {BACKDROP_URL, BACKDROP_URL_780, PICTURE_ORIGINAL_URL, PICTURES_CDN_URL, 
 import {Category} from '../shared/types';
 import {categories} from '../shared/mocks/categories';
 /**
- * Create InjectionToken
- * @type {InjectionToken<string>}
+ * All mock data and constant should not be referenced globally
+ * but injected using the dependency injection to make easier the testing for example
+ * In this files, you will declare and export the mock data and constant to be injected
+ * by the dependency injection
  */
 export const SERVER_URL_TOKEN = new InjectionToken<string>('SERVER_URL');
 export const PICTURES_CDN_URL_TOKEN = new InjectionToken<string>('PICTURES_CDN_URL');

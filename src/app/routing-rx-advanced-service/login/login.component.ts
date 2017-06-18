@@ -21,6 +21,11 @@ export class LoginComponent implements OnInit {
   }
 
   login(credentials: LoginCredentials) {
+    /**
+     * Call the login function of AuthService with the credentials
+     * - success => redirect to home
+     * - fail => display error login¬
+     */
     this.auth.login(credentials)
       .then(res => {
         this.errorLogin = false;

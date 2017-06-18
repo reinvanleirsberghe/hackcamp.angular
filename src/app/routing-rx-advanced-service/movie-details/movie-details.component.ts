@@ -22,6 +22,9 @@ export class MovieDetailsComponent implements OnInit {
   }
 
   ngOnInit() {
+    /**
+     * Get the id of movies from URL then fetch the movie from backend
+     */
     this.route.paramMap
       .map((params: ParamMap) => params.get('id'))
       .switchMap(id => this.api.getMovieById(id))
@@ -29,10 +32,16 @@ export class MovieDetailsComponent implements OnInit {
   }
 
   getCover(path: string) {
+    /**
+     * Concat the back drop url + path
+     */
     return `${this.backdropUrl}${path}`
   }
 
   back() {
+    /**
+     * Go back to the previous location
+     */
     this.location.back();
   }
 }

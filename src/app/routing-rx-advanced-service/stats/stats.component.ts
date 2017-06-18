@@ -39,7 +39,9 @@ export class StatsComponent implements OnInit {
    */
 
   ngOnInit() {
-
+    /**
+     * Uncomment to launch
+     */
     this.step1 = this.doStep1();
     this.step2 = this.doStep2();
     this.step3 = this.doStep3();
