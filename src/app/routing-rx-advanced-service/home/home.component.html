@@ -1,14 +1,14 @@
 <main class="main-content">
   <hf-menubar
-    [counter]="filteredMovies.length"
+    [counter]="(filteredMovies$| async)?.length"
     [selectTab]="selectTab"
     [categories]="categories"
   ></hf-menubar>
 
   <hf-movie-list
-    [baseUrlCDN]="PICTURES_CDN_URL"
+    [baseUrlCDN]="pictureCdnUrl"
     [navClosed]="navClosed"
-    [filteredMovies]="filteredMovies">
+    [filteredMovies]="(filteredMovies$ | async)|| []">
   </hf-movie-list>
 
   <hf-sidebar

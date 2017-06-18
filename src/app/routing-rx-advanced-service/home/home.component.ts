@@ -1,7 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {Category, Genre, Movie} from '../../shared/types';
 import {ApiService} from '../api.service';
-import {PICTURES_CDN_URL} from '../../shared/constant';
+import {PICTURES_CDN_URL_TOKEN} from '../di';
+import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/operator/filter';
 
 @Component({
   selector: 'hf-home',
@@ -10,25 +12,28 @@ import {PICTURES_CDN_URL} from '../../shared/constant';
 })
 export class HomeComponent implements OnInit {
 
-  PICTURES_CDN_URL = PICTURES_CDN_URL;
   categories: Category[];
   genres: Genre[];
 
   searchValue: string;
   navClosed = true;
 
-  movies: Movie[];
-  filteredMovies: Movie[];
+  movies$: Observable<Movie[]>;
+  filteredMovies$: Observable<Movie[]>;
 
-  constructor(private apiService: ApiService) {
+  constructor(private apiService: ApiService,
+              @Inject(PICTURES_CDN_URL_TOKEN) public pictureCdnUrl: string) {
     this.selectTab = this.selectTab.bind(this);
   }
 
   ngOnInit(): void {
-    this.movies = this.apiService.getMovies();
-    this.filteredMovies = this.movies;
-    this.categories = this.apiService.getCategories();
-    this.genres = this.apiService.getGenres();
+    this.movies$ = this.apiService.getOnlyMovies(50);
+    this.filteredMovies$ = this.movies$;
+
+    this.apiService.getCategories()
+      .subscribe((categories: Category[]) => this.categories = categories);
+    this.apiService.getGenres()
+      .subscribe((genres: Genre[]) => this.genres = genres);
   }
 
   selectTab(category): void {
@@ -55,10 +60,22 @@ export class HomeComponent implements OnInit {
   filterMovies(): void {
     const selectedCategory = this.categories.filter(f => f.selected)[0]
       .category;
-
-    this.filteredMovies = this.movies
-      .filter(this.filterByCategory(selectedCategory))
-      .filter(this.filterByTitle(this.searchValue));
+    /**
+     * First implementation
+     * @type {"../../Observable".Observable<T>}
+     */
+    this.filteredMovies$ = this.movies$
+      .map((movies: Movie[]) =>
+        movies
+          .filter(this.filterByCategory(selectedCategory))
+          .filter(this.filterByTitle(this.searchValue)));
+    /**
+     * Second implementation
+     * @type {"../../Observable".Observable<T>}
+     */
+    // this.filteredMovies$ = this.movies$
+    //   .filter(this.filterByCategory(selectedCategory))
+    //   .filter(this.filterByTitle(this.searchValue));
   }
 
   filterByCategory(selectedCategory: string) {

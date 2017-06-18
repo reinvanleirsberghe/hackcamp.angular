@@ -3,7 +3,8 @@
   <form #form="ngForm" (ngSubmit)="login(form.value)">
     <p>DEBUG Email : {{ email.errors| json}}</p>
     <p>DEBUG Password: {{ password.errors| json}}</p>
-
+    <p>Hint: password of login backend is h4Xflix </p>
+    <p *ngIf="errorLogin" class="alert alert-danger"> Login Fail</p>
     <div class="form-group">
       <label for="email">Email</label>
       <input type="text" class="form-control" id="email" name="email"
@@ -11,7 +12,6 @@
              hf-email
              [(ngModel)]="credentials.email"
              #email="ngModel"/>
-      <p>DEBUG : {{ email.errors| json}}</p>
       <div *ngIf="email.errors && (email.dirty || email.touched)"
            class="alert alert-danger">
         <div [hidden]="!email.errors.required">
@@ -29,7 +29,6 @@
              required
              minlength="4"
              maxlength="24"
-             hf-title-case
              [ngModel]="credentials.password" (ngModelChanges)="credentials.password =$event"
              #password="ngModel"/>
 
@@ -43,9 +42,6 @@
         </div>
         <div [hidden]="!password.errors.maxlength">
           Password cannot be more than 24 characters long.
-        </div>
-        <div [hidden]="!password.errors.invalidTitleCase">
-          Password must begin with a uppercase letter
         </div>
       </div>
     </div>

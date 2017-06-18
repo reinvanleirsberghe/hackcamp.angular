@@ -140,7 +140,7 @@ Estimated time: 3 hours
   - DI advanced
   
 #### Features
-  - Setup routing
+  - Setup routing in app.routing.module
   - Implement Login component (Template Syntax) with redirection to home page
     - Validation 
        - Email
@@ -150,10 +150,12 @@ Estimated time: 3 hours
         - required
         - minLength
         - maxLength
-        - beginWithUppercaseLetter => to implement
-  - Implement  Authentication service with Promise
-  - Protect home routes if not authenticated
-  - Implement Api Service with RxJs
+  - From now, it is forbidden to use global variables, everything should
+  go through the dependency injection ( di.ts)
+  - Implement  login method in AuthService with Promise
+  - Add routes to home for the component Home
+  - Refractor AuthGuard to protect routes if not authenticated
+  - Implement Api Service with RxJs ( delete previous one and rename)
     - Fetch all movies
       - Get only some properties
     - Fetch all categories
@@ -162,7 +164,8 @@ Estimated time: 3 hours
   - Implement delete element in cart 
   - Implement Stats page (Observable), navigation with back return 
     - Stats page is performed with calculation
-  
+  - ? breaking in module
+
 #### Bonus : 
   - Implement a pagination component
 
@@ -193,9 +196,10 @@ Estimated time: 3 hours
   - Implement comment service ( CRUD)
   - Implement comment component for CRUD ( Reactive Form)
     - Validation :
-      - Author required, begin with a Uppercase letter
+      - Author 
+       - required       
+       - beginWithUppercaseLetter => to implement
       - Comment required, 150 character max, block if contains bad words
- 
 #### Breaking
   - Setup Redux
     

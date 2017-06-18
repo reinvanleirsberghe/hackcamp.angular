@@ -15,8 +15,10 @@ import {HomeComponent} from './home/home.component';
 import {LoginComponent} from './login/login.component';
 import {FormsModule} from '@angular/forms';
 import {EmailValidatorDirective} from './validators/email-validator.directive';
-import {TitleCaseValidatorDirective} from './validators/title-case-validator.directive';
 import {HttpModule} from '@angular/http';
+import {Categories, PictureCdnUrl, ServerUrl} from './di';
+import {AuthGuard} from './auth.guard';
+import {AuthService} from './auth.service';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,6 @@ import {HttpModule} from '@angular/http';
     HomeComponent,
     LoginComponent,
     EmailValidatorDirective,
-    TitleCaseValidatorDirective
   ],
   imports: [
     BrowserModule,
@@ -39,7 +40,14 @@ import {HttpModule} from '@angular/http';
     FormsModule,
     HttpModule
   ],
-  providers: [ApiService],
+  providers: [
+    ApiService,
+    AuthService,
+    ServerUrl,
+    PictureCdnUrl,
+    Categories,
+    AuthGuard
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

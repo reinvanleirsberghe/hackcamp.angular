@@ -1,5 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {LoginCredentials} from '../type';
+import {ApiService} from '../api.service';
+import {Router} from '@angular/router';
+import {AuthService} from '../auth.service';
 
 @Component({
   selector: 'hf-login',
@@ -8,15 +11,24 @@ import {LoginCredentials} from '../type';
 })
 export class LoginComponent implements OnInit {
   public credentials: LoginCredentials = { email: '', password: '' };
+  public errorLogin = false;
 
-  constructor() {
+  constructor(private auth: AuthService,
+              private router: Router) {
   }
 
   ngOnInit() {
   }
 
   login(credentials: LoginCredentials) {
-    console.log('login');
+    this.auth.login(credentials)
+      .then(res => {
+        this.errorLogin = false;
+        this.router.navigate(['/home'])
+      })
+      .catch(err => {
+        this.errorLogin = true;
+      });
   }
 
 }
