@@ -4,6 +4,7 @@ import {HomeComponent} from './home/home.component';
 import {LoginComponent} from './login/login.component';
 import {AuthGuard} from './auth.guard';
 import {MovieDetailsComponent} from './movie-details/movie-details.component';
+import {StatsComponent} from './stats/stats.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,12 @@ const routes: Routes = [
     path: 'details/:id',
     pathMatch: 'full',
     component: MovieDetailsComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'stats',
+    pathMatch: 'full',
+    component: StatsComponent,
     canActivate: [AuthGuard]
   },
   {

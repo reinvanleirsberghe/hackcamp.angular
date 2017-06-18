@@ -161,9 +161,15 @@ Estimated time: 3 hours
     - Fetch all categories
   - Add routes details and protect it with guard
   - Go to movie component add routerLink to navigate to 'details'
-  - Implement details page of movies, navigation with back return  
+  - Implement details page of movies, navigation with back return
+  - Add routes stats and protect it with guard
+  - Add router link in menu bar to redirect to stats page
   - Implement Stats page (Observable), navigation with back return 
     - Stats page is performed with calculation
+    - number of movie with vote average > 8
+    - display number of movie by category 
+      - remove 'all' category from stream
+    - number of movies
   - ? breaking in module
 
 #### Bonus : 

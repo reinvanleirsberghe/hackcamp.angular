@@ -20,6 +20,7 @@ import {BackdropUrl, BackdropUrl780, Categories, PictureCdnUrl, PictureOriginalU
 import {AuthGuard} from './auth.guard';
 import {AuthService} from './auth.service';
 import {MovieDetailsComponent} from './movie-details/movie-details.component';
+import { StatsComponent } from './stats/stats.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import {MovieDetailsComponent} from './movie-details/movie-details.component';
     LoginComponent,
     EmailValidatorDirective,
     MovieDetailsComponent,
+    StatsComponent,
   ],
   imports: [
     BrowserModule,
