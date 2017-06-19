@@ -1,16 +1,27 @@
-import {initialState, reducer as moviesReducer} from './reducer';
-import {GET_CATEGORIES, GET_GENRES, GET_MOVIES, GetCategoriesAction, GetGenresAction, GetMoviesAction} from './actions';
+import {initialState, reducer as dataReducer} from './reducer';
+import {
+  ADD_COMMENT_START,
+  ADD_COMMENT_SUCCESS,
+  AddCommentStartAction,
+  AddCommentSuccessAction,
+  GET_CATEGORIES,
+  GET_GENRES,
+  GET_MOVIES,
+  GetCategoriesAction,
+  GetGenresAction,
+  GetMoviesAction
+} from './actions';
 import {movies} from '../../../../shared/mocks/movies';
 import {genres} from '../../../../shared/mocks/genres';
 import {categories} from '../../../../shared/mocks/categories';
 
 describe('Data Reducer', () => {
   it('should be a function', () => {
-    expect(typeof moviesReducer).toEqual('function');
+    expect(typeof dataReducer).toEqual('function');
   });
 
   it('should return its initial state', () => {
-    expect(moviesReducer(undefined,
+    expect(dataReducer(undefined,
       {
         type: GET_MOVIES,
         payload: []
@@ -24,9 +35,9 @@ describe('Data Reducer', () => {
       payload: movies
     };
 
-    const expected = { movies, categories: [], genres: [] };
+    const expected = { movies, categories: [], genres: [], movieComments: {} };
 
-    expect(moviesReducer(undefined, action)).toEqual(expected);
+    expect(dataReducer(undefined, action)).toEqual(expected);
   });
 
   it('should be able to store all the genres', () => {
@@ -35,9 +46,9 @@ describe('Data Reducer', () => {
       payload: genres
     };
 
-    const expected = { movies: [], categories: [], genres: genres };
+    const expected = { movies: [], categories: [], genres: genres, movieComments: {} };
 
-    expect(moviesReducer(undefined, action)).toEqual(expected);
+    expect(dataReducer(undefined, action)).toEqual(expected);
   });
 
   it('should be able to store all the categories', () => {
@@ -46,8 +57,221 @@ describe('Data Reducer', () => {
       payload: categories
     };
 
-    const expected = { movies: [], categories: categories, genres: [] };
+    const expected = { movies: [], categories: categories, genres: [], movieComments: {} };
 
-    expect(moviesReducer(undefined, action)).toEqual(expected);
+    expect(dataReducer(undefined, action)).toEqual(expected);
   });
+
+  it('should be able to add a comment for a movie', () => {
+    const actionStart: AddCommentStartAction = {
+      type: ADD_COMMENT_START,
+      payload: {
+        movie_id: 285,
+        author: 'Steve',
+        content: 'Great movie',
+        id: 123456789
+      }
+    };
+
+    const actionSuccess: AddCommentSuccessAction = {
+      type: ADD_COMMENT_SUCCESS,
+      payload: {
+        movie_id: 285,
+        author: 'Steve',
+        content: 'Great movie',
+        oldId: 123456789,
+        id: 1
+      }
+    };
+    const expectedStart = {
+      movies: [],
+      categories: [],
+      genres: [],
+      movieComments: {
+        [285]: [
+          {
+            movie_id: 285,
+            author: 'Steve',
+            content: 'Great movie',
+            id: 123456789
+          }
+        ]
+      }
+    };
+    const expectedSuccess = {
+      movies: [], categories: [],
+      genres: [],
+      movieComments: {
+        [285]: [
+          {
+            movie_id: 285,
+            author: 'Steve',
+            content: 'Great movie',
+            oldId: 123456789,
+            id: 1
+          }
+        ]
+      }
+    };
+
+    const prevState = dataReducer(undefined, actionStart);
+    expect(prevState).toEqual(expectedStart);
+    expect(dataReducer(prevState, actionSuccess)).toEqual(expectedSuccess);
+  });
+  //
+  it('should be able to add a comment for a movie when there are other movies', () => {
+    const actionStart1: AddCommentStartAction = {
+      type: ADD_COMMENT_START,
+      payload: {
+        movie_id: 285,
+        author: 'Steve',
+        content: 'Great movie',
+        id: 123456789
+      }
+    };
+
+    const actionSuccess1: AddCommentSuccessAction = {
+      type: ADD_COMMENT_SUCCESS,
+      payload: {
+        movie_id: 285,
+        author: 'Steve',
+        content: 'Great movie',
+        oldId: 123456789,
+        id: 1
+      }
+    };
+
+    const actionStart2: AddCommentStartAction = {
+      type: ADD_COMMENT_START,
+      payload: {
+        movie_id: 302,
+        author: 'Steve 2',
+        content: 'Great movie 2',
+        id: 1234567891
+      }
+    };
+
+    const actionSuccess2: AddCommentSuccessAction = {
+      type: ADD_COMMENT_SUCCESS,
+      payload: {
+        movie_id: 302,
+        author: 'Steve 2',
+        content: 'Great movie 2',
+        oldId: 1234567891,
+        id: 2
+      }
+    };
+    const expectedSuccess = {
+      movies: [],
+      categories: [],
+      genres: [],
+      movieComments: {
+        [285]: [
+          {
+            movie_id: 285,
+            author: 'Steve',
+            content: 'Great movie',
+            id: 1,
+            oldId: 123456789
+          }
+        ],
+        [302]: [
+          {
+            movie_id: 302,
+            author: 'Steve',
+            content: 'Great movie',
+            oldId: 1234567891,
+            id: 2
+          }
+        ]
+      }
+    };
+
+    let prevState = dataReducer(undefined, actionStart1);
+    console.log('prevState', prevState);
+    prevState = dataReducer(prevState, actionSuccess1);
+    console.log('prevState', prevState);
+    prevState = dataReducer(prevState, actionStart2);
+    console.log('prevState', prevState);
+    prevState = dataReducer(prevState, actionSuccess2);
+    console.log('prevState', prevState);
+    expect(prevState).toEqual(expectedSuccess);
+  });
+  it('should be able to add multiple comment for a movie ', () => {
+    const actionStart1: AddCommentStartAction = {
+      type: ADD_COMMENT_START,
+      payload: {
+        movie_id: 285,
+        author: 'Steve',
+        content: 'Great movie',
+        id: 123456789
+      }
+    };
+
+    const actionSuccess1: AddCommentSuccessAction = {
+      type: ADD_COMMENT_SUCCESS,
+      payload: {
+        movie_id: 285,
+        author: 'Steve',
+        content: 'Great movie',
+        oldId: 123456789,
+        id: 1
+      }
+    };
+
+    const actionStart2: AddCommentStartAction = {
+      type: ADD_COMMENT_START,
+      payload: {
+        movie_id: 285,
+        author: 'Steve 2',
+        content: 'Great movie 2',
+        id: 1234567891
+      }
+    };
+
+    const actionSuccess2: AddCommentSuccessAction = {
+      type: ADD_COMMENT_SUCCESS,
+      payload: {
+        movie_id: 285,
+        author: 'Steve 2',
+        content: 'Great movie 2',
+        oldId: 1234567891,
+        id: 2
+      }
+    };
+    const expectedSuccess = {
+      movies: [], categories: [],
+      genres: [],
+      movieComments: {
+        [285]: [
+          {
+            movie_id: 285,
+            author: 'Steve',
+            content: 'Great movie',
+            id: 1,
+            oldId: 123456789
+          },
+          {
+            movie_id: 285,
+            author: 'Steve 2',
+            content: 'Great movie 2',
+            oldId: 1234567891,
+            id: 2
+          }
+        ]
+      }
+    };
+
+    let prevState = dataReducer(undefined, actionStart1);
+    prevState = dataReducer(prevState, actionSuccess1);
+    prevState = dataReducer(prevState, actionStart2);
+    prevState = dataReducer(prevState, actionSuccess2);
+    expect(prevState).toEqual(expectedSuccess);
+  });
+  //
+  it('should be able to store all the comments by movie', () => {
+    // to implement
+  });
+
+
 });

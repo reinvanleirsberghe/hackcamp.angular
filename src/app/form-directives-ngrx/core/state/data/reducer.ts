@@ -1,18 +1,20 @@
 import * as data from './actions';
 import {Category, Genre, Movie} from '../../../../shared/types';
-
+import {Comment} from '../../../type';
 
 export interface State {
   movies: Movie[];
   categories: Category[];
   genres: Genre[];
+  movieComments: { [key: number]: Comment[]; }
 }
 
 
 export const initialState: State = {
   movies: [],
   categories: [],
-  genres: []
+  genres: [],
+  movieComments: {}
 };
 
 export function reducer(state = initialState, action: data.Actions): State {
@@ -35,6 +37,40 @@ export function reducer(state = initialState, action: data.Actions): State {
       });
     }
 
+    case data.ADD_COMMENT_START: {
+      const { movieComments } = state;
+      const { movie_id } = action.payload as Comment;
+      if (movieComments[movie_id]) {
+        let comments = movieComments[movie_id];
+        comments = [...comments, action.payload as Comment];
+        movieComments[movie_id] = comments;
+      } else {
+        movieComments[movie_id] = [action.payload as Comment];
+      }
+      return Object.assign({},
+        state,
+        {
+          movieComments
+        });
+    }
+
+    case data.ADD_COMMENT_SUCCESS: {
+      const { movieComments } = state;
+      const { movie_id, oldId } = action.payload as Comment;
+      if (movieComments[movie_id]) {
+        let comments = movieComments[movie_id]
+          .filter(comment => comment.id !== oldId);
+        comments = [...comments, action.payload as Comment];
+        movieComments[movie_id] = comments;
+      }
+
+      return Object.assign({},
+        state,
+        {
+          movieComments
+        });
+    }
+
     default: {
       return state;
     }
@@ -53,5 +89,6 @@ export function reducer(state = initialState, action: data.Actions): State {
 export const getMovies = (state: State) => state.movies;
 export const getCategories = (state: State) => state.categories;
 export const getGenres = (state: State) => state.genres;
+export const getMovieComment = (state: State) => state.movieComments;
 
 

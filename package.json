@@ -5,6 +5,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "start:server": "cd ./hackflix-backend && npm start",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",

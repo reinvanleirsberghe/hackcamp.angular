@@ -361,10 +361,10 @@ Estimated time: a day
 ### LVL 1 - Forms, directives, ngRX
 
 #### Concepts
-  - ngRx
+  - ngrx
   - Forms
   - Directives
-  - Attribute Directive - Validators Directives
+  - Validators Directives
   
 #### Important links
   - [Template Syntax and built-in directives](https://angular.io/guide/template-syntax)
@@ -374,8 +374,6 @@ Estimated time: a day
   - [Form Validation](https://angular.io/guide/form-validation#form-validation)
   - [ngrx store](https://github.com/ngrx/store)
   - [Validators](https://angular.io/api/forms/Validators)
-  
-
 
 #### Features
 
@@ -398,6 +396,12 @@ Estimated time: a day
     - categories
     - genres
   - Refractor api.service to dispatch all data in redux
+  - Add comment 
+    - create action, reducers
+    - in service implement
+      - addComment
+      - deleteComment
+      - getAllComments
   - Implement comment service ( CRUD)
   - Implement comment component for CRUD ( Reactive Form)
     - Validation :
@@ -414,6 +418,8 @@ Estimated time: a day
   - Setup Redux
   
 #### Bonus
+- add search in redux
+- add ui in redux
 - RouterStore
     
 #### Testing
