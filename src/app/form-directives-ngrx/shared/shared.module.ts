@@ -3,14 +3,15 @@ import {CommonModule} from '@angular/common';
 import {EmailValidatorDirective} from './validators/email-validator.directive';
 import {HeaderComponent} from './header/header.component';
 import {ShortenPipe} from './pipes/shorten.pipe';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
-    RouterModule
+    RouterModule,
+    ReactiveFormsModule
   ],
   declarations: [
     EmailValidatorDirective,
@@ -21,6 +22,7 @@ import {RouterModule} from '@angular/router';
     CommonModule,
     FormsModule,
     RouterModule,
+    ReactiveFormsModule,
     EmailValidatorDirective,
     HeaderComponent,
     ShortenPipe

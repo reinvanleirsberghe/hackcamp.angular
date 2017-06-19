@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {LoginCredentials} from '../../type';
-import {ApiService} from '../../core/api.service';
 import {Router} from '@angular/router';
 import {AuthService} from '../../core/auth.service';
 
@@ -27,11 +26,10 @@ export class LoginComponent implements OnInit {
      * - fail => display error login¬
      */
     this.auth.login(credentials)
-      .then(res => {
+      .subscribe(res => {
         this.errorLogin = false;
         this.router.navigate(['/home'])
-      })
-      .catch(err => {
+      }, err => {
         this.errorLogin = true;
       });
   }

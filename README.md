@@ -379,8 +379,13 @@ Estimated time: a day
 #### Features
 
   - Implement Redux with ngRx
-    - Setting to do
+    - Setup
+  - Rewrite auth service with observable
   - Add authentication in redux
+    - create actions
+    - create reducer
+    - in app.component check if we have token in local storage and dispatch login
+  - Refractor auth guard
   - Rewrite login component with Reactive form
     - Validation 
            - Email
@@ -399,6 +404,9 @@ Estimated time: a day
       - Comment required, 150 character max, block if contains bad words
 #### Breaking
   - Setup Redux
+  
+#### Bonus
+- RouterStore
     
 #### Testing
   - Reducer
