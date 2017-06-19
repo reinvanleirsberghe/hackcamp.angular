@@ -1,0 +1,23 @@
+<div class="card mb-3 movie-card">
+  <div class="card-block">
+    <h1 class="black">
+      {{movie.title}}
+      <button class="btn btn-lg btn-primary float-right"
+              (click)="back()">
+        Back
+      </button>
+    </h1>
+    <p>{{movie.overview}}</p>
+  </div>
+  <img
+    alt="Movie Cover"
+    class="card-imt-top"
+    [src]="getCover(movie.backdrop_path)"
+  />
+  <div class="card-footer">
+    <small class="text-muted">Out since {{movie.release_date}}</small>
+    <small class="text-muted right">
+      Rating: {{movie.vote_average}}/10
+    </small>
+  </div>
+</div>
