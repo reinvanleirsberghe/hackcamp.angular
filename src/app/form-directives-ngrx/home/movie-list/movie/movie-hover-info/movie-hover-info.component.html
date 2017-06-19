@@ -1,0 +1,14 @@
+<div [class.show-movie-body]="isContainerHovered" class="movie-body">
+  <h1>{{movie.title}}</h1>
+  <p>{{movie.overview | shorten:140}}</p>
+
+  <button class="btn btn-danger">
+    Remove from cart
+  </button>
+  <button class="btn btn-success">
+    Add to cart
+  </button>
+  <button class="btn btn-link">
+    See the details
+  </button>
+</div>

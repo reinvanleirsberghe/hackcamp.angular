@@ -361,10 +361,21 @@ Estimated time: a day
 ### LVL 1 - Forms, directives, ngRX
 
 #### Concepts
-   - ngRx
-   - Forms
-   - Directives
-   
+  - ngRx
+  - Forms
+  - Directives
+  - Attribute Directive - Validators Directives
+  
+#### Important links
+  - [Template Syntax and built-in directives](https://angular.io/guide/template-syntax)
+  - [Router](https://angular.io/guide/router)
+  - [Http](https://angular.io/guide/http)
+  - [DI](https://angular.io/guide/dependency-injection-in-action#define-dependencies-with-providers)
+  - [Form Validation](https://angular.io/guide/form-validation#form-validation)
+  - [ngrx store](https://github.com/ngrx/store)
+  
+
+
 #### Features
 
   - Implement Redux with ngRx
