@@ -25,6 +25,7 @@ import {compose} from '@ngrx/core/compose';
  * notation packages up all of the exports into a single object.
  */
 import * as fromAuth from './auth';
+import * as fromData from './data';
 
 
 /**
@@ -32,7 +33,8 @@ import * as fromAuth from './auth';
  * our top level state interface is just a map of keys to inner state types.
  */
 export interface State {
-  auth: fromAuth.State
+  auth: fromAuth.State;
+  data: fromData.State;
 }
 
 /**
@@ -43,7 +45,8 @@ export interface State {
  * the result from right to left.
  */
 const reducers = {
-  auth: fromAuth.reducer
+  auth: fromAuth.reducer,
+  data: fromData.reducer
 };
 
 const developmentReducer: ActionReducer<State> = compose(deepFreeze, combineReducers)(reducers);
@@ -76,3 +79,8 @@ export function reducer(state: any, action: any) {
  */
 export const getAuthState = (state: State) => state.auth;
 export const getAuthIsAuthenticated = compose(fromAuth.getIsAuthenticated, getAuthState);
+
+export const getDataState = (state: State) => state.data;
+export const getDataMovies = compose(fromData.getMovies, getDataState);
+export const getDataCategories = compose(fromData.getCategories, getDataState);
+export const getDataGenres = compose(fromData.getGenres, getDataState);

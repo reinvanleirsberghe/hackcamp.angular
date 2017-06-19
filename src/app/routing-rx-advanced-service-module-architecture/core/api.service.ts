@@ -40,7 +40,7 @@ export class ApiService {
   }
 
   /**
-   * Get all movie from server : server url + '/movies/:id'
+   * Get all movie from server : server url + '/movies'
    * then slice the response until the limit provided
    * Don't forgot to catch errors
    * @param limit

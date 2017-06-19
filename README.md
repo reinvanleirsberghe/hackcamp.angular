@@ -393,12 +393,11 @@ Estimated time: a day
             - Rewrite email directive to eEmail validator
               the object error shoulde {email:true}
            - Password length
-  - Create movies reducers and actions
-  - Add movies handling in redux
-  - Add filtering handling in redux
-  - Add cart handling in redux
-  - Implement dropdown to change number of item in cart
-  - Implement undo in cart
+  - Create data reducers and actions
+    - movies
+    - categories
+    - genres
+  - Refractor api.service to dispatch all data in redux
   - Implement comment service ( CRUD)
   - Implement comment component for CRUD ( Reactive Form)
     - Validation :
@@ -406,6 +405,11 @@ Estimated time: a day
        - required       
        - beginWithUppercaseLetter => to implement
       - Comment required, 150 character max, block if contains bad words
+        async
+  - Add filtering handling in redux
+    - Add cart handling in redux
+    - Implement dropdown to change number of item in cart
+    - Implement undo in cart
 #### Breaking
   - Setup Redux
   

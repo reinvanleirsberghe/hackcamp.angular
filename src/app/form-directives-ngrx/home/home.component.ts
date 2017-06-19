@@ -72,21 +72,21 @@ export class HomeComponent implements OnInit {
      * Perform an implementation of the movies filtering using Observable
      * @type {"../../Observable".Observable<T>}
      */
-    // this.filteredMovies$ = this.movies$
-    //   .map((movies: Movie[]) =>
-    //     movies
-    //       .filter(this.filterByCategory(selectedCategory))
-    //       .filter(this.filterByTitle(this.searchValue)));
+    this.filteredMovies$ = this.movies$
+      .map((movies: Movie[]) =>
+        movies
+          .filter(this.filterByCategory(selectedCategory))
+          .filter(this.filterByTitle(this.searchValue)));
 
     /**
      * Try to rewrite the previous implementation using .switchMap and .from
      * @type {"../../Observable".Observable<T>}
      */
-    this.filteredMovies$ = this.movies$
-      .switchMap((movies: Movie[]) => Observable.from(movies))
-      .filter(this.filterByCategory(selectedCategory))
-      .filter(this.filterByTitle(this.searchValue))
-      .toArray();
+    // this.filteredMovies$ = this.movies$
+    //   .switchMap((movies: Movie[]) => Observable.from(movies))
+    //   .filter(this.filterByCategory(selectedCategory))
+    //   .filter(this.filterByTitle(this.searchValue))
+    //   .scan((acc, next) => [...acc, next], []);
   }
 
   filterByCategory(selectedCategory: string) {
