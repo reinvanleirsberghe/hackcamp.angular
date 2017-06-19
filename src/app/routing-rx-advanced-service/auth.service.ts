@@ -15,6 +15,11 @@ export class AuthService {
   }
 
   login(credentials: LoginCredentials) {
+    /**
+     * Implement the login function by doing a POST Http call to server url + '/login'
+     * and the credentials.
+     * Hint: use .toPromise
+     */
     return this.http.post(`${this.serverUrl}/login`, credentials)
       .toPromise()
       .then((res: Response) => res.json())
