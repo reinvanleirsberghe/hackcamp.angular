@@ -21,7 +21,7 @@ import {AuthModule} from './auth/auth.module';
     CoreModule,
     HomeModule,
     AuthModule,
-    SharedModule
+    SharedModule,
   ],
   providers: [
     ServerUrl,

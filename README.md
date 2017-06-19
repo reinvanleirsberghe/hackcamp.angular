@@ -373,6 +373,7 @@ Estimated time: a day
   - [DI](https://angular.io/guide/dependency-injection-in-action#define-dependencies-with-providers)
   - [Form Validation](https://angular.io/guide/form-validation#form-validation)
   - [ngrx store](https://github.com/ngrx/store)
+  - [Validators](https://angular.io/api/forms/Validators)
   
 
 
@@ -387,9 +388,12 @@ Estimated time: a day
     - in app.component check if we have token in local storage and dispatch login
   - Refractor auth guard
   - Rewrite login component with Reactive form
-    - Validation 
+    - Perform validation using Reactive Form
            - Email
+            - Rewrite email directive to eEmail validator
+              the object error shoulde {email:true}
            - Password length
+  - Create movies reducers and actions
   - Add movies handling in redux
   - Add filtering handling in redux
   - Add cart handling in redux
