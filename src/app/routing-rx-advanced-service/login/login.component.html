@@ -33,15 +33,21 @@
              [ngModel]="credentials.password" (ngModelChanges)="credentials.password =$event"
              #password="ngModel"/>
 
-      <div *ngIf="(password.dirty || password.touched)"
+      <div *ngIf="(password.dirty || password.touched) && password?.errors?.required"
            class="alert alert-danger">
-        <div [hidden]="!password.errors?.required">
+        <div>
           Password is required
         </div>
-        <div [hidden]="!password.errors?.minlength">
+      </div>
+      <div *ngIf="(password.dirty || password.touched) && password?.errors?.minlength"
+           class="alert alert-danger">
+        <div>
           Password must be at least 4 characters long.
         </div>
-        <div [hidden]="!password.errors?.maxlength">
+      </div>
+      <div *ngIf="(password.dirty || password.touched) && password?.errors?.maxlength"
+           class="alert alert-danger">
+        <div>
           Password cannot be more than 24 characters long.
         </div>
       </div>

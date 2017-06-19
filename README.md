@@ -168,7 +168,7 @@ Estimated time: a day
    
 
 #### TODO
-  - Setup Route in app.routing.module
+  - Setup routes in app.routing.module
     - add routes with  path:'login', component:LoginComponent and
      patchMatch full
     - add default routes that redirect to 'login'
