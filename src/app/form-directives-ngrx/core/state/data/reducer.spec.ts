@@ -188,13 +188,9 @@ describe('Data Reducer', () => {
     };
 
     let prevState = dataReducer(undefined, actionStart1);
-    console.log('prevState1', JSON.stringify(prevState.movieComments, null, 1));
     prevState = dataReducer(prevState, actionSuccess1);
-    console.log('prevState', JSON.stringify(prevState.movieComments, null, 1));
     prevState = dataReducer(prevState, actionStart2);
-    console.log('prevState', JSON.stringify(prevState.movieComments, null, 1));
     prevState = dataReducer(prevState, actionSuccess2);
-    console.log('prevState', JSON.stringify(prevState.movieComments, null, 1));
     expect(prevState).toEqual(expectedSuccess);
   });
 

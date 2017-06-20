@@ -43,7 +43,6 @@ export function reducer(state = initialState, action: data.Actions): State {
       const newMovieComments = { ...movieComments };
       const { movie_id } = action.payload as Comment;
       if (newMovieComments[movie_id]) {
-        console.log('newMovieComments[movie_id]', newMovieComments[movie_id])
         let comments = newMovieComments[movie_id];
         comments = [...comments, action.payload as Comment];
         newMovieComments[movie_id] = comments;
