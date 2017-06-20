@@ -19,3 +19,10 @@ export interface Comment {
   oldId?: number
   id: number
 }
+
+
+export interface CommentsByMovie {
+  [key: number]: Comment[];
+}
+
+/Users/bbarry/Desktop/hackages/internal/hackcamp/hackcamp.angular/src/app/form-directives-ngrx/core/api.service.ts

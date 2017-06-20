@@ -1,6 +1,6 @@
 import {Action} from '@ngrx/store';
 import {Category, Genre, Movie} from '../../../../shared/types';
-import {Comment} from '../../../type';
+import {Comment, CommentsByMovie} from '../../../type';
 
 export const GET_MOVIES = '[Data] Get movies';
 export const GET_CATEGORIES = '[Data] Get categories';
@@ -57,7 +57,7 @@ export class AddCommentSuccessAction implements Action {
 export class GetCommentsAction implements Action {
   readonly type = GET_COMMENTS;
 
-  constructor(public payload: Map<number, Comment[]>) {
+  constructor(public payload: CommentsByMovie) {
   }
 }
 

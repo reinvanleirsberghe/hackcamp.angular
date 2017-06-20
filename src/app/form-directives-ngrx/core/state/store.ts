@@ -84,3 +84,4 @@ export const getDataState = (state: State) => state.data;
 export const getDataMovies = compose(fromData.getMovies, getDataState);
 export const getDataCategories = compose(fromData.getCategories, getDataState);
 export const getDataGenres = compose(fromData.getGenres, getDataState);
+export const getDataMovieComments = compose(fromData.getMovieComments, getDataState);

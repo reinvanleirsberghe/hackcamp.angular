@@ -1,12 +1,12 @@
 import * as data from './actions';
 import {Category, Genre, Movie} from '../../../../shared/types';
-import {Comment} from '../../../type';
+import {Comment, CommentsByMovie} from '../../../type';
 
 export interface State {
   movies: Movie[];
   categories: Category[];
   genres: Genre[];
-  movieComments: { [key: number]: Comment[]; }
+  movieComments: CommentsByMovie
 }
 
 
@@ -34,6 +34,12 @@ export function reducer(state = initialState, action: data.Actions): State {
     case data.GET_GENRES: {
       return Object.assign({}, state, {
         genres: action.payload
+      });
+    }
+
+    case data.GET_COMMENTS: {
+      return Object.assign({}, state, {
+        movieComments: action.payload
       });
     }
 
@@ -92,6 +98,6 @@ export function reducer(state = initialState, action: data.Actions): State {
 export const getMovies = (state: State) => state.movies;
 export const getCategories = (state: State) => state.categories;
 export const getGenres = (state: State) => state.genres;
-export const getMovieComment = (state: State) => state.movieComments;
+export const getMovieComments = (state: State) => state.movieComments;
 
 
