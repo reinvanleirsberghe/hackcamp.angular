@@ -67,8 +67,8 @@ describe('Data Reducer', () => {
       type: ADD_COMMENT_START,
       payload: {
         movie_id: 285,
-        author: 'Steve',
-        content: 'Great movie',
+        author: 'Steve One',
+        content: 'Great movie Steve One',
         id: 123456789
       }
     };
@@ -77,8 +77,8 @@ describe('Data Reducer', () => {
       type: ADD_COMMENT_SUCCESS,
       payload: {
         movie_id: 285,
-        author: 'Steve',
-        content: 'Great movie',
+        author: 'Steve ----',
+        content: 'Great movie ---',
         oldId: 123456789,
         id: 1
       }
@@ -91,8 +91,8 @@ describe('Data Reducer', () => {
         [285]: [
           {
             movie_id: 285,
-            author: 'Steve',
-            content: 'Great movie',
+            author: 'Steve One',
+            content: 'Great movie Steve One',
             id: 123456789
           }
         ]
@@ -105,8 +105,8 @@ describe('Data Reducer', () => {
         [285]: [
           {
             movie_id: 285,
-            author: 'Steve',
-            content: 'Great movie',
+            author: 'Steve ----',
+            content: 'Great movie ---',
             oldId: 123456789,
             id: 1
           }
@@ -118,7 +118,7 @@ describe('Data Reducer', () => {
     expect(prevState).toEqual(expectedStart);
     expect(dataReducer(prevState, actionSuccess)).toEqual(expectedSuccess);
   });
-  //
+
   it('should be able to add a comment for a movie when there are other movies', () => {
     const actionStart1: AddCommentStartAction = {
       type: ADD_COMMENT_START,
@@ -178,8 +178,8 @@ describe('Data Reducer', () => {
         [302]: [
           {
             movie_id: 302,
-            author: 'Steve',
-            content: 'Great movie',
+            author: 'Steve 2',
+            content: 'Great movie 2',
             oldId: 1234567891,
             id: 2
           }
@@ -188,15 +188,16 @@ describe('Data Reducer', () => {
     };
 
     let prevState = dataReducer(undefined, actionStart1);
-    console.log('prevState', prevState);
+    console.log('prevState1', JSON.stringify(prevState.movieComments, null, 1));
     prevState = dataReducer(prevState, actionSuccess1);
-    console.log('prevState', prevState);
+    console.log('prevState', JSON.stringify(prevState.movieComments, null, 1));
     prevState = dataReducer(prevState, actionStart2);
-    console.log('prevState', prevState);
+    console.log('prevState', JSON.stringify(prevState.movieComments, null, 1));
     prevState = dataReducer(prevState, actionSuccess2);
-    console.log('prevState', prevState);
+    console.log('prevState', JSON.stringify(prevState.movieComments, null, 1));
     expect(prevState).toEqual(expectedSuccess);
   });
+
   it('should be able to add multiple comment for a movie ', () => {
     const actionStart1: AddCommentStartAction = {
       type: ADD_COMMENT_START,

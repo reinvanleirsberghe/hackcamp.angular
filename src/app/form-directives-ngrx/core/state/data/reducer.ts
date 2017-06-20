@@ -38,36 +38,40 @@ export function reducer(state = initialState, action: data.Actions): State {
     }
 
     case data.ADD_COMMENT_START: {
+
       const { movieComments } = state;
+      const newMovieComments = { ...movieComments };
       const { movie_id } = action.payload as Comment;
-      if (movieComments[movie_id]) {
-        let comments = movieComments[movie_id];
+      if (newMovieComments[movie_id]) {
+        console.log('newMovieComments[movie_id]', newMovieComments[movie_id])
+        let comments = newMovieComments[movie_id];
         comments = [...comments, action.payload as Comment];
-        movieComments[movie_id] = comments;
+        newMovieComments[movie_id] = comments;
       } else {
-        movieComments[movie_id] = [action.payload as Comment];
+        newMovieComments[movie_id] = [action.payload as Comment];
       }
       return Object.assign({},
         state,
         {
-          movieComments
+          movieComments: newMovieComments
         });
     }
 
     case data.ADD_COMMENT_SUCCESS: {
       const { movieComments } = state;
+      const newMovieComments = { ...movieComments };
       const { movie_id, oldId } = action.payload as Comment;
-      if (movieComments[movie_id]) {
-        let comments = movieComments[movie_id]
+      if (newMovieComments[movie_id]) {
+        let comments = newMovieComments[movie_id]
           .filter(comment => comment.id !== oldId);
         comments = [...comments, action.payload as Comment];
-        movieComments[movie_id] = comments;
+        newMovieComments[movie_id] = comments;
       }
 
       return Object.assign({},
         state,
         {
-          movieComments
+          movieComments: newMovieComments
         });
     }
 
