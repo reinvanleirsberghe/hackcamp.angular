@@ -6,9 +6,13 @@ import {ApiService} from './api.service';
 import {StoreModule} from '@ngrx/store';
 import {reducer} from './state/store';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
+import {HttpService} from './HttpService';
+import {ConnectionBackend, Http, HttpModule, XHRBackend} from '@angular/http';
+import {AuthState} from './state/auth-state.service';
 
 @NgModule({
   imports: [
+    HttpModule,
     CommonModule,
 
     /**
@@ -34,8 +38,18 @@ import {StoreDevtoolsModule} from '@ngrx/store-devtools';
   ],
   providers: [
     AuthService,
+    AuthState,
     AuthGuard,
-    ApiService
+    ApiService,
+    HttpService,
+    {
+      provide: ConnectionBackend,
+      useClass: XHRBackend
+    },
+    {
+      provide: Http,
+      useClass: HttpService
+    },
   ],
   declarations: []
 })

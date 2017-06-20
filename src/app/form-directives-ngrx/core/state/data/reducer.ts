@@ -37,9 +37,11 @@ export function reducer(state = initialState, action: data.Actions): State {
       });
     }
 
-    case data.GET_COMMENTS: {
+    case data.SAVE_COMMENTS: {
       return Object.assign({}, state, {
-        movieComments: action.payload
+        movieComments: Object.assign({},
+          state.movieComments,
+          action.payload)
       });
     }
 

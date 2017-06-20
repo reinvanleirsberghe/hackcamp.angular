@@ -10,7 +10,7 @@ import 'rxjs/add/observable/throw';
 import {Store} from '@ngrx/store';
 import * as fromRoot from './state/store';
 import {getDataCategories, getDataGenres, getDataMovieComments, getDataMovies} from './state/store';
-import {GetCategoriesAction, GetCommentsAction, GetGenresAction, GetMoviesAction} from './state/data/actions';
+import {GetCategoriesAction, GetGenresAction, GetMoviesAction, SaveCommentsAction} from './state/data/actions';
 import {Comment, CommentsByMovie} from '../type';
 
 @Injectable()
@@ -49,10 +49,11 @@ export class ApiService {
    * @param id
    * @returns {Observable<R|T>}
    */
-  getMovieById(id: number | string): Observable<Movie> {
+  getMovieById(id: string): Observable<Movie> {
     return this.movies$
       .switchMap(movies => Observable.from(movies))
-      .filter((movie: Movie) => movie.id === id)
+      .filter((movie: Movie) => movie.id === parseInt(id, 10))
+      .do(movies => console.log('movies', movies))
       .first()
   }
 
@@ -124,7 +125,7 @@ export class ApiService {
    * @param movieId
    * @returns {Observable<CommentsByMovie>}
    */
-  getCommentsByMovieId(movieId: number): Observable<CommentsByMovie> {
+  getCommentsByMovieId(movieId: number): Observable<Comment[]> {
     this.fetchCommentsByMovieId(movieId)
       .map((comments: Comment[]) => {
         // Transform the comments into a map <movieId,listOfComment>
@@ -140,12 +141,13 @@ export class ApiService {
           return acc;
         }, {});
       })
-      .map((movieComments: CommentsByMovie) => this.store.dispatch(new GetCommentsAction(movieComments)))
+      .map((movieComments: CommentsByMovie) => this.store.dispatch(new SaveCommentsAction(movieComments)))
       .subscribe();
 
-    return this.movieComments$
+    return this.movieComments$.map((commentsByMovies: CommentsByMovie) => commentsByMovies[movieId]);
 
   }
+
 
   /**
    * Handle error by throw it

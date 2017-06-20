@@ -4,13 +4,11 @@ import {Http, Response} from '@angular/http';
 import {LoginCredentials} from '../type';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/do';
-import {Store} from '@ngrx/store';
-import * as fromRoot from './state/store';
-import {LoginAction, LogoutAction} from './state/auth/actions';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
+import {AuthState} from './state/auth-state.service';
 
 @Injectable()
 export class AuthService {
@@ -19,7 +17,7 @@ export class AuthService {
 
   constructor(private http: Http,
               @Inject(SERVER_URL_TOKEN) private serverUrl: string,
-              private store: Store<fromRoot.State>) {
+              private authState: AuthState) {
   }
 
   login(credentials: LoginCredentials): Observable<void> {
@@ -33,11 +31,11 @@ export class AuthService {
       .map((res: Response) => res.json())
       .map((res: { token: string }) => {
         this.setAuthTokenInLocalStorage(res.token);
-        this.store.dispatch(new LoginAction(res.token))
+        this.authState.login(res.token)
       })
       .catch((err) => {
         this.setAuthTokenInLocalStorage(null);
-        this.store.dispatch(new LogoutAction());
+        this.authState.logout();
 
         return Observable.throw(new Error('Getting Authentication Token '))
       });
@@ -49,7 +47,7 @@ export class AuthService {
   loginFromLocalStorage() {
     const token = this.getAuthTokenFromLocalStorage();
     if (token) {
-      this.store.dispatch(new LoginAction(token))
+      this.authState.login(token)
     }
   }
 
@@ -59,7 +57,7 @@ export class AuthService {
    * @returns {Observable<R>}
    */
   get isAuthenticated(): Observable<boolean> {
-    return this.store.select(fromRoot.getAuthIsAuthenticated);
+    return this.authState.isAuthenticated;
   }
 
   setAuthTokenInLocalStorage(token: string): void {
@@ -70,4 +68,11 @@ export class AuthService {
     return localStorage.getItem(this.TOKEN_KEY);
   }
 
+  logout() {
+    this.authState.logout();
+  }
+
+  getTokenFromStoreSync() {
+    return this.authState.getTokenFromStoreSync();
+  }
 }

@@ -79,6 +79,7 @@ export function reducer(state: any, action: any) {
  */
 export const getAuthState = (state: State) => state.auth;
 export const getAuthIsAuthenticated = compose(fromAuth.getIsAuthenticated, getAuthState);
+export const getAuthToken = compose(fromAuth.getToken, getAuthState);
 
 export const getDataState = (state: State) => state.data;
 export const getDataMovies = compose(fromData.getMovies, getDataState);

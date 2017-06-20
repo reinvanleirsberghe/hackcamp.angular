@@ -8,7 +8,7 @@ export const GET_GENRES = '[Data] Get genres';
 
 export const ADD_COMMENT_START = '[Data] Add comment start';
 export const ADD_COMMENT_SUCCESS = '[Data] Add comment success';
-export const GET_COMMENTS = '[Data] Get comments';
+export const SAVE_COMMENTS = '[Data] Save comments';
 export const DELETE_COMMENT = '[Data] Delete comment';
 
 
@@ -54,8 +54,8 @@ export class AddCommentSuccessAction implements Action {
   }
 }
 
-export class GetCommentsAction implements Action {
-  readonly type = GET_COMMENTS;
+export class SaveCommentsAction implements Action {
+  readonly type = SAVE_COMMENTS;
 
   constructor(public payload: CommentsByMovie) {
   }
@@ -77,5 +77,5 @@ export type Actions = GetMoviesAction
   | GetGenresAction
   | AddCommentStartAction
   | AddCommentSuccessAction
-  | GetCommentsAction
+  | SaveCommentsAction
   | DeleteCommentAction;
