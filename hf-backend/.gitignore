@@ -1,0 +1,5 @@
+dist/
+.idea
+db.json
+node_modules
+*.zip

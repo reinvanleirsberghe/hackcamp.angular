@@ -1,0 +1,38 @@
+<section class="container">
+  <div class="card mb-3 movie-card">
+
+    <div class="card-block">
+      <h1 class="black">
+        Stats
+        <button class="btn btn-lg btn-primary float-right"
+                (click)="back()">
+          Back
+        </button>
+      </h1>
+      <br/>
+      <div>
+        <p>Step 1</p>
+        <ul class="list-group">
+          <li class="list-group-item" *ngFor="let movie of (step1 | async)">
+            {{movie.title}} - {{movie.vote_average}}
+          </li>
+        </ul>
+        <p>Step 2</p>
+        <ul class="list-group">
+          <li class="list-group-item" *ngFor="let movie of (step1 | async)">
+            {{movie.title}} - {{movie.vote_average}}
+          </li>
+        </ul>
+        <p>Step 3 : {{step3 | async}}</p>
+        <p>Step 4 : {{step4| async}}</p>
+        <p>Step 5 : {{step5| async}}</p>
+        <p>Step 6 : </p>
+        <ul class="list-group">
+          <li class="list-group-item" *ngFor="let movie of (step6 | async)">
+            {{movie.title}} - {{movie.popularity}}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
