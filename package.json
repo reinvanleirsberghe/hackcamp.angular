@@ -4,8 +4,8 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "start:server": "cd ./hackflix-backend && npm start",
+    "start": "npm run start:server & ng serve",
+    "start:server": "cd ./hf-backend && npm start",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
