@@ -1,0 +1,24 @@
+import {InjectionToken} from '@angular/core';
+import {BACKDROP_URL, BACKDROP_URL_780, PICTURE_ORIGINAL_URL, PICTURES_CDN_URL, SERVER_URL} from '../shared/constant';
+import {Category} from '../shared/types';
+import {categories} from '../shared/mocks/categories';
+/**
+ * All mock data and constant should not be referenced globally
+ * but injected using the dependency injection to make easier the testing for example
+ * In this files, you will declare and export the mock data and constant to be injected
+ * by the dependency injection
+ */
+export const SERVER_URL_TOKEN = new InjectionToken<string>('SERVER_URL');
+export const PICTURES_CDN_URL_TOKEN = new InjectionToken<string>('PICTURES_CDN_URL');
+export const BACKDROP_URL_TOKEN = new InjectionToken<string>('BACKDROP_URL');
+export const BACKDROP_URL_780_TOKEN = new InjectionToken<string>('BACKDROP_URL_780');
+export const PICTURE_ORIGINAL_URL_TOKEN = new InjectionToken<string>('PICTURE_ORIGINAL_URL');
+
+export const CATEGORIES_TOKEN = new InjectionToken<Category[]>('CATEGORIES_TOKEN');
+
+export const Categories = { provide: CATEGORIES_TOKEN, useValue: categories };
+export const ServerUrl = { provide: SERVER_URL_TOKEN, useValue: SERVER_URL };
+export const PictureCdnUrl = { provide: PICTURES_CDN_URL_TOKEN, useValue: PICTURES_CDN_URL };
+export const BackdropUrl780 = { provide: BACKDROP_URL_780_TOKEN, useValue: BACKDROP_URL_780 };
+export const BackdropUrl = { provide: BACKDROP_URL_TOKEN, useValue: BACKDROP_URL };
+export const PictureOriginalUrl = { provide: PICTURE_ORIGINAL_URL_TOKEN, useValue: PICTURE_ORIGINAL_URL };
