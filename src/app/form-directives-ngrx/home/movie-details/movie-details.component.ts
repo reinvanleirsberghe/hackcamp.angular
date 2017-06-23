@@ -6,8 +6,6 @@ import 'rxjs/add/operator/switchMap';
 import {ApiService} from '../../core/api.service';
 import {Movie} from '../../../shared/types';
 import {BACKDROP_URL_TOKEN} from '../../di';
-import {Observable} from 'rxjs/Observable';
-import {Comment} from '../../type';
 
 @Component({
   selector: 'hf-movie-details',
@@ -15,11 +13,7 @@ import {Comment} from '../../type';
   styleUrls: ['./movie-details.component.css']
 })
 export class MovieDetailsComponent implements OnInit {
-  private id: string;
-
   movie: Movie = new Movie();
-
-  comments$: Observable<Comment[]>;
 
   constructor(private route: ActivatedRoute,
               private location: Location,
@@ -31,14 +25,10 @@ export class MovieDetailsComponent implements OnInit {
     /**
      * Get the id of movies from URL then fetch the movie from backend
      */
-    const id$ = this.route.paramMap
+    this.route.paramMap
       .map((params: ParamMap) => params.get('id'))
-      .do((id: string) => this.id = id);
-
-    const movie$ = id$.switchMap(id => this.api.getMovieById(id))
+      .switchMap(id => this.api.getMovieById(id))
       .subscribe((movie: Movie) => this.movie = movie);
-
-    this.comments$ = id$.switchMap(id => this.api.getCommentsByMovieId(parseInt(id, 10)))
   }
 
   getCover(path: string) {
@@ -53,9 +43,5 @@ export class MovieDetailsComponent implements OnInit {
      * Go back to the previous location
      */
     this.location.back();
-  }
-
-  addComment(value: { author: string, comment: string }) {
-
   }
 }

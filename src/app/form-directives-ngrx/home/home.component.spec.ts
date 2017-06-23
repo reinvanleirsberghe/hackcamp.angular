@@ -13,12 +13,11 @@ import {AuthService} from '../core/auth.service';
 import {BackdropUrl, BackdropUrl780, Categories, PictureCdnUrl, PictureOriginalUrl, ServerUrl} from '../di';
 import {HttpModule} from '@angular/http';
 import {AppRoutingModule} from '../app.routing.module';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {FormsModule} from '@angular/forms';
 import {LoginComponent} from '../auth/login/login.component';
 import {MovieDetailsComponent} from './movie-details/movie-details.component';
 import {StatsComponent} from './stats/stats.component';
 import {APP_BASE_HREF} from '@angular/common';
-import {CoreModule} from '../core/core.module';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -29,9 +28,7 @@ describe('HomeComponent', () => {
       imports: [
         HttpModule,
         AppRoutingModule,
-        FormsModule,
-        ReactiveFormsModule,
-        CoreModule
+        FormsModule
       ],
       declarations: [
         HomeComponent,

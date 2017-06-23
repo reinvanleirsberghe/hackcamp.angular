@@ -8,9 +8,6 @@ import {MenubarComponent} from './menubar/menubar.component';
 import {HomeComponent} from './home.component';
 import {MovieDetailsComponent} from './movie-details/movie-details.component';
 import {StatsComponent} from './stats/stats.component';
-import { CommentListComponent } from './movie-details/comment-list/comment-list.component';
-import { CommentComponent } from './movie-details/comment-list/comment/comment.component';
-import { CommentFormComponent } from './movie-details/comment-form/comment-form.component';
 
 @NgModule({
   imports: [
@@ -25,9 +22,6 @@ import { CommentFormComponent } from './movie-details/comment-form/comment-form.
     HomeComponent,
     MovieDetailsComponent,
     StatsComponent,
-    CommentListComponent,
-    CommentComponent,
-    CommentFormComponent,
   ],
   exports: [
     MovieListComponent,

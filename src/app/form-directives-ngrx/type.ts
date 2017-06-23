@@ -12,6 +12,7 @@ export class LoginCredentials {
 }
 
 
+
 export interface Comment {
   movie_id: number,
   author: string;

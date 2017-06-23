@@ -22,62 +22,104 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 Before running the tests make sure you are serving the app via `ng serve`.
 
 
-## ROADMAP ( source routing-rx-advanced-service-module-architecture)
+## ROADMAP
  
 
-### Component, DI and Pipe
+### Forms, directives, ngRX
 
-#### Concepts:
-   - Beyond Component decorator + advanced
-   - Pipe
-   - DI : Service Basic
-   
+#### Concepts
+  - ngrx
+  - Forms
+  - Directives
+  - Validators Directives
+  
 #### Important links
   - [Template Syntax and built-in directives](https://angular.io/guide/template-syntax)
+  - [Router](https://angular.io/guide/router)
+  - [Http](https://angular.io/guide/http)
+  - [DI](https://angular.io/guide/dependency-injection-in-action#define-dependencies-with-providers)
+  - [Form Validation](https://angular.io/guide/form-validation#form-validation)
+  - [ngrx store](https://github.com/ngrx/store)
+  - [Validators](https://angular.io/api/forms/Validators)
+
+#### Features
+
+  - Setup redux with ngRX in core.module.ts, look at the _templates
+    and get the core.module.ts that will replace the current files in
+    your project
+  - AuthService is using Promise to login, let's rewrite with Observable
+  - Now, we will manage all our authentication through redux, so let's create
+    some actions and reducer to handle all this stuff. You will find 
+    all boilerplate in _templates. Copy the state folder in the core 
+    folder of your app 
+    - import the function reducer in store.ts as store in core.module.ts
+    - Fix errors in actions.ts, reducer.ts, auth-state.service.ts
+    - in app.component check if we have token in local storage and dispatch login
+  - Refractor Auth Guard due to modification done in AuthService
+// You should have a application running and working completly with
+
+// all the authentication handled into redux
+// Let's continue and learn Reactive Form
+  - LoginComponent was written using Template Syntax, so rewrite using 
+    Reactive form
+    - Replace the login folder of your app by the login in _template
+    - Fix all bugs :)
+    - Perform validation using Reactive Form
+           - Email:
+            - Required
+            - Email so rewrite the email directive to the Email validator
+              the object error should be now {email:true}
+           - Password 
+            - Required
+            - MinLength 4
+            - MaxLength 24
+            
+// Reactive Form is really cool feature and you wanna like it
+// Now let's go back on redux a bit and move all your data in redux
+  - Copy the data folder in _templates to the folder state in core folder
+  - Implement all actions and reducers
+  - In store.ts at the end of the file, compose your function that retrieve 
+  movies, genres and categories from store
+  - Refractor the api.service to dispatch all data in redux so replace 
+   the api.service.ts of your app by the api.service.ts in _templates
+  - Fix all bugs to make your api.service working again
   
-#### Features:
+// You should have a application running and working completly with
+
+// The last thing we will implement with redux will be in the movie details
+// page. We will add a comment system
   
-   - Display all mock movies
-      - Picture
-      - Hover information
-    - Display all mock categories
-    - Filter by category
-    - Make active a category when selected
-    - Toggle Sidebar
-    - Implement search in sidebar
+  - Create a new reducer for comment and actions
+    - Actions to implement
+      - Add a comment for the specific movie
+      - Delete the comment for the specific movie
+      - Update the comment for specific movie
+    - Everything will be in memory, the goal is just to create everything
+    from scratch.
+      - Display the list of comment of the current movie stored in the store
+      - The comment form HAVE TO use Reactive Form. You will find the sample
+      template in °_templates
+        - Validations
+           - Author 
+            - required 
+            - beginWithUppercaseLetter => to implement
+           - Comment 
+            - required
+            - 200 character max
+            - If the author contains Harry, you should limit the number of
+            character to 100
+   - You can go further by saving you comment actually into the backend
+    => POST /movies/:movieId/comments
  
-
+#### Breaking
+  - Setup Redux
+  
 #### Bonus
-  - In sidebar component, add ordering by ASC/DESC 
-
-#### Breakings:
-  - Template syntax 
-
-#### TODO :
-
- - Split in several components using the CLI. Make sure your application is still working
-    - MovieList => movie-list
-      - Movie => movie
-        - MovieHoverInfo => movie-hover-info
-    - Menubar => menubar
-    - Sidebar => sidebar
-    - Header => header
-  - Implement pipe using the CLI that will truncate movie's overview 
-    - The pipe's name is 'Shorten' => hint: shorten method
-  - Create API service using the CLI with mock data
-      - getMovies return only 50 'movies' from the mocks
-      - getCategories return 'categories' mocks
-      - getGenres return 'genres' mocks
-  - Introduction to lifecycle hooks
-    - ngOnInit
-      - Use API service in the component to get your data instead of the
-      global mock data
-    - ngOnChanges
-      - Build a light mapper from Movie to MovieLite (utils.ts)
-    - ngOnDestroy (demo)
+- add search in redux
+- add ui in redux
+- RouterStore
     
-#### Testing (demo)
-  - Component category
-  - Service
-  - Pipe
-
+#### Testing
+  - Reducer
+  - Directive
+  - Validator class
