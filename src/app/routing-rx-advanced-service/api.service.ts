@@ -21,7 +21,7 @@ export class ApiService {
    * Don't forgot to catch errors
    * @returns {Observable<R|T>}
    */
-  getMovies(): Observable<Movie[]> {
+  getMovies(): Observable<Movie[] | Error> {
     return this.http.get(`${this.serverUrl}/movies`)
       .map((res: Response) => res.json() as Movie[])
       .catch(this.handleError);
@@ -33,7 +33,7 @@ export class ApiService {
    * @param id
    * @returns {Observable<R|T>}
    */
-  getMovieById(id: number | string): Observable<Movie> {
+  getMovieById(id: number | string): Observable<Movie | Error> {
     return this.http.get(`${this.serverUrl}/movies/${id}`)
       .map((res: Response) => res.json() as Movie)
       .catch(this.handleError);
@@ -46,7 +46,7 @@ export class ApiService {
    * @param limit
    * @returns {Observable<R|T>}
    */
-  getOnlyMovies(limit: number = 50) {
+  getOnlyMovies(limit: number = 50): Observable<Movie[] | Error> {
     return this.http.get(`${this.serverUrl}/movies`)
       .map((res: Response) => res.json() as Movie[])
       .map((movies: Movie[]) => movies.slice(0, limit))
@@ -58,7 +58,7 @@ export class ApiService {
    * Don't forgot to catch errors
    * @returns {any}
    */
-  getCategories(): Observable<Category[]> {
+  getCategories(): Observable<Category[] | Error> {
     return Observable.of(this.categories);
   }
 
@@ -67,7 +67,7 @@ export class ApiService {
    * Don't forgot to catch errors
    * @returns {Observable<R|T>}
    */
-  getGenres(): Observable<Genre[]> {
+  getGenres(): Observable<Genre[] | Error> {
     return this.http.get(`${this.serverUrl}/genres`)
       .map((res: Response) => res.json() as Genre[])
       .catch(this.handleError);
