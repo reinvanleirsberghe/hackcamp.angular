@@ -5,24 +5,27 @@ Primary style
 
 -------------------------------- */
 
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700');
+
 html {
   font-size: 62.5%;
 }
 
 body {
   font-size: 1.6rem;
-  font-family: "Open Sans", sans-serif;
+  font-family: 'Roboto', sans-serif;
   color: #fefefe;
-  background: #16161d;
+  background: #141414;
+  /*background: #16161d;*/
 }
 
 a {
-  color: tomato;
+  color: #e50914;
   text-decoration: none;
 }
 
 a:focus, a:hover {
-  color: tomato;
+  color: #e50914;
   text-decoration: none;
 }
 
@@ -32,10 +35,19 @@ Main Components
 
 -------------------------------- */
 
+.hand-cursor {
+  cursor: pointer;
+}
+
+.btn:focus {
+  outline: 0;
+  box-shadow: none;
+}
 
 .main-content {
   position: relative;
   min-height: 100vh;
+  background: #141414;
 }
 
 .main-content:after {
@@ -71,15 +83,34 @@ Main Components
   position: fixed;
 }
 
+.main-content h2{
+  width: 100%;
+  display: block;
+  float: right;
+  transition: width 0.3s;
+  padding: 20px 5% 0;
+  font-weight: 400;
+}
+
+.main-content h2.filter-is-visible{
+  width: 80%;
+}
+
 @media only screen and (min-width: 768px) {
   .main-content.is-fixed .gallery {
     padding-top: 90px;
+  }
+  .main-content h2{
+    padding: 20px 3% 0;
   }
 }
 
 @media only screen and (min-width: 1170px) {
   .main-content.is-fixed .gallery {
     padding-top: 100px;
+  }
+  .main-content h2{
+    padding: 20px 2% 0;
   }
 }
 /* --------------------------------
@@ -104,6 +135,48 @@ xmovie-card
 
 /* --------------------------------
 
+xstats
+
+-------------------------------- */
+.stats{
+  padding-bottom: 80px;
+}
+.stats h2{
+  font-weight: 400;
+  margin-bottom: 20px;
+}
+.stats h2:last-of-type{
+  margin-top: 50px;
+}
+.stats table thead tr th{
+  font-weight: 400;
+  color: white;
+}
+.stats table tbody tr td{
+  color: #999;
+}
+
+.stats .btn{
+  font-size: 1.7rem;
+  font-weight: 400;
+  margin-right: .75em;
+  padding: .57em 1.35em;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,.4);
+  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.3);
+  -moz-box-shadow: 0 1px 2px rgba(0,0,0,.3);
+  box-shadow: 0 1px 2px rgba(0,0,0,.3);
+  background-image: none;
+  background-color: rgba(0,0,0,.4);
+  cursor: pointer;
+  transition: .3s ease;
+  border-radius: 0;
+  margin-top: 40px;
+}
+
+
+/* --------------------------------
+
 xtab-filter
 
 -------------------------------- */
@@ -112,13 +185,14 @@ xtab-filter
   color: white;
   float: right;
   bottom: 20px;
-  background-color: tomato;
+  background-color: #e50914;
 }
 
 .tab-filter-wrapper {
   background-color: rgb(30,30,34);
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.08);
   z-index: 1;
+  margin-bottom: 50px;
 }
 
 .tab-filter-wrapper:after {
@@ -130,43 +204,33 @@ xtab-filter
 .tab-filter {
   /* tabbed navigation style on mobile - dropdown */
   position: relative;
-  height: 50px;
-  width: 140px;
   margin: 0 auto;
   z-index: 1;
+  padding-left: 60px;
+}
+.tab-filter ul{
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
 }
 
-.tab-filter::after {
-  /* small arrow icon */
-  content: '';
-  position: absolute;
-  right: 14px;
-  top: 50%;
-  bottom: auto;
-  transform: translateY(-50%);
-  display: inline-block;
-  width: 16px;
-  height: 16px;
-  background: url("./assets/images/icon-arrow.svg") no-repeat center center;
-  transition: all 0.3s;
-  pointer-events: none;
-}
-
-.tab-filter ul {
-  position: absolute;
-  top: 0;
-  left: 0;
-  background-color: #ffffff;
-  box-shadow: inset 0 -2px 0 #00A29B;
-}
-
-.tab-filter li {
-  display: none;
-}
-
-.tab-filter li:first-child {
-  /* this way the placehodler is alway visible */
-  display: block;
+.tab-filter ul li{
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-flow: column nowrap;
+  flex-flow: column nowrap;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 0;
 }
 
 .tab-filter a {
@@ -177,36 +241,52 @@ xtab-filter
   line-height: 50px;
   padding-left: 14px;
   cursor: pointer;
+  transition: .2s ease;
+
+  display: inline-block;
+  padding: 0 1em;
+  width: auto;
+  color: #9a9a9a;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 1.3rem;
 }
 
+
+.tab-filter a:hover{
+  color: #e50914;
+}
 .tab-filter a.selected {
-  background: tomato;
-  color: #ffffff;
+  text-decoration: none;
+  background: transparent;
+  color: #e50914;
+  /* create border bottom using box-shadow property */
+  box-shadow: inset 0 -2px 0 #e50914;
+}
+.tab-filter .misc {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.tab-filter .misc .counter a{
+  cursor: auto;
 }
 
-.tab-filter.is-open::after {
-  /* small arrow rotation */
-  transform: translateY(-50%) rotate(-180deg);
-}
 
-.tab-filter.is-open ul {
-  box-shadow: inset 0 -2px 0 #00A29B, 0 2px 10px rgba(0, 0, 0, 0.2);
-}
-
-.tab-filter.is-open ul li {
-  display: block;
-}
-
-.tab-filter.is-open .placeholder a {
-  /* reduces the opacity of the placeholder on mobile when the menu is open */
-  opacity: .4;
-}
 
 @media only screen and (min-width: 768px) {
+  .tab-filter-wrapper{
+    margin-bottom: 0;
+  }
   .tab-filter {
-    /* tabbed navigation style on medium devices */
+    padding-left: 120px;
     width: auto;
     cursor: auto;
+  }
+  .tab-filter .filters-list{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
   }
 
   .tab-filter::after {
@@ -225,34 +305,14 @@ xtab-filter
     display: inline-block;
   }
 
-  .tab-filter li.placeholder {
-    display: none !important;
-  }
-
-  .tab-filter a {
-    display: inline-block;
-    padding: 0 1em;
-    width: auto;
-    color: #9a9a9a;
-    text-transform: uppercase;
-    font-weight: 700;
-    font-size: 1.3rem;
-  }
-
   .no-touch .tab-filter a:hover {
-    color: tomato;
+    color: #e50914;
   }
-
-  .tab-filter a.selected {
-    text-decoration: none;
-    background: transparent;
-    color: tomato;
-    /* create border bottom using box-shadow property */
-    box-shadow: inset 0 -2px 0 tomato;
-  }
-
-  .tab-filter.is-open ul li {
-    display: inline-block;
+  .tab-filter .misc {
+    float: right;
+    position: unset;
+    left: auto;
+    transform: none;
   }
 }
 
@@ -286,9 +346,10 @@ xgallery
 }
 
 .gallery .movie {
-  flex: 1 1 40%;
+  /*flex: 1 1 40%;*/
+  width: 50%;
+  padding: 10px;
   height: auto;
-  margin: 0.8em;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -303,13 +364,14 @@ xgallery
   }
 
   .gallery .movie {
-    flex: 1 1 20%;
+    width: 25%;
+    /*flex: 1 1 20%;*/
   }
 }
 
 @media only screen and (min-width: 1170px) {
   .gallery {
-    padding: 50px 2%;
+    padding: 50px 2% 80px;
     float: right;
     -webkit-transition: width 0.3s;
     -moz-transition: width 0.3s;
@@ -317,7 +379,7 @@ xgallery
   }
 
   .gallery .movie {
-    flex: 1 1 18%;
+    /*flex: 1 1 18%;*/
   }
 
   .gallery.filter-is-visible {
@@ -372,7 +434,7 @@ xfilter
   line-height: 50px;
   width: 60px;
   color: #ffffff;
-  font-weight: 700;
+  font-weight: 400;
   text-transform: uppercase;
   font-size: 1.3rem;
   text-align: center;
@@ -393,6 +455,10 @@ xfilter
 
 .filter.filter-is-visible .close-f {
   opacity: 1;
+}
+
+.list-filters .filters-list li{
+  float: left;
 }
 
 @media only screen and (min-width: 1170px) {
@@ -425,6 +491,7 @@ xfilter
   pointer-events: none;
 }
 
+
 @media only screen and (min-width: 1170px) {
   .filter-trigger {
     width: auto;
@@ -433,7 +500,7 @@ xfilter
     color: grey;
     text-transform: uppercase;
     font-size: 1.3rem;
-    font-weight: 700;
+    font-weight: 400;
     padding-left: 24px;
     background-position: left center;
     transition: color 0.3s;
@@ -460,17 +527,16 @@ xcustom form elements
 .filter-block h4 {
   /* filter block title */
   position: relative;
-  margin-bottom: .2em;
-  padding: 10px 0 10px 20px;
+  margin-bottom: 0;
+  padding: 10px 0;
   color: #9a9a9a;
-  text-transform: uppercase;
-  font-weight: 700;
+  text-transform: none;
+  font-weight: 500;
   font-size: 1.3rem;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  cursor: pointer;
 }
 
 .no-touch .filter-block h4:hover {
@@ -479,7 +545,7 @@ xcustom form elements
 
 .filter-block h4::before {
   /* arrow */
-  content: '';
+  /*content: '';*/
   position: absolute;
   left: 0;
   top: 50%;
@@ -518,7 +584,8 @@ xcustom form elements
 .filter-block input[type='text'],
 .filter-block select {
   width: 100%;
-  padding: .8em;
+  padding: .2em .8em;
+  border-radius: 0;
   -webkit-appearance: none;
   -moz-appearance: none;
   -ms-appearance: none;
@@ -540,7 +607,7 @@ xcustom form elements
   border-color: transparent;
   background-color: #e6e6e6;
   /* prevent jump - ios devices */
-  font-size: 1.6rem !important;
+  font-size: 1.4rem !important;
 }
 
 .filter-block input[type='search']::-webkit-search-cancel-button {

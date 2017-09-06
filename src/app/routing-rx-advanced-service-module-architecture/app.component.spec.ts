@@ -74,7 +74,7 @@ describe('AppComponent', () => {
   }));
 
   it(`should have as logo 'app'`, async(() => {
-    expect(component.logo).toEqual('../assets/images/logo.svg');
+    expect(component.logo).toEqual('../assets/images/hackflix_logo.svg');
   }));
 
   it('should render title in a h1 tag', async(() => {

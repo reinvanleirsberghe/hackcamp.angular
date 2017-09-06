@@ -1,24 +1,21 @@
 <header>
   <img src="{{logo}}" alt="logo"/>
-  <h1>Flix</h1>
 </header>
 <main class="main-content">
   <div class="tab-filter-wrapper">
     <div class="tab-filter">
-      <ul>
-
-        <li class="placeholder">
-          <a data-type="all" href="#0">All</a>
-        </li>
-
-        <li *ngFor="let category of categories" (click)="selectTab(category.category)">
-          <a [class.selected]="category.selected">{{category.category}}</a>
-        </li>
-
-        <li class="counter">
-          <a>{{movies.length}}</a>
-        </li>
-      </ul>
+      <div class="filters">
+        <ul class="filters-list">
+          <li *ngFor="let category of categories" (click)="selectTab(category.category)">
+            <a [class.selected]="category.selected">{{category.category}}</a>
+          </li>
+        </ul>
+        <ul class="misc">
+          <li class="counter">
+            <a>{{movies.length}}</a>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 
@@ -37,7 +34,7 @@
         <button class="btn btn-danger">
           Remove from cart
         </button>
-        <button class="btn btn-success">
+        <button class="btn add">
           Add to cart
         </button>
         <button class="btn btn-link">

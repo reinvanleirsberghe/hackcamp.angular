@@ -9,10 +9,12 @@ import {BACKDROP_URL_TOKEN} from '../../di';
 import {Observable} from 'rxjs/Observable';
 import {Comment} from '../../type';
 
+// TODO: implement comment list and comment
 @Component({
   selector: 'hf-movie-details',
   templateUrl: './movie-details.component.html',
-  styleUrls: ['./movie-details.component.css']
+  styleUrls: [],
+
 })
 export class MovieDetailsComponent implements OnInit {
   private id: string;

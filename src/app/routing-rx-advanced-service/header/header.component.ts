@@ -3,7 +3,7 @@ import {Component, Input} from '@angular/core';
 @Component({
   selector: 'hf-header',
   templateUrl: './header.component.html',
-  styleUrls: ['../../../assets/css/header.css']
+  styleUrls: []
 })
 export class HeaderComponent {
   @Input()

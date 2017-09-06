@@ -4,7 +4,7 @@ import {Comment} from '../../../type';
 @Component({
   selector: 'hf-comment-list',
   templateUrl: './comment-list.component.html',
-  styleUrls: ['./comment-list.component.css']
+  styleUrls: []
 })
 export class CommentListComponent implements OnInit {
   @Input()
