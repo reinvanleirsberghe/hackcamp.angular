@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {Category, Genre, Movie} from '../shared/types';
 import {PICTURES_CDN_URL} from '../shared/constant';
 import {ApiService} from './api.service';
@@ -7,13 +7,17 @@ import {ApiService} from './api.service';
   selector: 'hf-app',
   templateUrl: './app.component.html',
   styleUrls: [
-    './app.component.css',
-  ]
+    '../../assets/css/header.css',
+    '../../assets/css/movie.css',
+    '../../assets/css/movieComments.css',
+    '../../assets/css/movieCommentForm.css',
+  ],
+  encapsulation: ViewEncapsulation.None
 })
 export class AppComponent implements OnInit {
   PICTURES_CDN_URL = PICTURES_CDN_URL;
 
-  logo = '../assets/images/logo.svg';
+  logo = '../assets/images/hackflix_logo.svg';
 
   categories: Category[];
   genres: Genre[];

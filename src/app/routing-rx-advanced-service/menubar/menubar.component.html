@@ -1,21 +1,20 @@
 <div class="tab-filter-wrapper">
   <div class="tab-filter">
-    <ul>
+    <div class="filters">
+      <ul class="filters-list">
+        <li *ngFor="let category of categories" (click)="selectTab(category.category)">
+          <a [class.selected]="category.selected">{{category.category}}</a>
+        </li>
 
-      <li class="placeholder">
-        <a data-type="all" href="#0">All</a>
-      </li>
-
-      <li *ngFor="let category of categories" (click)="selectTab(category.category)">
-        <a [class.selected]="category.selected">{{category.category}}</a>
-      </li>
-
-      <li class="counter">
-        <a>{{counter}}</a>
-      </li>
-      <li class="right" [routerLink]="['/stats']">
-        <a>Stats</a>
-      </li>
-    </ul>
+      </ul>
+      <ul class="misc">
+        <li class="counter">
+          <a>{{counter}}</a>
+        </li>
+        <li [routerLink]="['/stats']">
+          <a>Stats</a>
+        </li>
+      </ul>
+    </div>
   </div>
 </div>

@@ -8,7 +8,7 @@ import 'rxjs/add/observable/empty';
 @Component({
   selector: 'hf-comment-form',
   templateUrl: './comment-form.component.html',
-  styleUrls: ['./comment-form.component.css']
+  styleUrls: []
 })
 export class CommentFormComponent implements OnInit {
   @Input()

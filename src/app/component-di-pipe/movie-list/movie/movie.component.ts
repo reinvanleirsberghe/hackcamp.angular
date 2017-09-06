@@ -4,9 +4,7 @@ import {MovieLite} from '../../type';
 @Component({
   selector: 'hf-movie',
   templateUrl: './movie.component.html',
-  styleUrls: [
-    '../../../../assets/css/movie.css',
-  ]
+  styleUrls: []
 })
 export class MovieComponent implements OnInit {
 

@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, ViewEncapsulation} from '@angular/core';
 import {Category, Genre, Movie} from '../shared/types';
 import {PICTURES_CDN_URL} from '../shared/constant';
 import {movies} from '../shared/mocks/movies';
@@ -9,15 +9,17 @@ import {genres} from '../shared/mocks/genres';
   selector: 'hf-app',
   templateUrl: './app.component.html',
   styleUrls: [
-    './app.component.css',
     '../../assets/css/header.css',
     '../../assets/css/movie.css',
-  ]
+    '../../assets/css/movieComments.css',
+    '../../assets/css/movieCommentForm.css',
+  ],
+  encapsulation: ViewEncapsulation.None
 })
 export class AppComponent {
   PICTURES_CDN_URL = PICTURES_CDN_URL;
 
-  logo = '../assets/images/logo.svg';
+  logo = '../assets/images/hackflix_logo.svg';
 
   movies: Movie[] = movies.slice(0, 50);
   filteredMovies: Movie[] = movies.slice(0, 50);
