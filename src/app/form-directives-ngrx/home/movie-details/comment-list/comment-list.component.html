@@ -1,3 +1,4 @@
-<p>
-  comment-list works!
-</p>
+<hf-comment *ngFor="let comment of comments"
+            [comment]="comment"
+            [onDeleteClick]="onDelete">
+</hf-comment>

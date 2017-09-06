@@ -30,9 +30,9 @@
     <div class="card-block-footer">
       <div class="comments-block">
         <hf-comment-form></hf-comment-form>
-      </div>
-      <div class="movie-comments">
-        <!--add comment list here-->
+        <div class="movie-comments">
+          <hf-comment-list [comments]="comments$ | async" [onDelete]="deleteComment"></hf-comment-list>
+        </div>
       </div>
     </div>
   </div>

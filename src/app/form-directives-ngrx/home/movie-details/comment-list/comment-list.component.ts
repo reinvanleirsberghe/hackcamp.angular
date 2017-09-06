@@ -10,6 +10,10 @@ export class CommentListComponent implements OnInit {
   @Input()
   comments: Comment[] = [];
 
+  @Input()
+  onDelete: Function = () => {
+  };
+
   constructor() {
   }
 
