@@ -65,7 +65,7 @@ describe('AppComponent', () => {
 
   it('should have "All" category selected by default', async(() => {
     const compiled = fixture.debugElement.nativeElement;
-    const tab = compiled.querySelector('.tab-filter > ul > li > a.selected ');
+    const tab = compiled.querySelector('.tab-filter > .filters > ul.filters-list > li > a.selected ');
 
     expect(tab.textContent).toEqual('All');
   }));
@@ -73,7 +73,7 @@ describe('AppComponent', () => {
   it('should select the category tab when click on it', async(() => {
     const compiled = fixture.debugElement.nativeElement;
 
-    const tabs = compiled.querySelectorAll('.tab-filter > ul > li > a');
+    const tabs = compiled.querySelectorAll('.tab-filter > .filters > ul.filters-list > li > a');
     const selectedTab = tabs[3];
 
     selectedTab.click();
