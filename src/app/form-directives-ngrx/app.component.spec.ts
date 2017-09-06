@@ -57,9 +57,4 @@ describe('AppComponent', () => {
     expect(component.logo).toEqual('../assets/images/hackflix_logo.svg');
   }));
 
-  it('should render title in a h1 tag', async(() => {
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Flix');
-  }));
-
 });

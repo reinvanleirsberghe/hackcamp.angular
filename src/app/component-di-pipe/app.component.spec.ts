@@ -54,11 +54,6 @@ describe('AppComponent', () => {
     expect(component.PICTURES_CDN_URL).toEqual(PICTURES_CDN_URL);
   }));
 
-  it('should render title in a h1 tag', async(() => {
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Flix');
-  }));
-
   it('should have a list of 50 movies', async(() => {
     expect(component.movies.length).toEqual(50);
   }));
