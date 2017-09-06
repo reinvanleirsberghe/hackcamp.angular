@@ -6,7 +6,7 @@ export interface State {
   movies: Movie[];
   categories: Category[];
   genres: Genre[];
-  movieComments: CommentsByMovie
+  movieComments: CommentsByMovie;
 }
 
 
@@ -80,6 +80,25 @@ export function reducer(state = initialState, action: data.Actions): State {
         {
           movieComments: newMovieComments
         });
+    }
+
+    case data.DELETE_COMMENT: {
+      const { movieComments } = state;
+      const newMovieComments = { ...movieComments };
+
+      const payload = action.payload as Comment;
+      if (newMovieComments[payload.movie_id]) {
+        newMovieComments[payload.movie_id] = newMovieComments[payload.movie_id].filter(
+          c => c.id !== payload.id
+        );
+        return Object.assign({},
+          state,
+          {
+            movieComments: newMovieComments
+          });
+      }
+
+      return state;
     }
 
     default: {
