@@ -20,7 +20,8 @@ import {BackdropUrl, BackdropUrl780, Categories, PictureCdnUrl, PictureOriginalU
 import {AuthGuard} from './auth.guard';
 import {AuthService} from './auth.service';
 import {MovieDetailsComponent} from './movie-details/movie-details.component';
-import { StatsComponent } from './stats/stats.component';
+import {StatsComponent} from './stats/stats.component';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { StatsComponent } from './stats/stats.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    HttpClientModule
   ],
   providers: [
     ApiService,
