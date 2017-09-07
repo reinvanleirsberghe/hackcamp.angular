@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {Comment} from '../../../../type';
 
 @Component({
   selector: 'hf-comment',
@@ -6,8 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./comment.component.css']
 })
 export class CommentComponent implements OnInit {
+  @Input()
+  comment: Comment;
 
-  constructor() { }
+  @Input()
+  onDeleteClick: Function = () => {
+  };
+
+  constructor() {
+  }
 
   ngOnInit() {
   }

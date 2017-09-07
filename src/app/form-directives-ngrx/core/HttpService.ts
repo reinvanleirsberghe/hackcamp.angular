@@ -24,7 +24,7 @@ export class HttpService extends Http {
     const headerOptions = new RequestOptions({
       headers: new Headers(
         {
-          [HttpService.AUTH_HEADER_KEY]: 'Bearer ' + authToken,
+          [HttpService.AUTH_HEADER_KEY]: authToken,
         }
       )
     });
