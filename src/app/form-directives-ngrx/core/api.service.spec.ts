@@ -7,6 +7,7 @@ import {HttpModule} from '@angular/http';
 import {BackdropUrl, BackdropUrl780, Categories, PictureCdnUrl, PictureOriginalUrl, ServerUrl} from '../di';
 import {CoreModule} from './core.module';
 import {RouterModule} from '@angular/router';
+import {APP_BASE_HREF} from '@angular/common';
 
 describe('ApiService', () => {
   beforeEach(() => {
@@ -24,8 +25,13 @@ describe('ApiService', () => {
         BackdropUrl780,
         PictureOriginalUrl,
         Categories,
+        {
+          provide: APP_BASE_HREF,
+          useValue: ''
+        }
       ]
-    });
+    })
+    ;
   });
 
   it('should be created 2', inject([ApiService], (service: ApiService) => {
@@ -34,7 +40,6 @@ describe('ApiService', () => {
 
   it('should have getCategories() method that return a list of categories', inject([ApiService], (service: ApiService) => {
     service.getCategories().subscribe((categories: Category[]) => {
-      console.log('^^categories', categories);
       expect(Array.isArray(categories)).toBeTruthy();
     });
   }));
