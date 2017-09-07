@@ -12,7 +12,7 @@ export class LoginCredentials {
 }
 
 
-export interface Comment {
+export class Comment {
   movie_id: number;
   author: string;
   content: string;
@@ -21,7 +21,7 @@ export interface Comment {
 }
 
 
-export interface CommentsByMovie {
+export class CommentsByMovie {
   [key: number]: Comment[];
 }
 
