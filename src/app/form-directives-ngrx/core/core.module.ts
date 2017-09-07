@@ -4,12 +4,13 @@ import {AuthService} from './auth.service';
 import {AuthGuard} from './auth.guard';
 import {ApiService} from './api.service';
 import {StoreModule} from '@ngrx/store';
-import {reducer} from './state/store';
-import {StoreDevtoolsModule} from '@ngrx/store-devtools';
+import {reducers} from './state/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import {HttpModule} from '@angular/http';
 import {AuthState} from './state/auth-state.service';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AuthenticationInterceptor} from './AuthenticationInterceptor';
+import {environment} from '../../../environments/environment';
 
 @NgModule({
   imports: [
@@ -24,7 +25,7 @@ import {AuthenticationInterceptor} from './AuthenticationInterceptor';
      * meta-reducer. This returns all providers for an @ngrx/store
      * based application.
      */
-    StoreModule.provideStore(reducer),
+    StoreModule.forRoot(reducers),
 
     /**
      * Store devtools instrument the store retaining past versions of state
@@ -36,7 +37,7 @@ import {AuthenticationInterceptor} from './AuthenticationInterceptor';
      *
      * See: https://github.com/zalmoxisus/redux-devtools-extension
      */
-    StoreDevtoolsModule.instrumentOnlyWithExtension()
+    !environment.production ? StoreDevtoolsModule.instrument({ maxAge: 50 }) : []
   ],
   providers: [
     // registration
