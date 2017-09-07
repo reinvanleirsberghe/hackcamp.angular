@@ -2,7 +2,7 @@ import {inject, TestBed} from '@angular/core/testing';
 
 import {ApiService} from './api.service';
 import {movies} from '../shared/mocks/movies';
-import {genres} from "app/shared/mocks/genres";
+import {genres} from '../shared/mocks/genres';
 import {categories} from '../shared/mocks/categories';
 
 describe('ApiService', () => {

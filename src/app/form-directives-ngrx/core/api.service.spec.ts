@@ -1,19 +1,20 @@
 import {inject, TestBed} from '@angular/core/testing';
 
 import {ApiService} from './api.service';
-import {genres} from 'app/shared/mocks/genres';
 import {categories} from '../../shared/mocks/categories';
-import {Category, Genre, Movie} from '../../shared/types';
+import {Category} from '../../shared/types';
 import {HttpModule} from '@angular/http';
 import {BackdropUrl, BackdropUrl780, Categories, PictureCdnUrl, PictureOriginalUrl, ServerUrl} from '../di';
 import {CoreModule} from './core.module';
+import {RouterModule} from '@angular/router';
 
 describe('ApiService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
+        RouterModule.forRoot([]),
         HttpModule,
-        CoreModule
+        CoreModule,
       ],
       providers: [
         ApiService,
@@ -27,12 +28,13 @@ describe('ApiService', () => {
     });
   });
 
-  it('should be created', inject([ApiService], (service: ApiService) => {
+  it('should be created 2', inject([ApiService], (service: ApiService) => {
     expect(service).toBeTruthy();
   }));
 
   it('should have getCategories() method that return a list of categories', inject([ApiService], (service: ApiService) => {
     service.getCategories().subscribe((categories: Category[]) => {
+      console.log('^^categories', categories);
       expect(Array.isArray(categories)).toBeTruthy();
     });
   }));
