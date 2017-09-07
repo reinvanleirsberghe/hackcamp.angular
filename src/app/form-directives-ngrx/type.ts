@@ -13,11 +13,11 @@ export class LoginCredentials {
 
 
 export interface Comment {
-  movie_id: number,
+  movie_id: number;
   author: string;
   content: string;
-  oldId?: number
-  id: number
+  oldId?: number;
+  id: number;
 }
 
 

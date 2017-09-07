@@ -54,11 +54,6 @@ describe('AppComponent', () => {
     expect(component.PICTURES_CDN_URL).toEqual(PICTURES_CDN_URL);
   }));
 
-  it('should render title in a h1 tag', async(() => {
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Flix');
-  }));
-
   it('should have a list of 50 movies', async(() => {
     expect(component.movies.length).toEqual(50);
   }));
@@ -70,7 +65,7 @@ describe('AppComponent', () => {
 
   it('should have "All" category selected by default', async(() => {
     const compiled = fixture.debugElement.nativeElement;
-    const tab = compiled.querySelector('.tab-filter > ul > li > a.selected ');
+    const tab = compiled.querySelector('.tab-filter > .filters > ul.filters-list > li > a.selected ');
 
     expect(tab.textContent).toEqual('All');
   }));
@@ -78,7 +73,7 @@ describe('AppComponent', () => {
   it('should select the category tab when click on it', async(() => {
     const compiled = fixture.debugElement.nativeElement;
 
-    const tabs = compiled.querySelectorAll('.tab-filter > ul > li > a');
+    const tabs = compiled.querySelectorAll('.tab-filter > .filters > ul.filters-list > li > a');
     const selectedTab = tabs[3];
 
     selectedTab.click();

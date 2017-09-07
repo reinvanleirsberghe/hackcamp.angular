@@ -1,6 +1,7 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { CommentListComponent } from './comment-list.component';
+import {CommentListComponent} from './comment-list.component';
+import {HttpModule} from '@angular/http';
 
 describe('CommentListComponent', () => {
   let component: CommentListComponent;
@@ -8,9 +9,10 @@ describe('CommentListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CommentListComponent ]
+      imports: [],
+      declarations: [CommentListComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

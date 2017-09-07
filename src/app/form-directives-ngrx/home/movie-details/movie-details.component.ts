@@ -27,6 +27,8 @@ export class MovieDetailsComponent implements OnInit {
               private location: Location,
               private api: ApiService,
               @Inject(BACKDROP_URL_TOKEN) private backdropUrl: string) {
+    this.addComment = this.addComment.bind(this);
+    this.deleteComment = this.deleteComment.bind(this);
   }
 
   ngOnInit() {
@@ -40,14 +42,14 @@ export class MovieDetailsComponent implements OnInit {
     const movie$ = id$.switchMap(id => this.api.getMovieById(id))
       .subscribe((movie: Movie) => this.movie = movie);
 
-    this.comments$ = id$.switchMap(id => this.api.getCommentsByMovieId(parseInt(id, 10)))
+    this.comments$ = id$.switchMap(id => this.api.getCommentsByMovieId(parseInt(id, 10)));
   }
 
   getCover(path: string) {
     /**
      * Concat the back drop url + path
      */
-    return `${this.backdropUrl}${path}`
+    return `${this.backdropUrl}${path}`;
   }
 
   back() {
@@ -57,7 +59,22 @@ export class MovieDetailsComponent implements OnInit {
     this.location.back();
   }
 
-  addComment(value: { author: string, comment: string }) {
-
+  addComment({ author, comment: content }: { author: string, comment: string }) {
+    const data = {
+      author,
+      content
+    };
+    this.api.postComment(parseInt(this.id, 10), data).subscribe((value) => {
+      console.log('res', value);
+    });
   }
+
+  deleteComment(comment: Comment) {
+
+    this.api.deleteComment(comment).subscribe((value) => {
+      console.log('res', value);
+    });
+  }
+
+
 }

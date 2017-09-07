@@ -2,8 +2,8 @@ import {Component, Input, OnInit} from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {TitleCaseValidator} from '../../../shared/validators/title-case.validator';
 import {Http} from '@angular/http';
-import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/empty';
+import {Observable} from 'rxjs/Observable';
 
 @Component({
   selector: 'hf-comment-form',
@@ -37,10 +37,11 @@ export class CommentFormComponent implements OnInit {
           // Perform a http call to check if the value contains bad word
           (c: AbstractControl) => {
             console.log('cccc', c);
-            if (!c.value) {
-              return Observable.empty();
-            }
-            return Observable.empty();
+            return Observable.of(null);
+            // if (!c.value) {
+            //   return Observable.empty();
+            // }
+            // return Observable.empty();
             // const error = { badWord: true };
             // const headers = new Headers();
             // headers.append('Access-Control-Allow-Origin', '*');
@@ -49,15 +50,15 @@ export class CommentFormComponent implements OnInit {
             //   headers: headers
             // };
             // const url = `http://www.purgomalum.com/service/containsprofanity?text=${c.value}`;
-            // return this.http.get(url)
+            // return this.http.get(url, rqOptions)
             //   .map((res: Response) => res.json())
             //   .map((containsProfanity: boolean) => {
-            //     return containsProfanity ? error : null
+            //     return containsProfanity ? error : null;
             //   });
           }
         ]
       ]
-    })
+    });
   }
 
   /**

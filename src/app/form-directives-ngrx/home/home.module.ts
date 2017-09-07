@@ -38,6 +38,9 @@ import { CommentFormComponent } from './movie-details/comment-form/comment-form.
     HomeComponent,
     MovieDetailsComponent,
     StatsComponent,
+    CommentListComponent,
+    CommentComponent,
+    CommentFormComponent,
   ]
 })
 export class HomeModule {

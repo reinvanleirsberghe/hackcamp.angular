@@ -19,6 +19,9 @@ import {MovieDetailsComponent} from './movie-details/movie-details.component';
 import {StatsComponent} from './stats/stats.component';
 import {APP_BASE_HREF} from '@angular/common';
 import {CoreModule} from '../core/core.module';
+import {CommentFormComponent} from './movie-details/comment-form/comment-form.component';
+import {CommentComponent} from './movie-details/comment-list/comment/comment.component';
+import {CommentListComponent} from './movie-details/comment-list/comment-list.component';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -44,7 +47,10 @@ describe('HomeComponent', () => {
         ShortenPipe,
         LoginComponent,
         StatsComponent,
-        MovieDetailsComponent
+        MovieDetailsComponent,
+        CommentListComponent,
+        CommentComponent,
+        CommentFormComponent,
       ],
       providers: [
         ApiService,

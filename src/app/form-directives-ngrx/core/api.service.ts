@@ -10,7 +10,15 @@ import 'rxjs/add/observable/throw';
 import {Store} from '@ngrx/store';
 import * as fromRoot from './state/store';
 import {getDataCategories, getDataGenres, getDataMovieComments, getDataMovies} from './state/store';
-import {GetCategoriesAction, GetGenresAction, GetMoviesAction, SaveCommentsAction} from './state/data/actions';
+import {
+  AddCommentStartAction,
+  AddCommentSuccessAction,
+  DeleteCommentAction,
+  GetCategoriesAction,
+  GetGenresAction,
+  GetMoviesAction,
+  SaveCommentsAction
+} from './state/data/actions';
 import {Comment, CommentsByMovie} from '../type';
 
 @Injectable()
@@ -146,6 +154,35 @@ export class ApiService {
 
     return this.movieComments$.map((commentsByMovies: CommentsByMovie) => commentsByMovies[movieId]);
 
+  }
+
+  postComment(movieId: number, data: { author: string, content: string }) {
+    const randomCommentId = Math.floor(Math.random() * 1000000);
+    const payload = {
+      movie_id: movieId,
+      id: randomCommentId,
+      ...data
+    };
+    this.store.dispatch(new AddCommentStartAction(payload));
+    return this.http.post(`${this.serverUrl}/movies/${movieId}/comments`, data)
+      .map((res: Response) => res.json() as Comment)
+      .map((comment: Comment) => {
+        this.store.dispatch(new AddCommentSuccessAction(comment));
+      })
+      .catch((err) => {
+        this.store.dispatch(new DeleteCommentAction(payload));
+        return Observable.throw(err);
+      });
+  }
+
+  deleteComment(payload: Comment) {
+    this.store.dispatch(new DeleteCommentAction(payload));
+    return this.http.delete(`${this.serverUrl}/comments/${payload.id}`)
+      .map((res: Response) => res.json() as Comment)
+      .catch((err) => {
+        this.store.dispatch(new AddCommentSuccessAction(payload));
+        return Observable.throw(err);
+      });
   }
 
 
