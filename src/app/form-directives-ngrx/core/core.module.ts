@@ -6,13 +6,15 @@ import {ApiService} from './api.service';
 import {StoreModule} from '@ngrx/store';
 import {reducer} from './state/store';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
-import {HttpService} from './HttpService';
-import {ConnectionBackend, Http, HttpModule, XHRBackend} from '@angular/http';
+import {HttpModule} from '@angular/http';
 import {AuthState} from './state/auth-state.service';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {AuthenticationInterceptor} from './AuthenticationInterceptor';
 
 @NgModule({
   imports: [
     HttpModule,
+    HttpClientModule,
     CommonModule,
 
     /**
@@ -37,19 +39,16 @@ import {AuthState} from './state/auth-state.service';
     StoreDevtoolsModule.instrumentOnlyWithExtension()
   ],
   providers: [
+    // registration
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthenticationInterceptor,
+      multi: true,
+    },
     AuthService,
     AuthState,
     AuthGuard,
     ApiService,
-    HttpService,
-    {
-      provide: ConnectionBackend,
-      useClass: XHRBackend
-    },
-    {
-      provide: Http,
-      useClass: HttpService
-    },
   ],
   declarations: []
 })
