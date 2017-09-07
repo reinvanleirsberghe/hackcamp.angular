@@ -1,6 +1,5 @@
 import {deepFreeze} from '../../utils';
 import {environment} from '../../../../environments/environment';
-import {ActionReducer, combineReducers} from '@ngrx/store';
 /**
  * The compose function is one of our most handy tools. In basic terms, you give
  * it any number of functions and it returns a function. This new function
@@ -9,7 +8,7 @@ import {ActionReducer, combineReducers} from '@ngrx/store';
  *
  * More: https://drboolean.gitbooks.io/mostly-adequate-guide/content/ch5.html
  */
-import {compose} from '@ngrx/core/compose';
+import {ActionReducerMap, compose} from '@ngrx/store';
 /**
  * combineReducers is another useful metareducer that takes a map of reducer
  * functions and creates a new reducer that gathers the values
@@ -44,21 +43,14 @@ export interface State {
  * wrapping that in storeLogger. Remember that compose applies
  * the result from right to left.
  */
-const reducers = {
+const stateMap = {
   auth: fromAuth.reducer,
   data: fromData.reducer
 };
 
-const developmentReducer: ActionReducer<State> = compose(deepFreeze, combineReducers)(reducers);
-const productionReducer: ActionReducer<State> = combineReducers(reducers);
-
-export function reducer(state: any, action: any) {
-  if (environment.production) {
-    return productionReducer(state, action);
-  } else {
-    return developmentReducer(state, action);
-  }
-}
+export const reducers: ActionReducerMap<State> = environment.production
+  ? deepFreeze(stateMap)
+  : stateMap;
 
 
 /**
