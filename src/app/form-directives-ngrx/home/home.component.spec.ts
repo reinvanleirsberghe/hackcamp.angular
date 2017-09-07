@@ -22,6 +22,7 @@ import {CoreModule} from '../core/core.module';
 import {CommentFormComponent} from './movie-details/comment-form/comment-form.component';
 import {CommentComponent} from './movie-details/comment-list/comment/comment.component';
 import {CommentListComponent} from './movie-details/comment-list/comment-list.component';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -34,7 +35,8 @@ describe('HomeComponent', () => {
         AppRoutingModule,
         FormsModule,
         ReactiveFormsModule,
-        CoreModule
+        CoreModule,
+        HttpClientTestingModule
       ],
       declarations: [
         HomeComponent,
