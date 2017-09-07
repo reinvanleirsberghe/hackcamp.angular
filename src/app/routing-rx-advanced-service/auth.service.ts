@@ -28,7 +28,7 @@ export class AuthService {
       })
       .catch((err) => {
         this.setAuthTokenInLocalStorage(null);
-        throw new Error('Getting Authentication Token ')
+        throw new Error('Getting Authentication Token ');
       });
   }
 

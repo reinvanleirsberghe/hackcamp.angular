@@ -21,6 +21,8 @@ import {APP_BASE_HREF} from '@angular/common';
 import {AuthService} from './auth.service';
 import {BackdropUrl, BackdropUrl780, Categories, PictureCdnUrl, PictureOriginalUrl, ServerUrl} from './di';
 import {AuthGuard} from './auth.guard';
+import {HttpClientModule} from '@angular/common/http';
+import {HttpModule} from '@angular/http';
 
 describe('AppComponent', () => {
   let component: AppComponent;
@@ -46,7 +48,9 @@ describe('AppComponent', () => {
       imports: [
         BrowserModule,
         FormsModule,
-        AppRoutingModule
+        AppRoutingModule,
+        HttpModule,
+        HttpClientModule
       ],
       providers: [
         ApiService,

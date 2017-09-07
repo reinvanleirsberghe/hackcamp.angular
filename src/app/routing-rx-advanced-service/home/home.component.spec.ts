@@ -18,6 +18,7 @@ import {LoginComponent} from '../login/login.component';
 import {MovieDetailsComponent} from '../movie-details/movie-details.component';
 import {StatsComponent} from '../stats/stats.component';
 import {APP_BASE_HREF} from '@angular/common';
+import {HttpClientModule} from '@angular/common/http';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -27,6 +28,7 @@ describe('HomeComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         HttpModule,
+        HttpClientModule,
         AppRoutingModule,
         FormsModule
       ],

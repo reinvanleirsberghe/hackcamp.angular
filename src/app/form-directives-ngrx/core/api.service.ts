@@ -1,6 +1,5 @@
 import {Inject, Injectable} from '@angular/core';
 import {Category, Genre, Movie} from '../../shared/types';
-import {Http, Response} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
 import {CATEGORIES_TOKEN, SERVER_URL_TOKEN} from '../di';
 import 'rxjs/add/operator/map';
@@ -20,6 +19,7 @@ import {
   SaveCommentsAction
 } from './state/data/actions';
 import {Comment, CommentsByMovie} from '../type';
+import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 
 @Injectable()
 export class ApiService {
@@ -28,20 +28,19 @@ export class ApiService {
   genres$: Observable<Genre[]> = this.store.select(getDataGenres);
   movieComments$: Observable<CommentsByMovie> = this.store.select(getDataMovieComments);
 
-  constructor(private http: Http,
+  constructor(private http: HttpClient,
               @Inject(SERVER_URL_TOKEN) private serverUrl: string,
               @Inject(CATEGORIES_TOKEN) private categories: Category[],
               private store: Store<fromRoot.State>) {
   }
 
   /**
-   * Get all movie from server : server url + '/movies'
+   * Get all movies from server : server url + '/movies'
    * Then dispatch it in the store
    * Don't forgot to catch errors
    */
   fetchAllMovies(): Observable<void> {
-    return this.http.get(`${this.serverUrl}/movies`)
-      .map((res: Response) => res.json() as Movie[])
+    return this.http.get<Movie[]>(`${this.serverUrl}/movies`)
       .map((movies: Movie[]) => this.store.dispatch(new GetMoviesAction(movies)))
       .catch(this.handleError);
   }
@@ -62,7 +61,7 @@ export class ApiService {
       .switchMap(movies => Observable.from(movies))
       .filter((movie: Movie) => movie.id === parseInt(id, 10))
       .do(movies => console.log('movies', movies))
-      .first()
+      .first();
   }
 
   /**
@@ -74,8 +73,7 @@ export class ApiService {
    * @returns {Observable<R|T>}
    */
   getOnlyMovies(limit: number = 50): Observable<Movie[]> {
-    this.http.get(`${this.serverUrl}/movies`)
-      .map((res: Response) => res.json() as Movie[])
+    this.http.get<Movie[]>(`${this.serverUrl}/movies`)
       .map((movies: Movie[]) => movies.slice(0, limit))
       .map((movies: Movie[]) => this.store.dispatch(new GetMoviesAction(movies)))
       .catch(this.handleError).subscribe();
@@ -100,8 +98,7 @@ export class ApiService {
    */
 
   fetchAllGenres(): Observable<Genre[]> {
-    return this.http.get(`${this.serverUrl}/genres`)
-      .map((res: Response) => res.json() as Genre[])
+    return this.http.get<Genre[]>(`${this.serverUrl}/genres`)
       .catch(this.handleError);
   }
 
@@ -123,8 +120,7 @@ export class ApiService {
    * @returns {Observable<R|T>}
    */
   fetchCommentsByMovieId(movieId: number): Observable<Comment[]> {
-    return this.http.get(`${this.serverUrl}/movies/${movieId}/comments`)
-      .map((res: Response) => res.json() as Comment[])
+    return this.http.get<Comment[]>(`${this.serverUrl}/movies/${movieId}/comments`)
       .catch(this.handleError);
   }
 
@@ -156,7 +152,7 @@ export class ApiService {
 
   }
 
-  postComment(movieId: number, data: { author: string, content: string }) {
+  postComment(movieId: number, data: { author: string, content: string }): Observable<null> {
     const randomCommentId = Math.floor(Math.random() * 1000000);
     const payload = {
       movie_id: movieId,
@@ -164,8 +160,7 @@ export class ApiService {
       ...data
     };
     this.store.dispatch(new AddCommentStartAction(payload));
-    return this.http.post(`${this.serverUrl}/movies/${movieId}/comments`, data)
-      .map((res: Response) => res.json() as Comment)
+    return this.http.post<Comment>(`${this.serverUrl}/movies/${movieId}/comments`, data)
       .map((comment: Comment) => {
         this.store.dispatch(new AddCommentSuccessAction(comment));
       })
@@ -175,10 +170,9 @@ export class ApiService {
       });
   }
 
-  deleteComment(payload: Comment) {
+  deleteComment(payload: Comment): Observable<null> {
     this.store.dispatch(new DeleteCommentAction(payload));
-    return this.http.delete(`${this.serverUrl}/comments/${payload.id}`)
-      .map((res: Response) => res.json() as Comment)
+    return this.http.delete<Comment>(`${this.serverUrl}/comments/${payload.id}`)
       .catch((err) => {
         this.store.dispatch(new AddCommentSuccessAction(payload));
         return Observable.throw(err);
@@ -191,7 +185,7 @@ export class ApiService {
    * @param err
    * @returns {any}
    */
-  private handleError(err: any): Observable<Error> {
-    return Observable.throw(new Error(err))
+  private handleError(err: any) {
+    return Observable.throw(err);
   }
 }

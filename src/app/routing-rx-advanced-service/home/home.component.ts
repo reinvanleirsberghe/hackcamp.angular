@@ -21,8 +21,8 @@ export class HomeComponent implements OnInit {
   searchValue: string;
   navClosed = true;
 
-  movies$: Observable<Movie[]>;
-  filteredMovies$: Observable<Movie[]>;
+  movies$: Observable<Movie[] | Error>;
+  filteredMovies$: Observable<Movie[] | Error>;
 
   constructor(private apiService: ApiService,
               @Inject(PICTURES_CDN_URL_TOKEN) public pictureCdnUrl: string) {

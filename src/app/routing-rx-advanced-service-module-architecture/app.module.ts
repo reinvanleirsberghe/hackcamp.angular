@@ -9,6 +9,7 @@ import {SharedModule} from './shared/shared.module';
 import {CoreModule} from './core/core.module';
 import {HomeModule} from './home/home.module';
 import {AuthModule} from './auth/auth.module';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import {AuthModule} from './auth/auth.module';
     BrowserModule,
     AppRoutingModule,
     HttpModule,
+    HttpClientModule,
     CoreModule,
     HomeModule,
     AuthModule,

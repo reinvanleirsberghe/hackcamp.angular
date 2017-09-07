@@ -1,16 +1,18 @@
 import {inject, TestBed} from '@angular/core/testing';
 
 import {ApiService} from './api.service';
-import {genres} from 'app/shared/mocks/genres';
+import {genres} from '../../app/shared/mocks/genres';
 import {categories} from '../shared/mocks/categories';
 import {Category, Genre, Movie} from '../shared/types';
-import {HttpModule} from '@angular/http';
 import {BackdropUrl, BackdropUrl780, Categories, PictureCdnUrl, PictureOriginalUrl, ServerUrl} from './di';
+import {HttpClientModule} from '@angular/common/http';
 
 describe('ApiService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpModule],
+      imports: [
+        HttpClientModule
+      ],
       providers: [
         ApiService,
         ServerUrl,
