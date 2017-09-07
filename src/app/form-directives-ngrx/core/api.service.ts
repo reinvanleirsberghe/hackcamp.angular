@@ -19,7 +19,7 @@ import {
   SaveCommentsAction
 } from './state/data/actions';
 import {Comment, CommentsByMovie} from '../type';
-import {HttpClient, HttpErrorResponse} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable()
 export class ApiService {
@@ -162,7 +162,7 @@ export class ApiService {
     this.store.dispatch(new AddCommentStartAction(payload));
     return this.http.post<Comment>(`${this.serverUrl}/movies/${movieId}/comments`, data)
       .map((comment: Comment) => {
-        this.store.dispatch(new AddCommentSuccessAction(comment));
+        this.store.dispatch(new AddCommentSuccessAction({ ...comment, oldId: randomCommentId }));
       })
       .catch((err) => {
         this.store.dispatch(new DeleteCommentAction(payload));
