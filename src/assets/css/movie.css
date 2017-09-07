@@ -330,6 +330,11 @@
   padding: .57em 1.35em;
 }
 
+.comment-button{
+  position: relative;
+}
+
+
 @media only screen and (min-width: 768px) {
   .movie-card .card-block .card-block-detail{
     height: 100%;
