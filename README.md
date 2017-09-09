@@ -139,6 +139,7 @@ Estimated time: 3 hours
 
 Estimated time: a day
 
+
 #### Concepts
   - Routing
   - Introduction RxJS
@@ -149,7 +150,8 @@ Estimated time: a day
 #### Important links
   - [Template Syntax and built-in directives](https://angular.io/guide/template-syntax)
   - [Router](https://angular.io/guide/router)
-  - [Http](https://angular.io/guide/http)
+  - [Http](https://angular.io/tutorial/toh-pt6)
+  - [new Http client called HttpClient](https://angular.io/guide/http)
   - [DI](https://angular.io/guide/dependency-injection-in-action#define-dependencies-with-providers)
   - [Form Validation](https://angular.io/guide/form-validation#form-validation)
   
@@ -168,6 +170,7 @@ Estimated time: a day
    - Validation Form
    - Routing to Home, Stats and Details page
    - Use Http to fetch data with Promise and Observable
+   - Using new HttpClient
    - Usage of Observable operators such as map, filter, from...
    
 
@@ -175,7 +178,7 @@ Estimated time: a day
 
   - Setup routes in app.routing.module
     - add routes with  path:'login', component:LoginComponent and
-     patchMatch full
+      patchMatch full
     - add default routes that redirect to 'login'
   - Fix issues in LoginComponent template
   - Add Validation on email and password input
@@ -208,10 +211,11 @@ Estimated time: a day
       patchMatch full
     - Replace the redirection of the default routes by 'home'
     - Protect 'home' routes i.e only authenticated user can access else 
-    we redirect to 'login' routes (Hint: CanActivateGuard)
+      we redirect to 'login' routes (Hint: CanActivate Guard)
   - Refractor HomeComponent to inject the picture CDN url using dependency injection
-  - Replace the api.service.ts by _api.service.ts
-  - Implement all functions in api.service.ts using rxJS (! No global references)
+  - Replace the api.service.ts by _api.service.ts ( remove underscore)
+  - Implement all functions in api.service.ts using rxJS (! No global references). You have to
+    use the new HttpClient provided in HttpClientModule
     - getMovies => call HTTP to '/movies'
     - getMovieById => call HTTP to '/movies/:id'
     - getOnlyMovies => call HTTP to '/movies'
@@ -230,6 +234,7 @@ Estimated time: a day
     you should not do it programmatically i.e using the click event for example)
   - Fix issues in MovieDetailsComponent template
   - Implement details movie display
+  
   - app.routing.module.ts
       - add routes with  path:'stats/', component:StatsComponent and
           patchMatch full
@@ -247,6 +252,7 @@ Estimated time: a day
   
 #### Testing : 
   - Http Service
+  
   
 ### LVL 1 - Routing, Rx, Advanced Service, Module archiecture
 
