@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {LoginCredentials} from '../../type';
 import {AuthService} from '../../core/auth.service';
-import {Validators} from '@angular/forms';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'hf-login',
@@ -12,7 +12,7 @@ export class LoginComponent implements OnInit {
   public credentials: LoginCredentials = { email: '', password: '' };
   public errorLogin = false;
 
-  constructor(private auth: AuthService) {
+  constructor(private auth: AuthService, private router: Router) {
   }
 
   ngOnInit() {
@@ -26,9 +26,9 @@ export class LoginComponent implements OnInit {
      * - fail => display error login
      */
     this.auth.login(credentials)
-      .subscribe(res => {
+      .then(res => {
         this.errorLogin = false;
-        this.router.navigate(['/home'])
+        this.router.navigate(['/home']);
       }, err => {
         this.errorLogin = true;
       });
