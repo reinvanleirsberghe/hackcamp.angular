@@ -147,6 +147,7 @@ Estimated time: a day
   - DI advanced
   - Attribute Directive - Validators Directives
   
+     
 #### Important links
   - [Template Syntax and built-in directives](https://angular.io/guide/template-syntax)
   - [Router](https://angular.io/guide/router)
@@ -155,8 +156,8 @@ Estimated time: a day
   - [DI](https://angular.io/guide/dependency-injection-in-action#define-dependencies-with-providers)
   - [Form Validation](https://angular.io/guide/form-validation#form-validation)
   
+#### Features:
   
-#### Features
    - Display all mock movies
      - Picture
      - Hover information
@@ -265,15 +266,17 @@ Estimated time: a day
   - DI advanced
   - Attribute Directive - Validators Directives
   
+     
 #### Important links
   - [Template Syntax and built-in directives](https://angular.io/guide/template-syntax)
   - [Router](https://angular.io/guide/router)
-  - [Http](https://angular.io/guide/http)
+  - [Http](https://angular.io/tutorial/toh-pt6)
+  - [new Http client called HttpClient](https://angular.io/guide/http)
   - [DI](https://angular.io/guide/dependency-injection-in-action#define-dependencies-with-providers)
   - [Form Validation](https://angular.io/guide/form-validation#form-validation)
   
+#### Features:
   
-#### Features
    - Display all mock movies
      - Picture
      - Hover information
@@ -287,15 +290,15 @@ Estimated time: a day
    - Validation Form
    - Routing to Home, Stats and Details page
    - Use Http to fetch data with Promise and Observable
+   - Using new HttpClient
    - Usage of Observable operators such as map, filter, from...
-   - Restructure the application in module: Auth, Home, Core, Shared
    
 
 #### TODO
 
   - Setup routes in app.routing.module
     - add routes with  path:'login', component:LoginComponent and
-     patchMatch full
+      patchMatch full
     - add default routes that redirect to 'login'
   - Fix issues in LoginComponent template
   - Add Validation on email and password input
@@ -328,10 +331,11 @@ Estimated time: a day
       patchMatch full
     - Replace the redirection of the default routes by 'home'
     - Protect 'home' routes i.e only authenticated user can access else 
-    we redirect to 'login' routes (Hint: CanActivateGuard)
+      we redirect to 'login' routes (Hint: CanActivate Guard)
   - Refractor HomeComponent to inject the picture CDN url using dependency injection
-  - Replace the api.service.ts by _api.service.ts
-  - Implement all functions in api.service.ts using rxJS (! No global references)
+  - Replace the api.service.ts by _api.service.ts ( remove underscore)
+  - Implement all functions in api.service.ts using rxJS (! No global references). You have to
+    use the new HttpClient provided in HttpClientModule
     - getMovies => call HTTP to '/movies'
     - getMovieById => call HTTP to '/movies/:id'
     - getOnlyMovies => call HTTP to '/movies'
@@ -350,6 +354,7 @@ Estimated time: a day
     you should not do it programmatically i.e using the click event for example)
   - Fix issues in MovieDetailsComponent template
   - Implement details movie display
+  
   - app.routing.module.ts
       - add routes with  path:'stats/', component:StatsComponent and
           patchMatch full
@@ -375,55 +380,96 @@ Estimated time: a day
   - Forms
   - Directives
   - Validators Directives
+
+#### Concepts
+  - ngrx
+  - Forms
+  - Directives
+  - Validators Directives
   
 #### Important links
   - [Template Syntax and built-in directives](https://angular.io/guide/template-syntax)
   - [Router](https://angular.io/guide/router)
   - [Http](https://angular.io/guide/http)
+  - [new Http client called HttpClient](https://angular.io/guide/http)
   - [DI](https://angular.io/guide/dependency-injection-in-action#define-dependencies-with-providers)
   - [Form Validation](https://angular.io/guide/form-validation#form-validation)
   - [ngrx store](https://github.com/ngrx/store)
   - [Validators](https://angular.io/api/forms/Validators)
 
 #### Features
-
-  - Implement Redux with ngRx
-    - Setup
-  - Rewrite auth service with observable
-  - Add authentication in redux
-    - create actions
-    - create reducer
-    - in app.component check if we have token in local storage and dispatch login
-  - Refractor auth guard
-  - Rewrite login component with Reactive form
+  - LoginComponent was written using Template Syntax, so rewrite using 
+    Reactive form
+    - Replace the login folder of your app by the login in _template
+    - Fix all bugs :)
     - Perform validation using Reactive Form
-           - Email
-            - Rewrite email directive to eEmail validator
-              the object error shoulde {email:true}
-           - Password length
-  - Create data reducers and actions
-    - movies
-    - categories
-    - genres
-  - Refractor api.service to dispatch all data in redux
-  - Add comment 
-    - create action, reducers
-    - in service implement
-      - addComment
-      - deleteComment
-      - getAllComments
-  - Implement comment service ( CRUD)
-  - Implement comment component for CRUD ( Reactive Form)
-    - Validation :
+      - Email:
+         - Required
+         - Email so rewrite the email directive to the Email validator
+            the object error should be now {email:true}
+      - Password 
+         - Required
+         - MinLength 4
+         - MaxLength 24                       
+  // Reactive Form is really cool feature and you wanna like it
+  - AuthService (core folder) is using Promise to login, let's rewrite it with Observable.
+    Then update, the auth-guard
+  
+  - Setup redux with ngrx in core.module.ts, look at the _templates
+    and get the core.module.ts that will replace the current files in
+    your project
+  - Now, we will manage all our authentication through redux, so let's create
+    some actions and reducer to handle all this stuff. You will find 
+    all boilerplate in _templates. Copy the state folder in the core 
+    folder of your app 
+    - Import the function reducer in store.ts as store in core.module.ts
+    - Implement TODO in actions.ts, reducer.ts, auth-state.service.ts
+    - In app.component check if we have token in local storage and dispatch login
+  - Refractor Auth Guard due to modification done in AuthService
+// You should have a application running and working completly with all the authentication handled into redux
+
+// Now let's continue and move all your data in redux
+  - Copy the data folder in _templates to the folder state in core folder
+  - Implement all actions and reducers
+  - In store.ts at the end of the file, compose your function that retrieve 
+    movies, genres and categories from store
+  - Refractor the api.service to dispatch all data in redux. So replace 
+    the api.service.ts of your app by the api.service.ts in _templates
+  - Fix all bugs to make your api.service working again
+  
+// You should have a application running and working completly with
+
+// The last thing we will implement with redux will be into the movie details
+// page. We will add a comment system
+
+  - Open the movie-details.component.ts and uncomment line 45 that retrieve the comment
+    of a movie
+  - Go api.service.ts and implement getCommentsByMovieId
+  - Display all comments through comment-list 
+  - Now, we saw all comments, let's add the form to add a new comment
+  - Go to comment-form.component.html and uncomment everything
+  - Implement all todo and fix all errors
+    - Validations
       - Author 
-       - required       
-       - beginWithUppercaseLetter => to implement
-      - Comment required, 150 character max, block if contains bad words
-        async
-  - Add filtering handling in redux
-    - Add cart handling in redux
-    - Implement dropdown to change number of item in cart
-    - Implement undo in cart
+        - required 
+        - beginWithUppercaseLetter => to implement
+      - Comment 
+        - required
+        - 200 character max
+        - If the author contains Harry, you should limit the number of
+          character to 100
+  - Your form should be working without errors
+  
+  // let's add handle of the posting, deleting comment to the backend and through redux
+  
+  - Actions to implement
+      - Add a comment for the specific movie
+      - Delete the comment for the specific movie
+      - Update the comment for specific movie
+  - In movie-details.components.ts, you will see to empty function to add and delete
+  - You can find some guideline also in the api.service.ts to interact with the backend and redux
+    but you are free to come with your implementation
+ 
 #### Breaking
   - Setup Redux
   
