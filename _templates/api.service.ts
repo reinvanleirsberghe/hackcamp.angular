@@ -1,6 +1,5 @@
 import {Inject, Injectable} from '@angular/core';
 import {Category, Genre, Movie} from '../../shared/types';
-import {Http, Response} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
 import {CATEGORIES_TOKEN, SERVER_URL_TOKEN} from '../di';
 import 'rxjs/add/operator/map';
@@ -16,7 +15,7 @@ export class ApiService {
   categories$: Observable<Category[]> = null; // Select data categories from store
   genres$: Observable<Genre[]> = null; // Select data genres from store
 
-  constructor(private http: Http,
+  constructor(private http: HttpClient,
               @Inject(SERVER_URL_TOKEN) private serverUrl: string,
               @Inject(CATEGORIES_TOKEN) private categories: Category[]) {
   }
@@ -27,9 +26,7 @@ export class ApiService {
    * Don't forgot to catch errors
    */
   fetchAllMovies(): Observable<void> {
-    return this.http.get(`${this.serverUrl}/movies`)
-      .map((res: Response) => res.json() as Movie[])
-      .catch(this.handleError);
+    return this.http.get<Movie[]>(`${this.serverUrl}/movies`);
   }
 
   /**
@@ -48,11 +45,9 @@ export class ApiService {
    * @param id
    * @returns {Observable<R|T>}
    */
-  getMovieById(id: string): Observable<Movie> {
-    return this.movies$
-      .switchMap(movies => Observable.from(movies))
-      .filter((movie: Movie) => movie.id === parseInt(id, 10))
-      .first()
+  getMovieById(id: number | string): Observable<Movie> {
+    return this.http.get<Movie>(`${this.serverUrl}/movies/${id}`)
+      .catch(this.handleError);
   }
 
   /**
@@ -65,8 +60,7 @@ export class ApiService {
    * @returns {Observable<R|T>}
    */
   getOnlyMovies(limit: number = 50): Observable<Movie[]> {
-    this.http.get(`${this.serverUrl}/movies`)
-      .map((res: Response) => res.json() as Movie[])
+    this.http.get<Movie[]>(`${this.serverUrl}/movies`)
       .map((movies: Movie[]) => movies.slice(0, limit))
       .catch(this.handleError).subscribe();
 
@@ -91,8 +85,7 @@ export class ApiService {
    */
 
   fetchAllGenres(): Observable<Genre[]> {
-    return this.http.get(`${this.serverUrl}/genres`)
-      .map((res: Response) => res.json() as Genre[])
+    return this.http.get<Genre[]>(`${this.serverUrl}/genres`)
       .catch(this.handleError);
   }
 
@@ -132,6 +125,39 @@ export class ApiService {
     return Observable.empty();
   }
 
+  /**
+   * Post a comment for a movie : server url + 'movies' + ':id' + 'comments'
+   * @param {number} movieId
+   * @param {{author: string; content: string}} data
+   * @returns {Observable<any>}
+   * */
+  postComment(movieId: number, data: { author: string, content: string }): Observable<null> {
+    const randomCommentId = Math.floor(Math.random() * 1000000);
+    const payload = {
+      movie_id: movieId,
+      id: randomCommentId,
+      ...data
+    };
+    // Optimistic Update steps :
+    // Dispatch AddCommentStartAction with the payload
+    // Perform Post Http call to server url + 'movies' + ':id' + 'comments'
+    // If success => dispatch AddCommentSuccessAction with { ...responseHttpCall, oldId: randomCommentId }
+    // Else => dispatch DeleteCommentAction with payload
+    return Observable.empty();
+  }
+
+  /**
+   * Delete a comment for a movie : server url + 'comments' + ':id'
+   * @param {} payload
+   * @returns {Observable<any>}
+   */
+  deleteComment(payload: Comment): Observable<null> {
+    // Optimistic Update steps :
+    // Dispatch DeleteCommentAction with the payload
+    // Perform Delete Http call to server url  + 'comments' + ':id'
+    // If fail => dispatch AddCommentSuccessAction with payload
+    return Observable.empty();
+  }
 
   /**
    * Handle error by throw it
@@ -139,6 +165,6 @@ export class ApiService {
    * @returns {any}
    */
   private handleError(err: any): Observable<Error> {
-    return Observable.throw(new Error(err))
+    return Observable.throw(new Error(err));
   }
 }

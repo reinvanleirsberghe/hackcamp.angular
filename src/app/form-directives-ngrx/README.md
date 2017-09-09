@@ -43,73 +43,78 @@ Before running the tests make sure you are serving the app via `ng serve`.
   - [Validators](https://angular.io/api/forms/Validators)
 
 #### Features
-
-  - Setup redux with ngRX in core.module.ts, look at the _templates
-    and get the core.module.ts that will replace the current files in
-    your project
-  - AuthService is using Promise to login, let's rewrite with Observable
-  - Now, we will manage all our authentication through redux, so let's create
-    some actions and reducer to handle all this stuff. You will find 
-    all boilerplate in _templates. Copy the state folder in the core 
-    folder of your app 
-    - import the function reducer in store.ts as store in core.module.ts
-    - Fix errors in actions.ts, reducer.ts, auth-state.service.ts
-    - in app.component check if we have token in local storage and dispatch login
-  - Refractor Auth Guard due to modification done in AuthService
-// You should have a application running and working completly with
-
-// all the authentication handled into redux
-// Let's continue and learn Reactive Form
   - LoginComponent was written using Template Syntax, so rewrite using 
     Reactive form
     - Replace the login folder of your app by the login in _template
     - Fix all bugs :)
     - Perform validation using Reactive Form
-           - Email:
-            - Required
-            - Email so rewrite the email directive to the Email validator
-              the object error should be now {email:true}
-           - Password 
-            - Required
-            - MinLength 4
-            - MaxLength 24
-            
-// Reactive Form is really cool feature and you wanna like it
-// Now let's go back on redux a bit and move all your data in redux
+      - Email:
+         - Required
+         - Email so rewrite the email directive to the Email validator
+            the object error should be now {email:true}
+      - Password 
+         - Required
+         - MinLength 4
+         - MaxLength 24                       
+  // Reactive Form is really cool feature and you wanna like it
+  - AuthService (core folder) is using Promise to login, let's rewrite it with Observable.
+    Then update, the auth-guard
+  
+  - Setup redux with ngrx in core.module.ts, look at the _templates
+    and get the core.module.ts that will replace the current files in
+    your project
+  - Now, we will manage all our authentication through redux, so let's create
+    some actions and reducer to handle all this stuff. You will find 
+    all boilerplate in _templates. Copy the state folder in the core 
+    folder of your app 
+    - Import the function reducer in store.ts as store in core.module.ts
+    - Implement TODO in actions.ts, reducer.ts, auth-state.service.ts
+    - In app.component check if we have token in local storage and dispatch login
+  - Refractor Auth Guard due to modification done in AuthService
+// You should have a application running and working completly with all the authentication handled into redux
+
+// Now let's continue and move all your data in redux
   - Copy the data folder in _templates to the folder state in core folder
   - Implement all actions and reducers
   - In store.ts at the end of the file, compose your function that retrieve 
-  movies, genres and categories from store
-  - Refractor the api.service to dispatch all data in redux so replace 
-   the api.service.ts of your app by the api.service.ts in _templates
+    movies, genres and categories from store
+  - Refractor the api.service to dispatch all data in redux. So replace 
+    the api.service.ts of your app by the api.service.ts in _templates
   - Fix all bugs to make your api.service working again
   
 // You should have a application running and working completly with
 
-// The last thing we will implement with redux will be in the movie details
+// The last thing we will implement with redux will be into the movie details
 // page. We will add a comment system
+
+  - Open the movie-details.component.ts and uncomment line 45 that retrieve the comment
+    of a movie
+  - Go api.service.ts and implement getCommentsByMovieId
+  - Display all comments through comment-list 
+  - Now, we saw all comments, let's add the form to add a new comment
+  - Go to comment-form.component.html and uncomment everything
+  - Implement all todo and fix all errors
+    - Validations
+      - Author 
+        - required 
+        - beginWithUppercaseLetter => to implement
+      - Comment 
+        - required
+        - 200 character max
+        - If the author contains Harry, you should limit the number of
+          character to 100
+  - Your form should be working without errors
   
-  - Create a new reducer for comment and actions
-    - Actions to implement
+  // let's add handle of the posting, deleting comment to the backend and through redux
+  - You will need first to the AuthenticationInterceptors.ts in _template,
+    you should copy in the core folder and register it correctly
+  - Actions to implement
       - Add a comment for the specific movie
       - Delete the comment for the specific movie
       - Update the comment for specific movie
-    - Everything will be in memory, the goal is just to create everything
-      from scratch.
-      - Display the list of comment of the current movie stored in the store
-      - The comment form HAVE TO use Reactive Form. You will find the sample
-      template in °_templates
-        - Validations
-           - Author 
-            - required 
-            - beginWithUppercaseLetter => to implement
-           - Comment 
-            - required
-            - 200 character max
-            - If the author contains Harry, you should limit the number of
-              character to 100
-   - You can go further by saving you comment actually into the backend
-    => POST /movies/:movieId/comments
+  - In movie-details.components.ts, you will see to empty function to add and delete
+  - You can find some guideline also in the api.service.ts to interact with the backend and redux
+    but you are free to come with your implementation
  
 #### Breaking
   - Setup Redux
