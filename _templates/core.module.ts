@@ -4,7 +4,7 @@ import {AuthService} from './core/auth.service';
 import {AuthGuard} from './core/auth.guard';
 import {ApiService} from './core/api.service';
 import {HttpService} from './core/HttpService';
-import {ConnectionBackend, Http, HttpModule, XHRBackend} from '@angular/http';
+import {HttpModule} from '@angular/http';
 import {AuthState} from './core/state/auth-state.service';
 
 @NgModule({
@@ -35,6 +35,12 @@ import {AuthState} from './core/state/auth-state.service';
     // Something should be put here
   ],
   providers: [
+    // registration
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthenticationInterceptor,
+      multi: true,
+    },
   ],
   declarations: []
 })

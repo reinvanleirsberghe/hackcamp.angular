@@ -1,9 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {TitleCaseValidator} from '../../../shared/validators/title-case.validator';
-import {Http} from '@angular/http';
+import {FormBuilder, FormGroup} from '@angular/forms';
 import 'rxjs/add/observable/empty';
-import {Observable} from 'rxjs/Observable';
 
 @Component({
   selector: 'hf-comment-form',
@@ -16,49 +13,16 @@ export class CommentFormComponent implements OnInit {
 
   form: FormGroup;
 
-  constructor(private fb: FormBuilder,
-              private http: Http) {
+  constructor(private fb: FormBuilder) {
   }
 
   ngOnInit() {
-    this.form = this.fb.group({
-      author: [null,
-        [
-          Validators.required,
-          TitleCaseValidator.validate
-        ]
-      ],
-      comment: [null,
-        [
-          Validators.required
-        ],
-        [
-          // Bad word async validators : http://www.purgomalum.com/
-          // Perform a http call to check if the value contains bad word
-          (c: AbstractControl) => {
-            console.log('cccc', c);
-            return Observable.of(null);
-            // if (!c.value) {
-            //   return Observable.empty();
-            // }
-            // return Observable.empty();
-            // const error = { badWord: true };
-            // const headers = new Headers();
-            // headers.append('Access-Control-Allow-Origin', '*');
-            //
-            // const rqOptions: RequestOptionsArgs = {
-            //   headers: headers
-            // };
-            // const url = `http://www.purgomalum.com/service/containsprofanity?text=${c.value}`;
-            // return this.http.get(url, rqOptions)
-            //   .map((res: Response) => res.json())
-            //   .map((containsProfanity: boolean) => {
-            //     return containsProfanity ? error : null;
-            //   });
-          }
-        ]
-      ]
-    });
+    /**
+     * Setup Reactive form with the fields:
+     * author and comment
+     * @type {FormGroup}
+     */
+    this.form = new FormGroup({});
   }
 
   /**
@@ -66,10 +30,6 @@ export class CommentFormComponent implements OnInit {
    * @param value
    */
   submit(value) {
-    if (this.onSubmit) {
-      this.onSubmit(value);
-      this.form.reset({ author: null, comment: null })
-    }
   }
 
 }

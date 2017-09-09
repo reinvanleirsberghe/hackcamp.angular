@@ -95,7 +95,7 @@ Before running the tests make sure you are serving the app via `ng serve`.
       - Delete the comment for the specific movie
       - Update the comment for specific movie
     - Everything will be in memory, the goal is just to create everything
-    from scratch.
+      from scratch.
       - Display the list of comment of the current movie stored in the store
       - The comment form HAVE TO use Reactive Form. You will find the sample
       template in °_templates
@@ -107,7 +107,7 @@ Before running the tests make sure you are serving the app via `ng serve`.
             - required
             - 200 character max
             - If the author contains Harry, you should limit the number of
-            character to 100
+              character to 100
    - You can go further by saving you comment actually into the backend
     => POST /movies/:movieId/comments
  
