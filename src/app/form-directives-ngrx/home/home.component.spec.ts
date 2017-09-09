@@ -13,11 +13,16 @@ import {AuthService} from '../core/auth.service';
 import {BackdropUrl, BackdropUrl780, Categories, PictureCdnUrl, PictureOriginalUrl, ServerUrl} from '../di';
 import {HttpModule} from '@angular/http';
 import {AppRoutingModule} from '../app.routing.module';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {LoginComponent} from '../auth/login/login.component';
 import {MovieDetailsComponent} from './movie-details/movie-details.component';
 import {StatsComponent} from './stats/stats.component';
 import {APP_BASE_HREF} from '@angular/common';
+import {CoreModule} from '../core/core.module';
+import {CommentFormComponent} from './movie-details/comment-form/comment-form.component';
+import {CommentComponent} from './movie-details/comment-list/comment/comment.component';
+import {CommentListComponent} from './movie-details/comment-list/comment-list.component';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -28,7 +33,10 @@ describe('HomeComponent', () => {
       imports: [
         HttpModule,
         AppRoutingModule,
-        FormsModule
+        FormsModule,
+        ReactiveFormsModule,
+        CoreModule,
+        HttpClientTestingModule
       ],
       declarations: [
         HomeComponent,
@@ -41,7 +49,10 @@ describe('HomeComponent', () => {
         ShortenPipe,
         LoginComponent,
         StatsComponent,
-        MovieDetailsComponent
+        MovieDetailsComponent,
+        CommentListComponent,
+        CommentComponent,
+        CommentFormComponent,
       ],
       providers: [
         ApiService,

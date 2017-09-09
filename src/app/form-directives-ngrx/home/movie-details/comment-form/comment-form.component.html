@@ -1,0 +1,47 @@
+<form [formGroup]="form"
+      class="comment-form"
+>
+  <!--Uncomment these two line below to help you to debug-->
+  <!--<p>DEBUG Author : {{ form.get('author').errors| json}} | {{ form.get('author').value| json}}</p>-->
+  <!--<p>DEBUG Comment: {{ form.get('comment').errors| json}}</p>-->
+  <div class="form-group" [class.has-danger]="form.get('author').errors && (form.get('author').dirty || form.get('author').touched)">
+    <input type="text" class="form-control" id="author" name="author"
+           placeholder="Author"
+           formControlName="author"/>
+    <div *ngIf="form.get('author').errors && (form.get('author').dirty || form.get('author').touched)"
+         class="form-control-feedback">
+      <div [hidden]="!form.get('author').errors.required">
+        Author is required
+      </div>
+      <div [hidden]="!form.get('author').errors.invalidTitleCase">
+        Author should begin with an Upper Case Letter
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group" [class.has-danger]="form.get('comment').errors && (form.get('comment').dirty || form.get('comment').touched)">
+    <input type="comment" class="form-control" id="comment" name="comment"
+           placeholder="Comment"
+           formControlName="comment"/>
+
+    <div *ngIf="(form.get('comment').dirty || form.get('comment').touched) && form.get('comment')?.errors?.required"
+         class="form-control-feedback">
+      <div>
+        Comment is required
+      </div>
+    </div>
+    <div *ngIf="(form.get('comment').dirty || form.get('comment').touched) && form.get('comment')?.errors?.required"
+         class="form-control-feedback">
+      <div>
+        Comment should not contains bad word
+      </div>
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-primary"
+          [disabled]="!form.valid"
+          (click)="submit(form.value)">
+    Submit
+  </button>
+
+</form>

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 
 
 @Component({
@@ -6,11 +6,16 @@ import {Component, OnInit} from '@angular/core';
   templateUrl: './app.component.html',
   styleUrls: [
     './app.component.css',
-  ]
+    '../../assets/css/movie.css',
+    '../../assets/css/movieComments.css',
+    '../../assets/css/movieCommentForm.css',
+  ],
+  encapsulation: ViewEncapsulation.None
+
 })
 export class AppComponent implements OnInit {
 
-  logo = '../assets/images/logo.svg';
+  logo = '../assets/images/hackflix_logo.svg';
 
   ngOnInit(): void {
   }

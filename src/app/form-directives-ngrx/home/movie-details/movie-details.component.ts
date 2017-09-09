@@ -7,10 +7,12 @@ import {ApiService} from '../../core/api.service';
 import {Movie} from '../../../shared/types';
 import {BACKDROP_URL_TOKEN} from '../../di';
 
+// TODO: implement comment list and comment
 @Component({
   selector: 'hf-movie-details',
   templateUrl: './movie-details.component.html',
-  styleUrls: ['./movie-details.component.css']
+  styleUrls: [],
+
 })
 export class MovieDetailsComponent implements OnInit {
   movie: Movie = new Movie();
@@ -19,6 +21,8 @@ export class MovieDetailsComponent implements OnInit {
               private location: Location,
               private api: ApiService,
               @Inject(BACKDROP_URL_TOKEN) private backdropUrl: string) {
+    this.addComment = this.addComment.bind(this);
+    this.deleteComment = this.deleteComment.bind(this);
   }
 
   ngOnInit() {
@@ -35,7 +39,7 @@ export class MovieDetailsComponent implements OnInit {
     /**
      * Concat the back drop url + path
      */
-    return `${this.backdropUrl}${path}`
+    return `${this.backdropUrl}${path}`;
   }
 
   back() {

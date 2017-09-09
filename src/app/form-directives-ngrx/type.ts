@@ -12,17 +12,16 @@ export class LoginCredentials {
 }
 
 
-
-export interface Comment {
-  movie_id: number,
+export class Comment {
+  movie_id: number;
   author: string;
   content: string;
-  oldId?: number
-  id: number
+  oldId?: number;
+  id: number;
 }
 
 
-export interface CommentsByMovie {
+export class CommentsByMovie {
   [key: number]: Comment[];
 }
 

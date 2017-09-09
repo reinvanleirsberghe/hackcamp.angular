@@ -6,7 +6,9 @@ import {mapMovieToMovieLite} from '../../utils';
 @Component({
   selector: 'hf-movie-list',
   templateUrl: './movie-list.component.html',
-  styleUrls: []
+  styleUrls: [
+    '../../../../assets/css/movie.css',
+  ]
 })
 export class MovieListComponent implements OnInit, OnChanges {
   @Input()

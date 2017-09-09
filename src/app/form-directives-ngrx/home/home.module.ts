@@ -32,6 +32,9 @@ import {StatsComponent} from './stats/stats.component';
     HomeComponent,
     MovieDetailsComponent,
     StatsComponent,
+    CommentListComponent,
+    CommentComponent,
+    CommentFormComponent,
   ]
 })
 export class HomeModule {

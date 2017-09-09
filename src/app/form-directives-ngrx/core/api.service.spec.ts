@@ -1,11 +1,12 @@
 import {inject, TestBed} from '@angular/core/testing';
 
 import {ApiService} from './api.service';
-import {genres} from 'app/shared/mocks/genres';
 import {categories} from '../../shared/mocks/categories';
-import {Category, Genre, Movie} from '../../shared/types';
+import {Category, Genre} from '../../shared/types';
 import {HttpModule} from '@angular/http';
 import {BackdropUrl, BackdropUrl780, Categories, PictureCdnUrl, PictureOriginalUrl, ServerUrl} from '../di';
+import {APP_BASE_HREF} from '@angular/common';
+import {genres} from '../../shared/mocks/genres';
 
 describe('ApiService', () => {
   beforeEach(() => {
@@ -19,11 +20,16 @@ describe('ApiService', () => {
         BackdropUrl780,
         PictureOriginalUrl,
         Categories,
+        {
+          provide: APP_BASE_HREF,
+          useValue: ''
+        }
       ]
-    });
+    })
+    ;
   });
 
-  it('should be created', inject([ApiService], (service: ApiService) => {
+  it('should be created 2', inject([ApiService], (service: ApiService) => {
     expect(service).toBeTruthy();
   }));
 
