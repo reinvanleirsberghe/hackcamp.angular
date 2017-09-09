@@ -18,7 +18,7 @@ export class LoginAction implements Action {
   }
 }
 
-// Add Logout Action
+// TODO: Add Logout Action
 
 
 /**
@@ -26,4 +26,4 @@ export class LoginAction implements Action {
  * so that reducers can easily compose action types
  */
 
-export type Actions = LoginAction ; // Don't forgot to add the logout Action
+export type Actions = LoginAction ; // TODO: Don't forgot to add the logout Action

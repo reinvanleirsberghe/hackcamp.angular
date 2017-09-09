@@ -1,9 +1,8 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {AuthService} from './core/auth.service';
-import {AuthGuard} from './core/auth.guard';
-import {ApiService} from './core/api.service';
-import {HttpService} from './core/HttpService';
+import {AuthService} from './auth.service';
+import {AuthGuard} from './auth.guard';
+import {ApiService} from './api.service';
 import {HttpModule} from '@angular/http';
 import {HttpClientModule} from '@angular/common/http';
 

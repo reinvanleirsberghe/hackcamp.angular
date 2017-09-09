@@ -5,13 +5,13 @@ export interface State {
   token: string
 }
 
-// Create the initial state based on the interface above
+// TODO:Create the initial state based on the interface above
 export const initialState: State = {};
 
 export function reducer(state = initialState, action: auth.Actions): State {
   switch (action && action.type) {
-    // Handle the LoginAction
-    // You should make the user authenticated and store the token (action.payload)
+    // TODO: Handle the LoginAction
+    // TODO: You should make the user authenticated and store the token (action.payload)
 
     case auth.LOGOUT: {
       return initialState
@@ -34,5 +34,5 @@ export function reducer(state = initialState, action: auth.Actions): State {
  */
 
 export const getIsAuthenticated = (state: State) => state.isAuthenticated;
-export const getToken = () => { // Get Token from state
+export const getToken = () => { // TODO: Get Token from state
 }
