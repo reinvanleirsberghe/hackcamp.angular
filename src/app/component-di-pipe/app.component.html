@@ -1,0 +1,73 @@
+<!-- Header Component -->
+<header>
+  <img src="logo" alt="logo"/>
+</header>
+<!-- Header Component -->
+<main class="main-content">
+  <!-- Menubar Component -->
+  <div class="tab-filter-wrapper">
+    <div class="tab-filter">
+      <div class="filters">
+        <ul class="filters-list">
+          <li ngFor="let category in categories" click="selectTab(category.category)">
+            <a class.selected="category.selected">{{category.category}}</a>
+          </li>
+        </ul>
+        <ul class="misc">
+          <li class="counter">
+            <a>movies.length</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!-- Menubar Component -->
+
+  <section [class.filter-is-visible]="!navClosed" class="gallery">
+    <!-- MovieList Component -->
+    <div ngFor="let movie of filteredMovies" class="movie"
+         mouseenter="toggleHoverForTheMovie(movie.id)"
+         (mouseleave)="toggleHoverForTheMovie(movie.id)">
+      <!-- Movie Component -->
+      <img
+        [alt]="movie.title + 'cover' "
+        src="PICTURES_CDN_URL + movie.poster_path"
+      />
+      <!-- MovieHoverInfo Component -->
+      <div class.show-movie-body="isMovieHovered(movie.id)" class="movie-body">
+        <h1>{movie.title}</h1>
+        <p>{{shorten(movie.overview)}}</p>
+
+        <button class="btn btn-danger">
+          Remove from cart
+        </button>
+        <button class="btn add">
+          Add to cart
+        </button>
+        <button class="btn btn-link">
+          See the details
+        </button>
+      </div>
+      <!-- MovieHoverInfo Component -->
+      <!-- Movie Component -->
+    </div>
+    <!-- MovieList Component -->
+  </section>
+  <!-- Sidebar Component -->
+  <div [class.filter-is-visible]="!navClosed" class="filter">
+    <form novalidate>
+      <div class="filter-block">
+        <h4>Search</h4>
+        <div class="filter-content">
+          <input type="search" placeholder="title" input="search($event)"/>
+        </div>
+      </div>
+    </form>
+    <a class="hand-cursor close-f" click="closeSideBar">Close</a>
+  </div>
+
+  <a class="hand-cursor filter-trigger" click="openSideBar()">
+    Filters
+  </a>
+  <!-- Sidebar Component -->
+</main>
