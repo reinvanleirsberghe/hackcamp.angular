@@ -1,0 +1,71 @@
+<section class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="stats">
+        <h2>Step 1</h2>
+        <table class="table table-inverse table-striped">
+          <thead>
+          <tr>
+            <th>Movie</th>
+            <th>Rating</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let movie of (step1 | async)">
+            <td>
+              {{movie.title}}
+            </td>
+            <td>
+              {{movie.vote_average}}
+            </td>
+          </tr>
+          </tbody>
+        </table>
+        <h2>Step 2</h2>
+        <table class="table table-inverse table-striped">
+          <thead>
+          <tr>
+            <th>Movie</th>
+            <th>Rating</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let movie of (step2 | async)">
+            <td>
+              {{movie.title}}
+            </td>
+            <td>
+              {{movie.vote_average}}
+            </td>
+          </tr>
+          </tbody>
+        </table>
+        <h2>Step 3: {{step3 | async}}</h2>
+        <h2>Step 4: {{step4 | async}}</h2>
+        <h2>Step 5: {{step5 | async}}</h2>
+        <h2>Step 6</h2>
+        <table class="table table-inverse table-striped">
+          <thead>
+          <tr>
+            <th>Movie</th>
+            <th>Rating</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let movie of (step6 | async)">
+            <td>
+              {{movie.title}}
+            </td>
+            <td>
+              {{movie.popularity}}
+            </td>
+          </tr>
+          </tbody>
+        </table>
+        <button class="btn" (click)="back()">
+          Back
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
