@@ -5,12 +5,12 @@
       <img
         alt="Movie Cover"
         class="card-imt-top"
-        [src]="getCover(movie.backdrop_path)"
+        src="getCover(movie.backdrop_path)"
       />
     </div>
     <div class="card-block-detail">
       <h1 class="black">
-        {{movie.title}}
+        movie.title
       </h1>
       <p class="rating">
         <span>{{movie.vote_average}}</span> / 10
@@ -23,7 +23,7 @@
       </p>
       <button
         class="btn btn-primary"
-        (click)="back()">
+        click="back()">
         Back
       </button>
     </div>

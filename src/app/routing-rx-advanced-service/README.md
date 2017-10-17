@@ -115,6 +115,8 @@ Estimated time: a day
   - Fix issues HomeComponent
   - Your application should be working at this stage
   
+  /!\ In this branch, everything before was already done, you have to implement everything below
+  
   - app.routing.module.ts
       - add routes with  path:'details/:id', component:MovieDetailsComponent and
         patchMatch full
