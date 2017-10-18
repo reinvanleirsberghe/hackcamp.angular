@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
         ],
         []
       ],
-    })
+    });
   }
 
   login(credentials: LoginCredentials) {

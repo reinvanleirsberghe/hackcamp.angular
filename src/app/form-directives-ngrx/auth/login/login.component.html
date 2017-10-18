@@ -1,6 +1,6 @@
 <main class="login-block">
   <h1>Authentication login</h1>
-  <form #form="ngForm" (ngSubmit)="login(form.value)" class="login-form">
+  <form [formGroup]="form"  class="login-form">
     <!--Uncomment these two line below to help you to debug-->
     <!--<p>DEBUG Email : {{ email.errors| json}}</p>-->
     <!--<p>DEBUG Password: {{ password.errors| json}}</p>-->
@@ -9,16 +9,13 @@
     <div class="form-group">
       <input type="text" class="form-control" id="email" name="email"
              placeholder="Email"
-             required
-             hf-email
-             [(ngModel)]="credentials.email"
-             #email="ngModel"/>
-      <div *ngIf="email.errors && (email.dirty || email.touched)"
+             formControlName="email"/>
+      <div *ngIf="form.get('email').errors && (form.get('email').dirty || form.get('email').touched)"
            class="form-control-feedback">
-        <div [hidden]="!email.errors.required">
+        <div [hidden]="!form.get('email').errors?.required">
           Email is required
         </div>
-        <div [hidden]="!email.errors.invalidEmail">
+        <div [hidden]="!form.get('email').errors?.invalidEmail">
           Email should be a valid email
         </div>
       </div>
@@ -27,25 +24,21 @@
     <div class="form-group">
       <input type="password" class="form-control" id="password" name="password"
              placeholder="Password"
-             required
-             minlength="4"
-             maxlength="24"
-             [ngModel]="credentials.password" (ngModelChanges)="credentials.password =$event"
-             #password="ngModel"/>
+           formControlName="password"/>
 
-      <div *ngIf="(password.dirty || password.touched) && password?.errors?.required"
+      <div *ngIf="(form.get('password').dirty || form.get('password').touched) && form.get('password')?.errors?.required"
            class="form-control-feedback">
         <div>
           Password is required
         </div>
       </div>
-      <div *ngIf="(password.dirty || password.touched) && password?.errors?.minlength"
+      <div *ngIf="(form.get('password').dirty || form.get('password').touched) && form.get('password')?.errors?.minlength"
            class="form-control-feedback">
         <div>
           Password must be at least 4 characters long.
         </div>
       </div>
-      <div *ngIf="(password.dirty || password.touched) && password?.errors?.maxlength"
+      <div *ngIf="(form.get('password').dirty || form.get('password').touched) && form.get('password')?.errors?.maxlength"
            class="form-control-feedback">
         <div>
           Password cannot be more than 24 characters long.
@@ -54,7 +47,8 @@
     </div>
 
     <button type="submit" class="btn btn-success"
-            [disabled]="!form.valid">
+            [disabled]="!form.valid"
+    (click)="login(form.value)">
       Submit
     </button>
 
