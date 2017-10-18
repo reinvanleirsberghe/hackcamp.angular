@@ -11,7 +11,6 @@ import 'rxjs/add/observable/from';
 @Component({
   selector: 'hf-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
 
@@ -40,6 +39,7 @@ export class HomeComponent implements OnInit {
 
     this.apiService.getCategories()
       .subscribe((categories: Category[]) => this.categories = categories);
+
     this.apiService.getGenres()
       .subscribe((genres: Genre[]) => this.genres = genres);
   }
@@ -66,8 +66,7 @@ export class HomeComponent implements OnInit {
   };
 
   filterMovies(): void {
-    const selectedCategory = this.categories.filter(f => f.selected)[0]
-      .category;
+    const selectedCategory = this.categories.filter((cat: Category) => cat.selected)[0].category;
     /**
      * Perform an implementation of the movies filtering using Observable
      * @type {"../../Observable".Observable<T>}
@@ -108,8 +107,7 @@ export class HomeComponent implements OnInit {
   }
 
   getGenreId(name: string): number {
-    const { id } = this.genres.filter(genre => genre.name === name)[0];
-    return id;
+    return this.genres.filter(genre => genre.name === name)[0].id;
   }
 
 }

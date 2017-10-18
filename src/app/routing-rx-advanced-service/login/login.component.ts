@@ -7,7 +7,6 @@ import {AuthService} from '../auth.service';
 @Component({
   selector: 'hf-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
   public credentials: LoginCredentials = { email: '', password: '' };
@@ -17,8 +16,7 @@ export class LoginComponent implements OnInit {
               private router: Router) {
   }
 
-  ngOnInit() {
-  }
+  ngOnInit(){}
 
   login(credentials: LoginCredentials) {
     /**
@@ -35,5 +33,4 @@ export class LoginComponent implements OnInit {
         this.errorLogin = true;
       });
   }
-
 }

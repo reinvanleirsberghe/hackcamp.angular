@@ -8,21 +8,13 @@ import {MovieLite} from '../../type';
     '../../../../assets/css/movie.css',
   ]
 })
-export class MovieComponent implements OnInit {
+export class MovieComponent {
 
-  @Input()
-  movie: MovieLite = new MovieLite();
+  @Input() movie: MovieLite = new MovieLite();
 
   isHovered = false;
-
-  constructor() {
-  }
-
-  ngOnInit() {
-  }
 
   toggleHoverForTheMovie(): void {
     this.isHovered = !this.isHovered;
   }
-
 }

@@ -4,18 +4,9 @@ import {Movie} from '../../../../shared/types';
 @Component({
   selector: 'hf-movie-hover-info',
   templateUrl: './movie-hover-info.component.html',
-  styleUrls: ['./movie-hover-info.component.css'],
 })
-export class MovieHoverInfoComponent implements OnInit {
-  @Input()
-  isContainerHovered = false;
+export class MovieHoverInfoComponent {
+  @Input() isContainerHovered: boolean = false;
 
-  @Input()
-  movie: Movie = new Movie();
-
-  constructor() {
-  }
-
-  ngOnInit() {
-  }
+  @Input() movie: Movie = new Movie();
 }

@@ -4,7 +4,6 @@ import {Movie} from '../../shared/types';
 @Component({
   selector: 'hf-movie-details',
   templateUrl: './movie-details.component.html',
-  styleUrls: ['./movie-details.component.css']
 })
 export class MovieDetailsComponent implements OnInit {
   movie: Movie = new Movie();

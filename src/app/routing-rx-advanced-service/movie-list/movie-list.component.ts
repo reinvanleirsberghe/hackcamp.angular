@@ -6,22 +6,15 @@ import {mapMovieToMovieLite} from '../utils';
 @Component({
   selector: 'hf-movie-list',
   templateUrl: './movie-list.component.html',
-  styleUrls: []
 })
 export class MovieListComponent implements OnInit, OnChanges {
-  @Input()
-  navClosed;
+  @Input() navClosed: boolean;
 
-  @Input()
-  baseUrlCDN;
+  @Input() baseUrlCDN: string;
 
-  @Input()
-  filteredMovies: Movie[] = [];
+  @Input() filteredMovies: Movie[] = [];
 
   filteredMoviesLite: MovieLite[] = [];
-
-  constructor() {
-  }
 
   ngOnInit() {
     this.filteredMoviesLite = this.filteredMovies.map(mapMovieToMovieLite(this.baseUrlCDN));

@@ -4,23 +4,12 @@ import {Category} from '../../shared/types';
 @Component({
   selector: 'hf-menubar',
   templateUrl: './menubar.component.html',
-  styleUrls: ['./menubar.component.css']
 })
-export class MenubarComponent implements OnInit {
+export class MenubarComponent {
 
-  @Input()
-  categories: Category[];
+  @Input() categories: Category[];
 
-  @Input()
-  counter: Number;
+  @Input() counter: Number;
 
-  @Input()
-  selectTab: (category: string) => void;
-
-  constructor() {
-  }
-
-  ngOnInit() {
-  }
-
+  @Input() selectTab: (category: string) => void;
 }

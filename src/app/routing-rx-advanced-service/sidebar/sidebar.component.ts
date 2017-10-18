@@ -3,24 +3,15 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 @Component({
   selector: 'hf-sidebar',
   templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.css']
 })
-export class SidebarComponent implements OnInit {
+export class SidebarComponent {
+  @Output() search: EventEmitter<string> = new EventEmitter<string>();
 
-  @Output()
-  search: EventEmitter<string> = new EventEmitter<string>();
+  @Output() closeSideBar: EventEmitter<void> = new EventEmitter<void>();
 
-  @Output()
-  closeSideBar: EventEmitter<void> = new EventEmitter<void>();
+  @Output() openSideBar: EventEmitter<void> = new EventEmitter<void>();
 
-  @Output()
-  openSideBar: EventEmitter<void> = new EventEmitter<void>();
-
-  @Input()
-  navClosed: Boolean;
-
-  constructor() {
-  }
+  @Input() navClosed: Boolean;
 
   onCloseSideBar(): void {
     this.closeSideBar.emit();
@@ -33,8 +24,4 @@ export class SidebarComponent implements OnInit {
   onSearch(event: KeyboardEvent): void {
     this.search.emit((<HTMLInputElement>event.target).value);
   }
-
-  ngOnInit() {
-  }
-
 }

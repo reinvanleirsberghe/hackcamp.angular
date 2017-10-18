@@ -14,7 +14,7 @@ export class AuthService {
               @Inject(SERVER_URL_TOKEN) private serverUrl: string) {
   }
 
-  login(credentials: LoginCredentials) {
+  login(credentials: LoginCredentials): Promise<any> {
     /**
      * Implement the login function by doing a POST Http call to server url + '/login'
      * and the credentials.

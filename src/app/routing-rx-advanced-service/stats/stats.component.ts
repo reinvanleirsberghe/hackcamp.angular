@@ -5,7 +5,6 @@ import {Movie} from '../../shared/types';
 @Component({
   selector: 'hf-stats',
   templateUrl: './stats.component.html',
-  styleUrls: ['./stats.component.css']
 })
 export class StatsComponent implements OnInit {
   step1: Observable<Movie[]>;
