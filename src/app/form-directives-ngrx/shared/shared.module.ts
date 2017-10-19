@@ -24,7 +24,8 @@ import {RouterModule} from '@angular/router';
     RouterModule,
     EmailValidatorDirective,
     HeaderComponent,
-    ShortenPipe
+    ShortenPipe,
+    ReactiveFormsModule
   ]
 })
 export class SharedModule {
