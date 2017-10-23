@@ -8,6 +8,10 @@ export class Genre {
   name: string;
 }
 
+export interface IFilterMovie {
+  (movie: Movie): boolean;
+}
+
 export class Movie {
   id: number;
   vote_count: number;

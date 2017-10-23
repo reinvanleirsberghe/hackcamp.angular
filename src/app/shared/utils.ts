@@ -1,25 +1,48 @@
 /** A few utility functions used accross the project **/
-import {genres} from './mocks/genres';
-import {movies} from './mocks/movies';
-import {Movie} from './types';
+import { genres } from "./mocks/genres";
+import { movies } from "./mocks/movies";
+import { Movie, IFilterMovie } from "./types";
 
-export const getGenreName = (id: number) =>
-  genres.filter(genre => genre.id === id).map(({ name }) => name).join('');
+const All: string = "all";
 
-export const getGenreId = (name: string) =>
+export const getGenreName = (id: number): string =>
+  genres
+    .filter(genre => genre.id === id)
+    .map(({ name }) => name)
+    .join("");
+
+export const getGenreId = (name: string): number =>
   parseInt(
-    genres.filter(genre => genre.name === name).map(({ id }) => id).join(''),
+    genres
+      .filter(genre => genre.name === name)
+      .map(({ id }) => id)
+      .join(""),
     10
   );
 
-export const movieContainsGenre = (movie: Movie, genre_id: number) =>
+export const movieContainsGenre = (movie: Movie, genre_id: number): boolean =>
   movie.genre_ids.reduce(
     (contains, next) => (contains ? contains : next === genre_id),
     false
   );
 
-export const filterMoviesByCat = (movies: Movie[], genre_id: number) =>
+export const filterByCategory = (category: string): IFilterMovie => (
+  movie: Movie
+) =>
+  category.toLowerCase() === All ||
+  movieContainsGenre(movie, getGenreId(category));
+
+export const filterByTitle = (title: string): IFilterMovie => (movie: Movie) =>
+  !title || movie.title.toLowerCase().includes(title.toLowerCase());
+
+export const filterMoviesByCat = (movies: Movie[], genre_id: number): Movie[] =>
   movies.filter(movie => movieContainsGenre(movie, genre_id));
+
+export const shorten = (text: string, limit: number): string =>
+  text
+    .split("")
+    .slice(0, limit)
+    .join("") + "...";
 
 export const getPopularFilters = () =>
   genres
@@ -36,7 +59,7 @@ export const getPopularFilters = () =>
     }))
     .slice(0, 5)
     .reduce((genres, nextGenre) => [...genres, nextGenre], [
-      { category: 'All', selected: true }
+      { category: All, selected: true }
     ]);
 
 /**
@@ -45,5 +68,5 @@ export const getPopularFilters = () =>
  * If two parameters are passed, you'll get all the numbers from n -> m
  * starting at n and excluding m
  */
-export const range = (n = 0, m = 0) =>
+export const range = (n: number = 0, m: number = 0): Array<number> =>
   new Array(m !== 0 ? m - n : n).fill(0).map((_, i) => (m !== 0 ? n + i : i));
