@@ -1,4 +1,4 @@
-[
+const comments = [
   {
     "id": 1,
     "movie_id": 285,
@@ -12,3 +12,5 @@
     "content": "First!!!"
   }
 ]
+
+export default comments;

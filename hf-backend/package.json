@@ -4,8 +4,7 @@
   "main": "index.js",
   "scripts": {
     "build:server": "babel {src/**/*.js,src/*.js} -d dist/",
-    "build:mocks": "cpy './src/mocks/*' './dist' --parents ",
-    "prestart": "run-s build:server build:mocks",
+    "prestart": "run-s build:server",
     "start": "node dist/src/server.js",
     "start:unsecure": "cross-env UNSECURE=true node dist/src/server.js",
     "start:slow": "cross-env SLOW=true node dist/src/server.js"

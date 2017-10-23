@@ -7,9 +7,9 @@ import {authMiddleware} from "./middlewares/auth";
 import {authUsersMiddleware} from "./middlewares/authorize_users";
 
 import fs from 'fs';
-import movies from './mocks/movies.json';
-import genres from './mocks/genres.json';
-import comments from './mocks/comments.json';
+import movies from './mocks/movies';
+import genres from './mocks/genres';
+import comments from './mocks/comments';
 import {slowMiddleware} from "./middlewares/slow";
 
 const db = {movies, genres, comments};
