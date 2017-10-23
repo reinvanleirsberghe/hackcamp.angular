@@ -75,6 +75,6 @@ export class ApiService {
    * @returns {any}
    */
   private handleError(err: any): Observable<Error> {
-    return Observable.throw(new Error(err));
+    return Observable.of(new Error(err));
   }
 }
